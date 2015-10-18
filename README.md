@@ -1,14 +1,17 @@
+Clone the repo:
+`git clone https://github.com/fatjing/vimfiles.git ~/.vim`
+
+Install/Update plugins:
+`cd ~/.vim/bundle && bash install.sh`
+
 Make sure vim finds the vimrc file by either symlinking it:
 `ln -s ~/.vim/vimrc ~/.vimrc`
-or by sourcing it from  your own ~/.vimrc:
+or by sourcing it from your own ~/.vimrc:
 `source ~/.vim/vimrc`
 
 * .vimrc - runtime configuration
 * .vim/bundle - bundle directory of plugin manager pathogen
 * .vim/bundle/install.sh - shell script to install plugins
-
-to use install.sh:
-`cd ~/.vim/bundle && bash install.sh`
 
 as for pathogen, to install a plugin:
 `cd ~/.vim/bundle && git clone git://github.com/username/repository.git`
