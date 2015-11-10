@@ -50,6 +50,9 @@ set autoindent
 
 " text formatting
 set formatoptions+=j
+if has('multi_byte')
+    set fo+=mM
+endif
 "set textwidth=79
 "set colorcolumn=85
 
