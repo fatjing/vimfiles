@@ -259,7 +259,6 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#profile('default', 'context', {'start_insert': 1})
 
-let g:unite_source_history_yank_enable = 1
 let g:unite_source_rec_max_cache_files = 5000
 
 let g:unite_source_grep_command = 'ag'

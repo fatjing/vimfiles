@@ -36,6 +36,7 @@ installPackage tpope/vim-unimpaired
 
 installPackage Shougo/unite.vim
 installPackage Shougo/neomru.vim
+installPackage Shougo/neoyank.vim
 installPackage Shougo/vimproc.vim
 cd vimproc.vim
 #make
