@@ -9,7 +9,8 @@ Make sure vim finds the vimrc file by either symlinking it:
 or by sourcing it from your own ~/.vimrc:
 `source ~/.vim/vimrc`
 
-* .vimrc - runtime configuration
+File descriptions:
+* .vim/vimrc - runtime configuration
 * .vim/bundle - bundle directory of plugin manager pathogen
 * .vim/bundle/install.sh - shell script to install plugins
 
