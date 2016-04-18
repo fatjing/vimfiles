@@ -168,13 +168,8 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Ag
 
-" NERDTree
-nnoremap <silent> <F8> :NERDTreeFind<CR>
-nnoremap <silent> <F7> :NERDTreeToggle<CR>
-let NERDTreeShowHidden = 1
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr('$') == 1 && exists('b:NERDTreeType')
-                    \  && b:NERDTreeType == 'primary') | q | endif
+" dirvish
+" Use *-* to open the current file directory
 
 " Tagbar (ctags required)
 nnoremap <silent> <F9> :TagbarToggle<CR>

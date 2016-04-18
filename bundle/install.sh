@@ -15,12 +15,12 @@ installPackage()
 }
 
 installPackage jpalardy/vim-slime
+installPackage justinmk/vim-dirvish
 installPackage luochen1990/rainbow
 installPackage majutsushi/tagbar
 installPackage mbbill/fencview
 installPackage mtth/scratch.vim
 installPackage rking/ag.vim
-installPackage scrooloose/nerdtree
 installPackage scrooloose/syntastic
 installPackage sirver/ultisnips
 installPackage honza/vim-snippets
