@@ -168,11 +168,6 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Ag
 
-" NERDCommenter
-map <Leader>c <Plug>NERDCommenterToggle
-let NERDCreateDefaultMappings = 0
-let NERDSpaceDelims = 1
-
 " NERDTree
 nnoremap <silent> <F8> :NERDTreeFind<CR>
 nnoremap <silent> <F7> :NERDTreeToggle<CR>
@@ -190,6 +185,9 @@ let g:rainbow_active = 0
 
 " FencView (iconv.dll required for Windows)
 " use :FencAutoDetect, or use :FencView and then select from encoding list
+
+" commentary
+" Use *gcc* to comment out a line, *gc* to comment out the target of a motion
 
 " surround
 " A tool for dealing with pairs of surroundings. Delete surroundings is *ds*.
