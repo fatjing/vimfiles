@@ -19,11 +19,11 @@ installPackage justinmk/vim-dirvish
 installPackage luochen1990/rainbow
 installPackage majutsushi/tagbar
 installPackage mbbill/fencview
+installPackage mileszs/ack.vim
 installPackage mtth/scratch.vim
-installPackage rking/ag.vim
 installPackage scrooloose/syntastic
-installPackage sirver/ultisnips
 installPackage honza/vim-snippets
+installPackage sirver/ultisnips
 installPackage tpope/vim-commentary
 installPackage tpope/vim-dispatch
 installPackage tpope/vim-fugitive
