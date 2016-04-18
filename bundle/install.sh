@@ -19,7 +19,6 @@ installPackage justinmk/vim-dirvish
 installPackage luochen1990/rainbow
 installPackage majutsushi/tagbar
 installPackage mbbill/fencview
-installPackage mileszs/ack.vim
 installPackage mtth/scratch.vim
 installPackage scrooloose/syntastic
 installPackage honza/vim-snippets
@@ -31,7 +30,6 @@ installPackage tpope/vim-pathogen
 installPackage tpope/vim-repeat
 installPackage tpope/vim-surround
 installPackage tpope/vim-unimpaired
-# installPackage maksimr/vim-jsbeautify
 # installPackage maxbrunsfeld/vim-yankstack
 
 installPackage Shougo/unite.vim

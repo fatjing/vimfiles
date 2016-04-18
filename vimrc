@@ -179,9 +179,6 @@ let g:rainbow_active = 0
 " FencView (iconv.dll required for Windows)
 " use :FencAutoDetect, or use :FencView and then select from encoding list
 
-" Ack.vim
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
 " commentary
 " Use *gcc* to comment out a line, *gc* to comment out the target of a motion
 
