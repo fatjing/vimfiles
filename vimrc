@@ -92,7 +92,7 @@ set statusline+=[L:%l/%L,%5(C:%2(%c%V%)%)]\ %P     " offset
 set timeoutlen=2500    " mapping delay
 set ttimeoutlen=100    " key code delay
 
-let mapleader = ','
+let mapleader = "\<Space>"
 
 inoremap jk <ESC>
 nnoremap ; :
@@ -270,8 +270,8 @@ function! s:unite_settings()
 endfunction
 autocmd FileType unite call s:unite_settings()
 
-nmap <space> [unite]
 nnoremap [unite] <nop>
+nmap , [unite]
 
 if has('win32')
     nnoremap <silent> [unite]a :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec:! buffer file_mru bookmark<cr><c-u>
