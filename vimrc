@@ -96,10 +96,11 @@ let mapleader = ','
 
 inoremap jk <ESC>
 nnoremap ; :
+nnoremap : ;
 vnoremap ; :
 
-nnoremap <up> gk
-nnoremap <down> gj
+nnoremap j gj
+nnoremap g gk
 
 " buffer navigation
 nnoremap <silent> <left> :bprev<CR>
