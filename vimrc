@@ -179,8 +179,12 @@ let g:rainbow_active = 0
 " FencView (iconv.dll required for Windows)
 " use :FencAutoDetect, or use :FencView and then select from encoding list
 
+" Plugins by tpope {{{
 " commentary
 " Use *gcc* to comment out a line, *gc* to comment out the target of a motion
+
+" sleuth
+" Automatically adjusts 'shiftwidth' and 'expandtab' heuristically
 
 " surround
 " A tool for dealing with pairs of surroundings. Delete surroundings is *ds*.
@@ -196,6 +200,7 @@ let g:rainbow_active = 0
 " fugitive
 " git wrapper
 set statusline+=%(\ %{fugitive#statusline()}%)    " Fugitive statusline
+" }}}
 
 " vim-Slime
 " Grab some text and 'send' it to a GNU Screen / tmux / whimrepl session.

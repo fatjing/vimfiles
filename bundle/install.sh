@@ -28,6 +28,7 @@ installPackage tpope/vim-dispatch
 installPackage tpope/vim-fugitive
 installPackage tpope/vim-pathogen
 installPackage tpope/vim-repeat
+installPackage tpope/vim-sleuth
 installPackage tpope/vim-surround
 installPackage tpope/vim-unimpaired
 # installPackage maxbrunsfeld/vim-yankstack
