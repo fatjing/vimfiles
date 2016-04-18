@@ -120,7 +120,7 @@ set showmatch
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <Leader>s :%s/\v
-nnoremap <silent> <Leader><Space> :noh<CR>
+nnoremap <silent> <Leader>h :noh<CR>
 nnoremap <Tab> %
 vnoremap <Tab> %
 
@@ -148,6 +148,15 @@ nmap <F5> :set list! list?<cr>
 " toggle paste
 map <F6> :set invpaste<CR>:set paste?<CR>
 
+" copy to / paste from system clipboard
+nnoremap <Leader>y "*y
+vnoremap <Leader>y "*y
+nnoremap <Leader>p "*p
+vnoremap <Leader>p "*p
+
+" reselect last paste
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
 " edit .vimrc file on the fly
 nnoremap <Leader>ev <C-w>v<C-w>l:e $MYVIMRC<CR>
 
@@ -159,9 +168,6 @@ nnoremap <Leader>ft Vatzf
 
 " sort CSS properties
 nnoremap <Leader>CS ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
-
-" reselect last paste
-nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 "==============================================================================
 " plugin shortcuts and settings
