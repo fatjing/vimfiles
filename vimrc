@@ -74,17 +74,17 @@ set laststatus=2    " always display status line
 " statusline setup
 set statusline=    " clear the statusline for when vimrc is reloaded
 set statusline+=%-n\                               " buffer number
-set statusline+=%<%.99f\                           " file name
+set statusline+=%<%.79f\                           " file name
 set statusline+=[%{strlen(&ft)?&ft:'n/a'},         " filetype
 set statusline+=%{&bomb?'bom,':''}                 " BOM
 set statusline+=%{&fenc},                          " file encoding
 set statusline+=%{&fileformat}]                    " file format
-set statusline+=%{fugitive#statusline()}           " Fugitive git branch
+set statusline+=%{fugitive#statusline()}           " FUGITIVE git branch
 set statusline+=%m%r%w                             " flags
-set statusline+=%#warningmsg#%{SyntasticStatuslineFlag()}%*    " Syntastic
+set statusline+=%#warningmsg#%{SyntasticStatuslineFlag()}%*     " SYNTASTIC
 set statusline+=%=                                 " left/right separator
 set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}   " syntax
-set statusline+=\ 0x%B\                            " character under cursor
+set statusline+=\ 0x%B\ \                          " character under cursor
 set statusline+=[%l/%L,%-4(%3(%c%V]%)%)\ %P        " offset
 
 "-----------------------------------------------------------------------------
