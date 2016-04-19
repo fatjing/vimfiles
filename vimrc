@@ -53,7 +53,7 @@ set formatoptions+=j
 if has('multi_byte')
     set fo+=mM
 endif
-"set textwidth=79
+"set textwidth=78
 "set colorcolumn=85
 
 set scrolloff=3
@@ -74,23 +74,25 @@ set laststatus=2    " always display status line
 " statusline setup
 set statusline=    " clear the statusline for when vimrc is reloaded
 set statusline+=%-n\                               " buffer number
-set statusline+=%<%f\                              " file name
+set statusline+=%<%.99f\                           " file name
 set statusline+=[%{strlen(&ft)?&ft:'n/a'},         " filetype
 set statusline+=%{&bomb?'bom,':''}                 " BOM
 set statusline+=%{&fenc},                          " file encoding
 set statusline+=%{&fileformat}]                    " file format
+set statusline+=%{fugitive#statusline()}           " Fugitive git branch
 set statusline+=%m%r%w                             " flags
+set statusline+=%#warningmsg#%{SyntasticStatuslineFlag()}%*    " Syntastic
 set statusline+=%=                                 " left/right separator
-set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')} " syntax
+set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}   " syntax
 set statusline+=\ 0x%B\                            " character under cursor
-set statusline+=[L:%l/%L,%5(C:%2(%c%V%)%)]\ %P     " offset
+set statusline+=[%l/%L,%-4(%3(%c%V]%)%)\ %P        " offset
 
-"==============================================================================
+"-----------------------------------------------------------------------------
 " key mappings
-"==============================================================================
+"-----------------------------------------------------------------------------
 
 set timeoutlen=2500    " mapping delay
-set ttimeoutlen=100    " key code delay
+set ttimeoutlen=50     " key code delay
 
 let mapleader = "\<Space>"
 
@@ -169,9 +171,9 @@ nnoremap <Leader>ft Vatzf
 " sort CSS properties
 nnoremap <Leader>CS ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 
-"==============================================================================
+"-----------------------------------------------------------------------------
 " plugin shortcuts and settings
-"==============================================================================
+"-----------------------------------------------------------------------------
 
 " dirvish
 " Use *-* to open the current file directory
@@ -206,7 +208,6 @@ let g:rainbow_active = 0
 
 " fugitive
 " git wrapper
-set statusline+=%(\ %{fugitive#statusline()}%)    " Fugitive statusline
 " }}}
 
 " vim-Slime
@@ -236,9 +237,6 @@ let g:UltiSnipsExpandTrigger = '<C-j>'
 " Syntastic {{{
 nnoremap <Leader>E :Errors<CR>
 nnoremap <Leader>S :SyntasticCheck<CR>
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 let g:syntastic_check_on_wq = 0
 "let g:syntastic_aggregate_errors = 1
 let g:syntastic_enable_signs = 0
