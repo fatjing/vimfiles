@@ -126,6 +126,7 @@ nnoremap <silent> <Leader>h :noh<CR>
 nnoremap <Tab> %
 vnoremap <Tab> %
 
+nnoremap <Leader>w <C-w>
 " open a new vertical split and switch over to it
 nnoremap <Leader>v <C-w>v<C-w>l
 " navigate among split windows
@@ -162,14 +163,24 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 " edit .vimrc file on the fly
 nnoremap <Leader>ev <C-w>v<C-w>l:e $MYVIMRC<CR>
 
-" strip all trailing whitespace in the current file
-nnoremap <Leader>w :%s/\s\+$//<CR>:noh<CR>
-
 " fold tag
 nnoremap <Leader>ft Vatzf
 
 " sort CSS properties
 nnoremap <Leader>CS ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+
+function! PreserveStateRun(command)
+    " Preparation: save last search, and view of the current window
+    let _s=@/
+    let l:winview = winsaveview()
+    " Do the business
+    execute a:command
+    " Clean up: restore previous search history, and view of the window
+    let @/=_s
+    call winrestview(l:winview)
+endfunction
+" strip all trailing whitespace in the current file
+nnoremap <F4> :call PreserveStateRun("%s/\\s\\+$//e")<CR>
 
 "-----------------------------------------------------------------------------
 " plugin shortcuts and settings
