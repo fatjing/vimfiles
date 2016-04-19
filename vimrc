@@ -33,7 +33,7 @@ set noswapfile
 "set undofile
 set history=5000    " cmdline history
 
-set hidden    " hide buffers when not displayed
+set hidden    " allow buffer switching without saving
 
 set backspace=indent,eol,start
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
@@ -42,11 +42,11 @@ set nrformats-=octal
 set encoding=utf-8
 set fileformats=unix,dos
 
-set tabstop=4       " number of spaces that a <Tab> in the file counts for
+set tabstop=4       " number of spaces per tab for display
 set shiftwidth=4    " number of spaces to use for each step of (auto)indent
-set softtabstop=4   " number of spaces a <Tab> counts for while editing
+set softtabstop=4   " number of spaces per tab in insert mode
 set expandtab       " in insert mode: use spaces to insert a <Tab>
-set autoindent
+set autoindent      " automatically indent to match adjacent line
 
 " text formatting
 set formatoptions+=j
@@ -265,9 +265,7 @@ call unite#custom#profile('default', 'context', {'start_insert': 1})
 let g:unite_source_rec_max_cache_files = 5000
 
 let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts =
-    \ '-i --vimgrep --hidden --ignore ' .
-    \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
 let g:unite_source_grep_recursive_opt = ''
 
 function! s:unite_settings()
