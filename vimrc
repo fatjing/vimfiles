@@ -137,14 +137,6 @@ nnoremap <C-l> <C-w>l
 " start diff mode with vertical splits
 set diffopt=vertical
 
-" quickfix / location list
-nnoremap <Leader>q :copen<CR>
-nnoremap <Leader>l :lopen<CR>
-" Automatically open, but do not go to (if there are errors) the quickfix /
-" location list window, or close it when is has become empty.
-"autocmd QuickFixCmdPost [^l]* nested cwindow
-"autocmd QuickFixCmdPost    l* nested lwindow
-
 " copy to / paste from system clipboard
 nnoremap <Leader>y "*y
 vnoremap <Leader>y "*y
@@ -194,8 +186,15 @@ let g:rainbow_active = 0
 " use :FencAutoDetect, or use :FencView and then select from encoding list
 
 " Plugins by tpope {{{
+"
 " commentary
 " Use *gcc* to comment out a line, *gc* to comment out the target of a motion
+
+" dispatch
+" Asynchronous build and test dispatcher
+
+" fugitive
+" git wrapper
 
 " sleuth
 " Automatically adjusts 'shiftwidth' and 'expandtab' heuristically
@@ -207,13 +206,10 @@ let g:rainbow_active = 0
 
 " unimpaired
 " several pairs of bracket maps
-
-" dispatch
-" Asynchronous build and test dispatcher
-
-" fugitive
-" git wrapper
 " }}}
+
+" ListToggle
+" Toggle quickfix/location list, default keymappings: *<Leader>q* *<Leader>l*
 
 " vim-Slime
 " Grab some text and 'send' it to a GNU Screen / tmux / whimrepl session.
