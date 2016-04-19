@@ -145,12 +145,6 @@ nnoremap <Leader>l :lopen<CR>
 "autocmd QuickFixCmdPost [^l]* nested cwindow
 "autocmd QuickFixCmdPost    l* nested lwindow
 
-" toggle list
-nmap <F5> :set list! list?<cr>
-
-" toggle paste
-map <F6> :set invpaste<CR>:set paste?<CR>
-
 " copy to / paste from system clipboard
 nnoremap <Leader>y "*y
 vnoremap <Leader>y "*y
