@@ -274,7 +274,7 @@ endfunction
 autocmd FileType unite call s:unite_settings()
 
 nnoremap [unite] <nop>
-nmap , [unite]
+nmap <Leader><Space> [unite]
 
 if has('win32')
     nnoremap <silent> [unite]a :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec:! buffer file_mru bookmark<cr><c-u>
@@ -287,7 +287,7 @@ nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=recent file_mru<cr>
 nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
 nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
 nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
-nnoremap <silent> [unite]g :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
+nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
 nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
 nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
 " }}}
