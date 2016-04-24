@@ -102,7 +102,9 @@ nnoremap : ;
 vnoremap ; :
 
 nnoremap j gj
+nnoremap gj j
 nnoremap k gk
+nnoremap gk k
 
 " buffer navigation
 nnoremap <silent> <left> :bprev<CR>
