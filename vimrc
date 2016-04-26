@@ -139,10 +139,10 @@ nnoremap <C-l> <C-w>l
 set diffopt=vertical
 
 " copy to / paste from system clipboard
-nnoremap <Leader>y "*y
-vnoremap <Leader>y "*y
-nnoremap <Leader>p "*p
-vnoremap <Leader>p "*p
+nnoremap <Leader>y "+y
+vnoremap <Leader>y "+y
+nnoremap <Leader>p "+p
+vnoremap <Leader>p "+p
 
 " reselect last paste
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -260,9 +260,9 @@ let g:syntastic_cpp_check_header = 1
 " Unite {{{
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#profile('default', 'context', {'start_insert': 1})
-
-let g:unite_source_rec_max_cache_files = 5000
+"call unite#custom#profile('default', 'context', {'start_insert': 1})
+call unite#custom#source('buffer, bookmark, history/yank, grep, mapping',
+                        \ 'max_candidates', '0')
 
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
