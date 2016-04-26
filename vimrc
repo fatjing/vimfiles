@@ -125,8 +125,6 @@ nnoremap / /\v
 vnoremap / /\v
 nnoremap <Leader>s :%s/\v
 nnoremap <silent> <Leader>h :noh<CR>
-nnoremap <Tab> %
-vnoremap <Tab> %
 
 nnoremap <Leader>w <C-w>
 " open a new vertical split and switch over to it
