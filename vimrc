@@ -100,6 +100,7 @@ inoremap jk <ESC>
 nnoremap ; :
 nnoremap : ;
 vnoremap ; :
+vnoremap : ;
 
 nnoremap j gj
 nnoremap gj j
@@ -109,7 +110,7 @@ nnoremap gk k
 " buffer navigation
 nnoremap <silent> <left> :bprev<CR>
 nnoremap <silent> <right> :bnext<CR>
-nnoremap gb :ls<cr>:e #
+nnoremap <Leader>b :ls<cr>:e #
 
 " make Y consistent with C and D. See :help Y
 nnoremap Y y$
