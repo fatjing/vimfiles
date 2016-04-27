@@ -261,7 +261,7 @@ let g:syntastic_cpp_check_header = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 "call unite#custom#profile('default', 'context', {'start_insert': 1})
-call unite#custom#source('buffer, bookmark, history/yank, grep, mapping',
+call unite#custom#source('buffer, history/yank, line, grep, mapping',
                         \ 'max_candidates', '0')
 
 let g:unite_source_grep_command = 'ag'
