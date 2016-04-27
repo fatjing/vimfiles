@@ -188,6 +188,9 @@ let g:rainbow_active = 0
 
 " Plugins by tpope {{{
 "
+" abolish
+" find, substitute, and abbreviate several variations of a word at once
+
 " commentary
 " Use *gcc* to comment out a line, *gc* to comment out the target of a motion
 
@@ -201,9 +204,7 @@ let g:rainbow_active = 0
 " Automatically adjusts 'shiftwidth' and 'expandtab' heuristically
 
 " surround
-" A tool for dealing with pairs of surroundings. Delete surroundings is *ds*.
-" Change surroundings is *cs*. *ys* takes a motion or text object as the first
-" object, and wraps it using the second argument. See :h surround-targets
+" A tool for dealing with pairs of surroundings. See :h surround
 
 " unimpaired
 " several pairs of bracket maps

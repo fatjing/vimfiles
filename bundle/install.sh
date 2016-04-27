@@ -23,6 +23,7 @@ installPackage mtth/scratch.vim
 installPackage scrooloose/syntastic
 installPackage honza/vim-snippets
 installPackage sirver/ultisnips
+installPackage tpope/vim-abolish
 installPackage tpope/vim-commentary
 installPackage tpope/vim-dispatch
 installPackage tpope/vim-fugitive
