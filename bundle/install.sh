@@ -58,8 +58,9 @@ cd ..
 # git submodule update --init --recursive
 # cd ..
 
-installPackage chriskempson/base16-vim
+# installPackage chriskempson/base16-vim
 installPackage dsolstad/vim-wombat256i
+installPackage w0ng/vim-hybrid
 installPackage hdima/python-syntax
 
 rm -rf */.git

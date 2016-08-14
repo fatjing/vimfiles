@@ -12,9 +12,9 @@ syntax on
 set guioptions=
 set mouse=a
 
-"set background=dark
 "let base16colorspace=256
-color base16-tomorrow-night
+"color base16-tomorrow-night
+color hybrid
 
 if has('gui_win32')
     set guifont=Consolas:h10.5
