@@ -61,6 +61,8 @@ cd ..
 # installPackage chriskempson/base16-vim
 installPackage dsolstad/vim-wombat256i
 installPackage w0ng/vim-hybrid
+
+installPackage cespare/vim-toml
 installPackage hdima/python-syntax
 
 rm -rf */.git
