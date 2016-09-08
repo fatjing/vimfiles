@@ -151,7 +151,7 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 nnoremap <Leader>ev <C-w>v<C-w>l:e $MYVIMRC<CR>
 
 " fold tag
-nnoremap <Leader>ft Vatzf
+nnoremap <Leader>FT Vatzf
 
 " sort CSS properties
 nnoremap <Leader>CS ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>

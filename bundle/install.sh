@@ -23,6 +23,8 @@ installPackage mtth/scratch.vim
 installPackage scrooloose/syntastic
 installPackage honza/vim-snippets
 installPackage sirver/ultisnips
+installPackage Valloric/ListToggle
+
 installPackage tpope/vim-abolish
 installPackage tpope/vim-commentary
 installPackage tpope/vim-dispatch
@@ -32,8 +34,6 @@ installPackage tpope/vim-repeat
 installPackage tpope/vim-sleuth
 installPackage tpope/vim-surround
 installPackage tpope/vim-unimpaired
-installPackage Valloric/ListToggle
-# installPackage maxbrunsfeld/vim-yankstack
 
 installPackage Shougo/unite.vim
 installPackage Shougo/neomru.vim
