@@ -9,17 +9,18 @@ execute pathogen#infect()
 filetype plugin indent on
 syntax on
 
-set guioptions=
-set mouse=a
-
 "let base16colorspace=256
 "color base16-tomorrow-night
 color hybrid
 
+set mouse=a
+set guioptions=
+
 if has('gui_win32')
     set guifont=Consolas:h10.5
     set guifontwide=Microsoft\ YaHei\ Mono:h10.5
-elseif has('gui_gtk2')
+    set renderoptions=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
+elseif has('gui_gtk')
     set guifont=Inconsolata\ 12
     set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ 12
 endif
@@ -47,6 +48,7 @@ set shiftwidth=4    " number of spaces to use for each step of (auto)indent
 set softtabstop=4   " number of spaces per tab in insert mode
 set expandtab       " in insert mode: use spaces to insert a <Tab>
 set autoindent      " automatically indent to match adjacent line
+set breakindent     " wrapped line continue visually indented
 
 " text formatting
 set formatoptions+=j
