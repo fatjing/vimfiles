@@ -21,13 +21,14 @@ installPackage majutsushi/tagbar
 installPackage mbbill/fencview
 installPackage mtth/scratch.vim
 installPackage scrooloose/syntastic
-installPackage honza/vim-snippets
 installPackage sirver/ultisnips
+installPackage honza/vim-snippets
 installPackage Valloric/ListToggle
 
 installPackage tpope/vim-abolish
 installPackage tpope/vim-commentary
 installPackage tpope/vim-dispatch
+installPackage tpope/vim-endwise
 installPackage tpope/vim-fugitive
 installPackage tpope/vim-pathogen
 installPackage tpope/vim-repeat
@@ -44,6 +45,7 @@ cd vimproc.vim
 mingw32-make -f make_mingw32.mak
 cd ..
 
+installPackage rstacruz/vim-closer
 installPackage rstacruz/sparkup
 cd sparkup
 # make vim-pathogen

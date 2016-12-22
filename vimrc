@@ -199,6 +199,9 @@ let g:rainbow_active = 0
 " dispatch
 " Asynchronous build and test dispatcher
 
+" endwise
+" end certain structures automatically
+
 " fugitive
 " git wrapper
 
@@ -223,6 +226,9 @@ let g:rainbow_active = 0
 " scratch.vim
 " default key binding in normal and visual modes: *gs*
 let g:scratch_insert_autohide = 0
+
+" vim-closer
+" closes brackets when pressing Enter
 
 " sparkup
 " open an html file, type in something (e.g., #header > h1), then press
