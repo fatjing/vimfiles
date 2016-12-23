@@ -20,6 +20,7 @@ installPackage luochen1990/rainbow
 installPackage majutsushi/tagbar
 installPackage mbbill/fencview
 installPackage mtth/scratch.vim
+installPackage rstacruz/vim-closer
 installPackage scrooloose/syntastic
 installPackage sirver/ultisnips
 installPackage honza/vim-snippets
@@ -43,16 +44,6 @@ installPackage Shougo/vimproc.vim
 cd vimproc.vim
 # make
 mingw32-make -f make_mingw32.mak
-cd ..
-
-installPackage rstacruz/vim-closer
-installPackage rstacruz/sparkup
-cd sparkup
-# make vim-pathogen
-mingw32-make vim-pathogen
-rm -f ftplugin
-rm -rf vim/doc
-mv vim/ftplugin ./
 cd ..
 
 # installPackage Valloric/YouCompleteMe

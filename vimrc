@@ -230,10 +230,6 @@ let g:scratch_insert_autohide = 0
 " vim-closer
 " closes brackets when pressing Enter
 
-" sparkup
-" open an html file, type in something (e.g., #header > h1), then press
-" <Ctrl-e>. Pressing <Ctrl-n> will cycle through empty elements
-
 " ultisnips and snippets
 " insert a piece of often-typed text into your document using a trigger word
 " followed by a <Tab> (default key binding)
