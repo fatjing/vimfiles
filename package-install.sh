@@ -14,6 +14,7 @@ installPackage()
     done
 }
 
+cd ./bundle
 installPackage jpalardy/vim-slime
 installPackage justinmk/vim-dirvish
 installPackage luochen1990/rainbow

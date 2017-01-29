@@ -10,9 +10,9 @@ or by sourcing it from your own ~/.vimrc:
 `source ~/.vim/vimrc`
 
 File descriptions:
+* .vim/bundle/ - bundle directory of plugin manager pathogen
+* .vim/package-install.sh - shell script to install plugins
 * .vim/vimrc - runtime configuration
-* .vim/bundle - bundle directory of plugin manager pathogen
-* .vim/bundle/install.sh - shell script to install plugins
 
 as for pathogen, to install a plugin:
 `cd ~/.vim/bundle && git clone git://github.com/username/repository.git`
