@@ -25,6 +25,7 @@ installPackage scrooloose/syntastic
 installPackage sirver/ultisnips
 installPackage honza/vim-snippets
 installPackage Valloric/ListToggle
+installPackage vim-voom/VOoM
 
 installPackage tpope/vim-abolish
 installPackage tpope/vim-commentary

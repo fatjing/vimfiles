@@ -218,6 +218,10 @@ let g:rainbow_active = 0
 " ListToggle
 " Toggle quickfix/location list, default keymappings: *<Leader>q* *<Leader>l*
 
+" VOoM
+" VOoM (Vim Outliner of Markups) is a plugin for Vim that emulates a two-pane
+" text outliner
+
 " vim-Slime
 " Grab some text and 'send' it to a GNU Screen / tmux / whimrepl session.
 " Default key binding: <Ctrl-c><Ctrl-c> (hold Ctrl and double-tap c)
