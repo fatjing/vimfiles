@@ -39,14 +39,9 @@ installPackage tpope/vim-sleuth
 installPackage tpope/vim-surround
 installPackage tpope/vim-unimpaired
 
-installPackage Shougo/unite.vim
+installPackage Shougo/denite.nvim
 installPackage Shougo/neomru.vim
 installPackage Shougo/neoyank.vim
-installPackage Shougo/vimproc.vim
-cd vimproc.vim
-# make
-mingw32-make -f make_mingw32.mak
-cd ..
 
 # installPackage Valloric/YouCompleteMe
 # cd YouCompleteMe
@@ -57,8 +52,7 @@ cd ..
 installPackage dsolstad/vim-wombat256i
 installPackage w0ng/vim-hybrid
 
-installPackage cespare/vim-toml
-installPackage hdima/python-syntax
+installPackage sheerun/vim-polyglot
 
 rm -rf */.git
 echo

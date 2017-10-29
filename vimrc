@@ -18,7 +18,7 @@ set guioptions=
 
 if has('gui_win32')
     set guifont=Consolas:h10.5
-    set guifontwide=Microsoft\ YaHei\ Mono:h10.5
+    " set guifontwide=Microsoft\ YaHei\ Mono:h10.5
     set renderoptions=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 elseif has('gui_gtk')
     set guifont=Inconsolata\ 12
@@ -259,40 +259,4 @@ let g:syntastic_mode_map = {
     \ 'passive_filetypes': [] }
 " python
 let g:syntastic_python_checkers = ['flake8']
-" }}}
-
-" Unite {{{
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-"call unite#custom#profile('default', 'context', {'start_insert': 1})
-call unite#custom#source('buffer, history/yank, line, grep, mapping',
-                        \ 'max_candidates', '0')
-
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-let g:unite_source_grep_recursive_opt = ''
-
-function! s:unite_settings()
-    nmap <buffer> <esc> <plug>(unite_exit)
-    imap <buffer> <esc> <plug>(unite_exit)
-endfunction
-autocmd FileType unite call s:unite_settings()
-
-nnoremap [unite] <nop>
-nmap <Leader><Space> [unite]
-
-if has('win32')
-    nnoremap <silent> [unite]a :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec:! buffer file_mru bookmark<cr><c-u>
-    nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec:!<cr><c-u>
-else
-    nnoremap <silent> [unite]a :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr><c-u>
-    nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async:!<cr><c-u>
-endif
-nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=recent file_mru<cr>
-nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
-nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
-nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
-nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
-nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
-nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
 " }}}
