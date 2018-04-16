@@ -2,14 +2,14 @@
 
 installPackage()
 {
-    directory=${1##*/}
+    directory="${1##*/}"
     sucess=1
     while [ $sucess -ne 0 ]; do
-        if [ -d $directory ]; then
-            rm -rf $directory
+        if [ -d "$directory" ]; then
+            rm -rf "$directory"
         fi
         echo
-        git clone --depth 1 https://github.com/$1.git
+        git clone --depth 1 "https://github.com/$1.git"
         sucess=$?
     done
 }
