@@ -8,5 +8,6 @@ or by sourcing it from ~/.vimrc:
 
 File descriptions:
 * .vim/install_package.sh - script to install plugins, note the directory structure
+    * post-installation: run `:helptags ALL` in vim to generate help tags files if needed
 * .vim/vimrc - runtime configuration
 
