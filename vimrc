@@ -2,10 +2,6 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" activate pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
-
 filetype plugin indent on
 syntax on
 
@@ -39,6 +35,7 @@ set hidden    " allow buffer switching without saving
 set backspace=indent,eol,start
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set nrformats-=octal
+set tags=./.tags;,.tags
 
 set encoding=utf-8
 set fileformats=unix,dos
@@ -83,9 +80,8 @@ set statusline+=%{&fenc},                          " file encoding
 set statusline+=%{&fileformat}]                    " file format
 set statusline+=%{fugitive#statusline()}           " FUGITIVE git branch
 set statusline+=%m%r%w                             " flags
-set statusline+=%#warningmsg#%{SyntasticStatuslineFlag()}%*     " SYNTASTIC
 set statusline+=%=                                 " left/right separator
-set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}   " syntax
+set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}   " syntax id
 set statusline+=\ 0x%B\ \                          " character under cursor
 set statusline+=[%l/%L,%-4(%3(%c%V]%)%)\ %P        " offset
 
@@ -178,9 +174,6 @@ nnoremap <F4> :call PreserveStateRun("%s/\\s\\+$//e")<CR>
 " dirvish
 " Use *-* to open the current file directory
 
-" Tagbar (ctags required)
-nnoremap <silent> <F9> :TagbarToggle<CR>
-
 " Rainbow Parentheses Improved
 nnoremap <Leader>r :RainbowToggle<CR>
 let g:rainbow_active = 0
@@ -213,7 +206,7 @@ let g:rainbow_active = 0
 
 " unimpaired
 " several pairs of bracket maps
-" }}}
+" }}} tpope
 
 " ListToggle
 " Toggle quickfix/location list, default keymappings: *<Leader>q* *<Leader>l*
@@ -239,24 +232,69 @@ let g:scratch_insert_autohide = 0
 " followed by a <Tab> (default key binding)
 let g:UltiSnipsExpandTrigger = '<C-j>'
 
-" YouCompleteMe
+" YouCompleteMe {{{
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+noremap <c-z> <NOP>
+set completeopt=menu,menuone
+
+let g:ycm_semantic_triggers =  {
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'cs,lua,javascript': ['re!\w{2}'],
+            \ }
 "let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 "let g:ycm_key_invoke_completion = '<C-Space>'
 "let g:ycm_key_detailed_diagnostics = '<leader>d'
-"let g:ycm_min_num_of_chars_for_completion = 3
+" }}} YCM
 
-" Syntastic {{{
-nnoremap <Leader>E :Errors<CR>
-nnoremap <Leader>S :SyntasticCheck<CR>
-let g:syntastic_check_on_wq = 0
-"let g:syntastic_aggregate_errors = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_jump = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_mode_map = {
-    \ 'mode': 'passive',
-    \ 'active_filetypes': [],
-    \ 'passive_filetypes': [] }
-" python
-let g:syntastic_python_checkers = ['flake8']
-" }}}
+" Gutentags {{{
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+"let g:gutentags_auto_add_gtags_cscope = 0
+
+let g:gutentags_modules = []
+if executable('ctags')
+    let g:gutentags_modules += ['ctags']
+endif
+if executable('gtags-cscope') && executable('gtags')
+    let g:gutentags_modules += ['gtags_cscope']
+endif
+
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+" universal ctags
+"let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+" }}} Gutentags
+
+" ALE {{{
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+
+let g:ale_sign_error = "\ue009\ue009"
+hi! clear SpellBad
+hi! clear SpellCap
+hi! clear SpellRare
+hi! SpellBad gui=undercurl guisp=red
+hi! SpellCap gui=undercurl guisp=blue
+hi! SpellRare gui=undercurl guisp=magenta
+" }}} ALE
+
+" Denite {{{
+" }}} Denite
