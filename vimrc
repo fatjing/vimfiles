@@ -150,11 +150,6 @@ set splitright
 nnoremap <Leader>w <C-w>
 " open a new vertical split and switch over to it
 nnoremap <Leader>v <C-w>v<C-w>l
-" navigate among split windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 " copy to / paste from system clipboard
 nnoremap <Leader>y "+y
