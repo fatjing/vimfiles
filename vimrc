@@ -13,12 +13,12 @@ set mouse=a
 set guioptions=
 
 if has('gui_win32')
-    set guifont=Consolas:h10.5
-    " set guifontwide=Microsoft\ YaHei\ Mono:h10.5
-    set renderoptions=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
+  set guifont=Consolas:h10.5
+  " set guifontwide=Microsoft\ YaHei\ Mono:h10.5
+  set renderoptions=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 elseif has('gui_gtk')
-    set guifont=Inconsolata\ 12
-    set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ 12
+  set guifont=Inconsolata\ 12
+  set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ 12
 endif
 
 set visualbell
@@ -50,7 +50,7 @@ set breakindent     " wrapped line continue visually indented
 " text formatting
 set formatoptions+=j
 if has('multi_byte')
-    set fo+=mM
+  set fo+=mM
 endif
 "set textwidth=78
 "set colorcolumn=85
@@ -155,14 +155,14 @@ nnoremap <Leader>FT Vatzf
 nnoremap <Leader>CS ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 
 function! PreserveStateRun(command)
-    " Preparation: save last search, and view of the current window
-    let _s=@/
-    let l:winview = winsaveview()
-    " Do the business
-    execute a:command
-    " Clean up: restore previous search history, and view of the window
-    let @/=_s
-    call winrestview(l:winview)
+  " Preparation: save last search, and view of the current window
+  let _s=@/
+  let l:winview = winsaveview()
+  " Do the business
+  execute a:command
+  " Clean up: restore previous search history, and view of the window
+  let @/=_s
+  call winrestview(l:winview)
 endfunction
 " strip all trailing whitespace in the current file
 nnoremap <F4> :call PreserveStateRun("%s/\\s\\+$//e")<CR>
@@ -260,10 +260,10 @@ let g:gutentags_cache_dir = expand('~/.cache/tags')
 
 let g:gutentags_modules = []
 if executable('ctags')
-    let g:gutentags_modules += ['ctags']
+  let g:gutentags_modules += ['ctags']
 endif
 if executable('gtags-cscope') && executable('gtags')
-    let g:gutentags_modules += ['gtags_cscope']
+  let g:gutentags_modules += ['gtags_cscope']
 endif
 
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
