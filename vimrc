@@ -3,8 +3,12 @@
 set nocompatible
 
 filetype plugin indent on
-syntax on
+syntax enable
 
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+  set t_Co=16
+endif
 "let base16colorspace=256
 "color base16-tomorrow-night
 color hybrid
@@ -26,20 +30,30 @@ set ttyfast
 
 set nobackup
 set noswapfile
-"au FocusLost * :wa    " save on losing focus
 "set undofile
+"au FocusLost * :wa    " save on losing focus
+
 set history=5000    " cmdline history
+if !empty(&viminfo)
+  set viminfo^=!
+endif
+set sessionoptions-=options
 
 set hidden    " allow buffer switching without saving
+set autoread
 
 set backspace=indent,eol,start
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set nrformats-=octal
-set tags=./.tags;,.tags
+
+if has('path_extra')
+  setglobal tags-=./tags tags-=./tags; tags^=./tags;
+endif
 
 set encoding=utf-8
 set fileformats=unix,dos
 
+set smarttab        " tab in front of a line depends on 'shiftwidth'
 set tabstop=4       " number of spaces per tab for display
 set shiftwidth=4    " number of spaces to use for each step of (auto)indent
 set softtabstop=4   " number of spaces per tab in insert mode
@@ -90,7 +104,10 @@ set statusline+=[%l/%L,%-4(%3(%c%V]%)%)\ %P        " offset
 "-----------------------------------------------------------------------------
 
 set timeoutlen=2500    " mapping delay
-set ttimeoutlen=50     " key code delay
+set ttimeoutlen=100    " key code delay
+
+" Delete all entered characters before the cursor in the current line
+inoremap <C-U> <C-G>u<C-U>
 
 let mapleader = "\<Space>"
 
@@ -122,9 +139,14 @@ set hlsearch
 set showmatch
 nnoremap / /\v
 vnoremap / /\v
-nnoremap <Leader>s :%s/\v
-nnoremap <silent> <Leader>h :noh<CR>
+nnoremap <Leader>s :%s/
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
 
+set diffopt+=vertical  " start diff mode with vertical splits
+set splitright
 nnoremap <Leader>w <C-w>
 " open a new vertical split and switch over to it
 nnoremap <Leader>v <C-w>v<C-w>l
@@ -133,8 +155,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-" start diff mode with vertical splits
-set diffopt=vertical
 
 " copy to / paste from system clipboard
 nnoremap <Leader>y "+y
@@ -171,8 +191,14 @@ nnoremap <F4> :call PreserveStateRun("%s/\\s\\+$//e")<CR>
 " plugin shortcuts and settings
 "-----------------------------------------------------------------------------
 
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
+
 " dirvish
 " Use *-* to open the current file directory
+let g:dirvish_mode = ':sort ,^.*[\/],'
 
 " Rainbow Parentheses Improved
 nnoremap <Leader>r :RainbowToggle<CR>
