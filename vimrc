@@ -140,16 +140,18 @@ set showmatch
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <Leader>s :%s/
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-endif
+nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 set diffopt+=vertical  " start diff mode with vertical splits
 set splitright
 nnoremap <Leader>w <C-w>
 " open a new vertical split and switch over to it
 nnoremap <Leader>v <C-w>v<C-w>l
+" navigate among split windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " copy to / paste from system clipboard
 nnoremap <Leader>y "+y
