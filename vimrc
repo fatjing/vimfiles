@@ -18,7 +18,7 @@ color hybrid
 if has('gui_running')
   set guioptions=
   if has('gui_win32')
-    set guifont=Consolas:h10.4
+    set guifont=Consolas:h10.5
     " set guifontwide=Microsoft\ YaHei\ Mono:h10.5
     " set renderoptions=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
   elseif has('gui_gtk')
