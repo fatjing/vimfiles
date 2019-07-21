@@ -3,7 +3,9 @@
 set nocompatible
 
 filetype plugin indent on
-syntax enable
+if !exists('g:syntax_on')
+  syntax enable
+endif
 
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
@@ -13,18 +15,19 @@ endif
 "color base16-tomorrow-night
 color hybrid
 
-set mouse=a
-set guioptions=
-
-if has('gui_win32')
-  set guifont=Consolas:h10.5
-  " set guifontwide=Microsoft\ YaHei\ Mono:h10.5
-  set renderoptions=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
-elseif has('gui_gtk')
-  set guifont=Inconsolata\ 12
-  set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ 12
+if has('gui_running')
+  set guioptions=
+  if has('gui_win32')
+    set guifont=Consolas:h10.4
+    " set guifontwide=Microsoft\ YaHei\ Mono:h10.5
+    " set renderoptions=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
+  elseif has('gui_gtk')
+    set guifont=Inconsolata\ 12
+    set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ 12
+  endif
 endif
 
+set mouse=a
 set visualbell
 set ttyfast
 
