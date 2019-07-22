@@ -13,12 +13,19 @@ set_dir()
 package_install()
 {
     directory="${1##*/}"
-    sucess=1
-    while [ $sucess -ne 0 ]; do
-        [ -d "$directory" ] && rm -rf "$directory"
-        git clone --depth 1 "https://github.com/$1.git"
-        sucess=$?
-    done
+    repo_url="https://github.com/$1.git"
+    if [ -d "$directory" ]; then
+        cd "$directory"
+        until git fetch --depth 1 --force "$repo_url" \
+              && git reset --hard origin/master \
+              && git clean -df
+        do sleep 1; done
+        cd ..
+    else
+        until git clone --depth 1 "$repo_url"; do
+            sleep 1; [ -d "$directory" ] && rm -rf "$directory"
+        done
+    fi
 
     [ ! -z $2 ] && ($2)
 }
@@ -26,8 +33,7 @@ export -f package_install
 
 YouCompleteMePostInstallation() {
     cd YouCompleteMe
-    git submodule update --init --recursive
-    cd ..
+    git submodule update --init --recursive --depth 1
 }
 export -f YouCompleteMePostInstallation
 
@@ -76,5 +82,5 @@ packageList=(
 set_dir "colors/opt"
 printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
 
-rm -rf $PACK_DIR/*/*/*/.git
+# rm -rf $PACK_DIR/*/*/*/.git
 printf "\nFinished"
