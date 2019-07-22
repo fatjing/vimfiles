@@ -1,66 +1,80 @@
 #!/bin/bash
 
-installPackage()
+# PACK_DIR=${0%/*}/pack
+PACK_DIR=~/.vim/pack
+
+set_dir()
+{
+    path=$PACK_DIR/$1
+    mkdir -p $path
+    cd $path || exit
+}
+
+package_install()
 {
     directory="${1##*/}"
     sucess=1
     while [ $sucess -ne 0 ]; do
-        if [ -d "$directory" ]; then
-            rm -rf "$directory"
-        fi
-        echo
+        [ -d "$directory" ] && rm -rf "$directory"
         git clone --depth 1 "https://github.com/$1.git"
         sucess=$?
     done
+
+    [ ! -z $2 ] && ($2)
 }
+export -f package_install
 
-# DIR=${0%/*}
-DIR=$PWD
+YouCompleteMePostInstallation() {
+    cd YouCompleteMe
+    git submodule update --init --recursive
+    cd ..
+}
+export -f YouCompleteMePostInstallation
 
-cd $DIR/pack/bundle/start
+packageList=(
+    tpope/vim-abolish
+    tpope/vim-commentary
+    tpope/vim-dispatch
+    tpope/vim-endwise
+    tpope/vim-fugitive
+    tpope/vim-repeat
+    tpope/vim-sleuth
+    tpope/vim-surround
+    tpope/vim-unimpaired
 
-installPackage tpope/vim-abolish
-installPackage tpope/vim-commentary
-installPackage tpope/vim-dispatch
-installPackage tpope/vim-endwise
-installPackage tpope/vim-fugitive
-installPackage tpope/vim-repeat
-installPackage tpope/vim-sleuth
-installPackage tpope/vim-surround
-installPackage tpope/vim-unimpaired
+    justinmk/vim-dirvish
+    luochen1990/rainbow
+    mbbill/fencview
+    mtth/scratch.vim
+    jpalardy/vim-slime
+    Valloric/ListToggle
+    vim-voom/VOoM
 
-installPackage justinmk/vim-dirvish
-installPackage luochen1990/rainbow
-installPackage mbbill/fencview
-installPackage mtth/scratch.vim
-installPackage jpalardy/vim-slime
-installPackage Valloric/ListToggle
-installPackage vim-voom/VOoM
+    rstacruz/vim-closer
+    sirver/ultisnips
+    honza/vim-snippets
+    ludovicchabant/vim-gutentags
+    w0rp/ale
 
-installPackage rstacruz/vim-closer
-installPackage sirver/ultisnips
-installPackage honza/vim-snippets
-installPackage ludovicchabant/vim-gutentags
-installPackage w0rp/ale
+    Shougo/denite.nvim
+    Shougo/neomru.vim
+    Shougo/neoyank.vim
+    # Shougo/echodoc.vim
 
-installPackage Shougo/denite.nvim
-installPackage Shougo/neomru.vim
-installPackage Shougo/neoyank.vim
-# installPackage Shougo/echodoc.vim
+    # "Valloric/YouCompleteMe YouCompleteMePostInstallation"
 
-# installPackage Valloric/YouCompleteMe
-# cd YouCompleteMe
-# git submodule update --init --recursive
-# cd ..
+    sheerun/vim-polyglot
+)
+set_dir "bundle/start"
+printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
 
-installPackage sheerun/vim-polyglot
+packageList=(
+    chriskempson/base16-vim
+    dsolstad/vim-wombat256i
+    w0ng/vim-hybrid
+)
+set_dir "colors/opt"
+printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
 
-cd $DIR/pack/colors/opt
-
-installPackage chriskempson/base16-vim
-installPackage dsolstad/vim-wombat256i
-installPackage w0ng/vim-hybrid
-
-rm -rf $DIR/pack/*/*/*/.git
-echo
-echo Finished
+rm -rf $PACK_DIR/*/*/*/.git
+printf "\nFinished"
