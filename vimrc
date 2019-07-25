@@ -7,14 +7,6 @@ if !exists('g:syntax_on')
   syntax enable
 endif
 
-" Allow color schemes to do bright colors without forcing bold.
-if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
-  set t_Co=16
-endif
-"let base16colorspace=256
-"color base16-tomorrow-night
-color hybrid
-
 if has('gui_running')
   set guioptions=
   if has('gui_win32')
@@ -25,36 +17,56 @@ if has('gui_running')
     set guifont=Inconsolata\ 12
     set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ 12
   endif
+else
+  set noicon
+  set background=dark
 endif
 
-set mouse=a
-set visualbell
-set ttyfast
-
-set nobackup
-set noswapfile
-"set undofile
-"au FocusLost * :wa    " save on losing focus
-
-set history=5000    " cmdline history
-if !empty(&viminfo)
-  set viminfo^=!
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+  set t_Co=16
 endif
-set sessionoptions-=options
+"let base16colorspace=256
+"color base16-tomorrow-night
+color hybrid
 
-set hidden    " allow buffer switching without saving
-set autoread
-
-set backspace=indent,eol,start
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-set nrformats-=octal
+set mouse=nvi
+set mousemodel=popup
+set winaltkeys=no
 
 if has('path_extra')
   setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
 
+if !empty(&viminfo)
+  set viminfo^=!
+endif
+set history=5000    " cmdline history
+set sessionoptions-=options
+
+set nobackup
+set nowritebackup
+set noswapfile
+"set undofile
+"au FocusLost * :wa    " save on losing focus
+
+set autoread
+set hidden    " allow buffer switching without saving
+
 set encoding=utf-8
 set fileformats=unix,dos
+
+" Section: editing behavior and text display
+
+set backspace=indent,eol,start
+set nrformats-=octal
+set complete-=i
+set virtualedit=block
+
+set formatoptions+=j
+if has('multi_byte')
+  set fo+=mM
+endif
 
 set smarttab        " tab in front of a line depends on 'shiftwidth'
 set tabstop=4       " number of spaces per tab for display
@@ -64,30 +76,22 @@ set expandtab       " in insert mode: use spaces to insert a <Tab>
 set autoindent      " automatically indent to match adjacent line
 set breakindent     " wrapped line continue visually indented
 
-" text formatting
-set formatoptions+=j
-if has('multi_byte')
-  set fo+=mM
-endif
-"set textwidth=78
-"set colorcolumn=85
+set foldmethod=marker
+set foldopen+=jump
 
-set scrolloff=3
-set sidescrolloff=7
-set display+=lastline
+" Section: message and info display
 
-set showmode    " show current mode down the bottom
-set showcmd     " show incomplete cmds down the bottom
-set wildmenu    " enable ctrl-n and ctrl-p to scroll thru matches
-set wildmode=list:longest    " make cmdline tab completion similar to bash
-set wildignore=*.o,*.obj,*~  " stuff to ignore when tab completing
+set lazyredraw
+set visualbell
 
 set cursorline
+set display=lastline
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set relativenumber
+set scrolloff=1
+set sidescrolloff=7
 
-set ruler
 set laststatus=2    " always display status line
-" statusline setup
 set statusline=    " clear the statusline for when vimrc is reloaded
 set statusline+=%-n\                               " buffer number
 set statusline+=%<%.79f\                           " file name
@@ -102,15 +106,15 @@ set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}   " syntax id
 set statusline+=\ 0x%B\ \                          " character under cursor
 set statusline+=[%l/%L,%-4(%3(%c%V]%)%)\ %P        " offset
 
-"-----------------------------------------------------------------------------
-" key mappings
-"-----------------------------------------------------------------------------
+set showmode
+set wildmenu    " enable ctrl-n and ctrl-p to scroll thru matches
+set wildmode=list:longest    " make cmdline tab completion similar to bash
+set wildignore=*.o,*.obj,*~  " stuff to ignore when tab completing
+
+" Section: key mappings and commands
 
 set timeoutlen=2500    " mapping delay
 set ttimeoutlen=100    " key code delay
-
-" Delete all entered characters before the cursor in the current line
-inoremap <C-U> <C-G>u<C-U>
 
 let mapleader = "\<Space>"
 
@@ -125,36 +129,35 @@ nnoremap gj j
 nnoremap k gk
 nnoremap gk k
 
+" Allow undoing <C-U> (delete text typed in current line)
+inoremap <C-U> <C-G>u<C-U>
+" Make Y consistent with C and D. See :help Y
+nnoremap Y y$
+
 " buffer navigation
 nnoremap <silent> <left> :bprev<CR>
 nnoremap <silent> <right> :bnext<CR>
-nnoremap <Leader>b :ls<cr>:e #
+nnoremap <Leader>b :ls<CR>:e #
 
-" make Y consistent with C and D. See :help Y
-nnoremap Y y$
-
-" searching
+" searching and substituting
 set gdefault
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
-set showmatch
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <Leader>s :%s/
-nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 
 set diffopt+=vertical  " start diff mode with vertical splits
 set splitright
 nnoremap <Leader>w <C-w>
 " open a new vertical split and switch over to it
 nnoremap <Leader>v <C-w>v<C-w>l
-" navigate among split windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" navigate through split windows
+nnoremap <C-j> <C-w>w
+nnoremap <C-k> <C-w>W
 
 " copy to / paste from system clipboard
 nnoremap <Leader>y "+y
@@ -187,9 +190,7 @@ endfunction
 " strip all trailing whitespace in the current file
 nnoremap <F4> :call PreserveStateRun("%s/\\s\\+$//e")<CR>
 
-"-----------------------------------------------------------------------------
-" plugin shortcuts and settings
-"-----------------------------------------------------------------------------
+" Section: plugin shortcuts and settings
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
