@@ -190,6 +190,16 @@ endfunction
 " strip all trailing whitespace in the current file
 nnoremap <F4> :call PreserveStateRun("%s/\\s\\+$//e")<CR>
 
+if &startofline
+" don't reset the cursor upon returning to a buffer:
+augroup StayPut
+  au!
+  autocmd BufLeave * set nostartofline |
+  \ autocmd StayPut CursorMoved,CursorMovedI * set startofline |
+  \ autocmd! StayPut CursorMoved,CursorMovedI
+augroup END
+endif
+
 " Section: plugin shortcuts and settings
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
