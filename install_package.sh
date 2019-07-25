@@ -83,4 +83,4 @@ set_dir "colors/opt"
 printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
 
 # rm -rf $PACK_DIR/*/*/*/.git
-printf "\nFinished"
+printf "\nFinished\n"
