@@ -10,7 +10,7 @@ endif
 if has('gui_running')
   set guioptions=
   if has('gui_win32')
-    set guifont=Consolas:h10.5
+    set guifont=Consolas:h10
     " set guifontwide=Microsoft\ YaHei\ Mono:h10.5
     " set renderoptions=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
   elseif has('gui_gtk')
@@ -92,7 +92,7 @@ set scrolloff=1
 set sidescrolloff=7
 
 set laststatus=2    " always display status line
-set statusline=    " clear the statusline for when vimrc is reloaded
+set statusline=     " clear the statusline for when vimrc is reloaded
 set statusline+=%-n\                               " buffer number
 set statusline+=%<%.79f\                           " file name
 set statusline+=[%{strlen(&ft)?&ft:'n/a'},         " filetype
