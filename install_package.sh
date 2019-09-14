@@ -48,25 +48,30 @@ packageList=(
     tpope/vim-surround
     tpope/vim-unimpaired
 
+    kana/vim-textobj-user
+    kana/vim-textobj-function
+    kana/vim-textobj-indent
+    kana/vim-textobj-syntax
+    sgur/vim-textobj-parameter
+
     justinmk/vim-dirvish
     luochen1990/rainbow
     mbbill/fencview
     mtth/scratch.vim
     jpalardy/vim-slime
-    Valloric/ListToggle
     vim-voom/VOoM
+    Yggdroot/LeaderF
 
+    junegunn/vim-easy-align
     rstacruz/vim-closer
     sirver/ultisnips
     honza/vim-snippets
+
     ludovicchabant/vim-gutentags
+    skywind3000/gutentags_plus
     w0rp/ale
 
-    Shougo/denite.nvim
-    Shougo/neomru.vim
-    Shougo/neoyank.vim
-    # Shougo/echodoc.vim
-
+    Valloric/ListToggle
     # "Valloric/YouCompleteMe YouCompleteMePostInstallation"
 
     sheerun/vim-polyglot
