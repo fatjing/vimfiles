@@ -86,7 +86,6 @@ set foldopen+=jump
 set lazyredraw
 set visualbell
 
-set cursorline
 set display=lastline
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set relativenumber
