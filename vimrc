@@ -200,16 +200,16 @@ nnoremap <F4> :call PreserveStateRun("%s/\\s\\+$//e")<CR>
 " don't reset the cursor upon returning to a buffer:
 if &startofline
   augroup StayPut
-    au!
+    autocmd!
     autocmd BufLeave * set nostartofline |
-    \ autocmd StayPut CursorMoved,CursorMovedI * set startofline |
-    \ autocmd! StayPut CursorMoved,CursorMovedI
+    \ autocmd CursorMoved,CursorMovedI * set startofline |
+    \ autocmd! CursorMoved,CursorMovedI
   augroup END
 endif
 
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-          \ | wincmd p | diffthis
+if !exists(':DiffOrig')
+  command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+                    \ | wincmd p | diffthis
 endif
 
 
@@ -232,36 +232,42 @@ let g:netrw_winsize = 25
 let g:dirvish_mode = ':sort ,^.*[\/],'
 
 " Rainbow Parentheses Improved
+if !exists(':RainbowToggle')
+  command! RainbowToggle delcommand RainbowToggle | packadd rainbow | RainbowToggle
+endif
 nnoremap <Leader>r :RainbowToggle<CR>
 let g:rainbow_active = 0
 
-" FencView (iconv.dll required for Windows)
+" fencview
 " use :FencAutoDetect, or use :FencView and then select from encoding list
+if !exists(':FencAutoDetect')
+  command! FencAutoDetect delcommand FencAutoDetect | packadd fencview | FencAutoDetect
+endif
 
 " Plugins by tpope {{{
 "
-" abolish
+" vim-abolish
 " find, substitute, and abbreviate several variations of a word at once
 
-" commentary
+" vim-commentary
 " Use *gcc* to comment out a line, *gc* to comment out the target of a motion
 
-" dispatch
+" vim-dispatch
 " Asynchronous build and test dispatcher
 
-" endwise
+" vim-endwise
 " end certain structures automatically
 
-" fugitive
+" vim-fugitive
 " git wrapper
 
-" sleuth
+" vim-sleuth
 " Automatically adjusts 'shiftwidth' and 'expandtab' heuristically
 
-" surround
+" vim-surround
 " A tool for dealing with pairs of surroundings. See :h surround
 
-" unimpaired
+" vim-unimpaired
 " several pairs of bracket maps
 " }}} tpope
 
@@ -271,29 +277,58 @@ let g:rainbow_active = 0
 " VOoM
 " VOoM (Vim Outliner of Markups) is a plugin for Vim that emulates a two-pane
 " text outliner
+if !exists(':Voom')
+  command! -nargs=* Voom delcommand Voom | packadd VOoM | Voom <args>
+endif
 
-" vim-Slime
+" vim-slime
 " Grab some text and 'send' it to a GNU Screen / tmux / whimrepl session.
 " Default key binding: <Ctrl-c><Ctrl-c> (hold Ctrl and double-tap c)
-"let g:slime_target = 'tmux'
+function! LoadSlime(mode)
+  unmap <C-c><C-c>
+  packadd vim-slime
+  let g:slime_target = 'vimterminal'
+  if a:mode == 'v' | execute 'normal gv' | endif
+  execute "normal \<C-c>\<C-c>"
+endfunction
+if !exists('g:loaded_slime')
+  nnoremap <silent> <C-c><C-c> :<C-u>call LoadSlime('n')<CR>
+  vnoremap <silent> <C-c><C-c> :<C-u>call LoadSlime('v')<CR>
+endif
 
 " scratch.vim
 " default key binding in normal and visual modes: *gs*
-let g:scratch_insert_autohide = 0
+function! LoadScratch(mode)
+  unmap gs
+  packadd scratch.vim
+  let g:scratch_insert_autohide = 0
+  if a:mode == 'v' | execute 'normal gv' | endif
+  normal gs
+endfunction
+if !exists('g:scratch_insert_autohide')
+  nnoremap <silent> gs :<C-u>call LoadScratch('n')<CR>
+  vnoremap <silent> gs :<C-u>call LoadScratch('v')<CR>
+endif
+
+" vim-easy-align
+if !exists(':EasyAlign')
+  command! -range -nargs=* EasyAlign delcommand EasyAlign |
+           \ packadd vim-easy-align | <line1>,<line2>EasyAlign <args>
+endif
 
 " vim-closer
 " closes brackets when pressing Enter
 
-" UltiSnips
+" ultisnips
+autocmd InsertEnter * ++once packadd vim-snippets | packadd ultisnips
 let g:UltiSnipsExpandTrigger = '<C-j>'
 
 " YouCompleteMe {{{
+autocmd InsertEnter * ++once packadd YouCompleteMe
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
-let g:ycm_server_log_level = 'info'
 let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_complete_in_strings=1
 let g:ycm_key_invoke_completion = '<C-z>'
 noremap <C-z> <NOP>
 set completeopt=menu,menuone
@@ -305,7 +340,7 @@ let g:ycm_semantic_triggers =  {
 "let g:ycm_key_detailed_diagnostics = '<Leader>d'
 " }}} YCM
 
-" Gutentags {{{
+" vim-gutentags {{{
 let g:gutentags_project_root = ['.root', '.project', '.git', '.svn', '.hg']
 let g:gutentags_ctags_tagfile = '.tags'
 let g:gutentags_cache_dir = expand('~/.cache/tags')
@@ -323,9 +358,9 @@ let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']  " universal ctags
 let g:gutentags_auto_add_gtags_cscope = 0
-" }}} Gutentags
+" }}} vim-gutentags
 
-" ALE {{{
+" ale {{{
 let g:ale_linters_explicit = 1
 let g:ale_completion_delay = 500
 let g:ale_echo_delay = 20
@@ -346,7 +381,7 @@ hi! clear SpellRare
 hi! SpellBad gui=undercurl guisp=red
 hi! SpellCap gui=undercurl guisp=blue
 hi! SpellRare gui=undercurl guisp=magenta
-" }}} ALE
+" }}} ale
 
 " LeaderF {{{
 let g:Lf_ShortcutF = '<Leader>ff'

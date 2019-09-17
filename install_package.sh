@@ -31,12 +31,14 @@ package_install()
 }
 export -f package_install
 
-YouCompleteMePostInstallation() {
+YouCompleteMePostInstallation()
+{
     cd YouCompleteMe
     git submodule update --init --recursive --depth 1
 }
 export -f YouCompleteMePostInstallation
 
+set_dir "bundle/start"
 packageList=(
     tpope/vim-abolish
     tpope/vim-commentary
@@ -55,36 +57,39 @@ packageList=(
     sgur/vim-textobj-parameter
 
     justinmk/vim-dirvish
-    luochen1990/rainbow
-    mbbill/fencview
-    mtth/scratch.vim
-    jpalardy/vim-slime
-    vim-voom/VOoM
-    Yggdroot/LeaderF
-
-    junegunn/vim-easy-align
     rstacruz/vim-closer
-    sirver/ultisnips
-    honza/vim-snippets
+    Valloric/ListToggle
+    Yggdroot/LeaderF
 
     ludovicchabant/vim-gutentags
     skywind3000/gutentags_plus
     w0rp/ale
 
-    Valloric/ListToggle
-    # "Valloric/YouCompleteMe YouCompleteMePostInstallation"
-
     sheerun/vim-polyglot
 )
-set_dir "bundle/start"
 printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
 
+set_dir "bundle/opt"
+packageList=(
+    jpalardy/vim-slime
+    junegunn/vim-easy-align
+    luochen1990/rainbow
+    mbbill/fencview
+    mtth/scratch.vim
+    vim-voom/VOoM
+
+    sirver/ultisnips
+    honza/vim-snippets
+    # "Valloric/YouCompleteMe YouCompleteMePostInstallation"
+)
+printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
+
+set_dir "colors/opt"
 packageList=(
     chriskempson/base16-vim
     dsolstad/vim-wombat256i
     w0ng/vim-hybrid
 )
-set_dir "colors/opt"
 printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
 
 # rm -rf $PACK_DIR/*/*/*/.git
