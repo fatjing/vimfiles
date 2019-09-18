@@ -122,9 +122,9 @@ let mapleader = "\<Space>"
 
 inoremap ;f <Esc>
 nnoremap ; :
-nnoremap : ;
 vnoremap ; :
-vnoremap : ;
+nnoremap \ ;
+vnoremap \ ;
 
 nnoremap j gj
 nnoremap k gk
@@ -151,9 +151,6 @@ nnoremap / /\v
 vnoremap / /\v
 nnoremap <Leader>s :%s/
 nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
-
-set diffopt+=indent-heuristic,algorithm:histogram
-set diffopt+=vertical  " start diff mode with vertical splits
 
 set splitright
 nnoremap <Leader>w <C-w>
@@ -207,6 +204,8 @@ if &startofline
   augroup END
 endif
 
+set diffopt+=vertical  " start diff mode with vertical splits
+set diffopt+=indent-heuristic,algorithm:histogram
 if !exists(':DiffOrig')
   command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
                     \ | wincmd p | diffthis
