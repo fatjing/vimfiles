@@ -178,9 +178,6 @@ nnoremap <Leader>ev <C-w>v<C-w>l:e $MYVIMRC<CR>
 " fold tag
 nnoremap <Leader>FT Vatzf
 
-" sort CSS properties
-nnoremap <Leader>CS ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
-
 function! PreserveStateRun(command)
   " Preparation: save last search, and view of the current window
   let _s=@/
