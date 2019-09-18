@@ -195,9 +195,8 @@ nnoremap <F4> :call PreserveStateRun("%s/\\s\\+$//e")<CR>
 if &startofline
   augroup StayPut
     autocmd!
-    autocmd BufLeave * set nostartofline |
-    \ autocmd CursorMoved,CursorMovedI * set startofline |
-    \ autocmd! CursorMoved,CursorMovedI
+    au BufLeave * set nostartofline | au StayPut CursorMoved,CursorMovedI *
+                  \ set startofline | au! StayPut CursorMoved,CursorMovedI
   augroup END
 endif
 
@@ -316,11 +315,21 @@ endif
 " closes brackets when pressing Enter
 
 " ultisnips
-autocmd InsertEnter * ++once packadd vim-snippets | packadd ultisnips
+if !exists(':UltiSnipsEdit')
+  augroup LoadUltiSnips
+    au!
+    autocmd InsertEnter * ++once packadd vim-snippets | packadd ultisnips
+  augroup END
+endif
 let g:UltiSnipsExpandTrigger = '<C-j>'
 
 " YouCompleteMe {{{
-autocmd InsertEnter * ++once packadd YouCompleteMe
+if !exists('g:loaded_youcompleteme')
+  augroup LoadYouCompleteMe
+    au!
+    autocmd InsertEnter * ++once packadd YouCompleteMe
+  augroup END
+endif
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_min_num_identifier_candidate_chars = 2
