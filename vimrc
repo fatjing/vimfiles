@@ -203,8 +203,8 @@ endif
 set diffopt+=vertical  " start diff mode with vertical splits
 set diffopt+=indent-heuristic,algorithm:histogram
 if !exists(':DiffOrig')
-  command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-                    \ | wincmd p | diffthis
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+                   \ | wincmd p | diffthis
 endif
 
 
@@ -228,7 +228,7 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 
 " Rainbow Parentheses Improved
 if !exists(':RainbowToggle')
-  command! RainbowToggle delcommand RainbowToggle | packadd rainbow | RainbowToggle
+  command RainbowToggle delcommand RainbowToggle | packadd rainbow | RainbowToggle
 endif
 nnoremap <Leader>r :RainbowToggle<CR>
 let g:rainbow_active = 0
@@ -236,7 +236,7 @@ let g:rainbow_active = 0
 " fencview
 " use :FencAutoDetect, or use :FencView and then select from encoding list
 if !exists(':FencAutoDetect')
-  command! FencAutoDetect delcommand FencAutoDetect | packadd fencview | FencAutoDetect
+  command FencAutoDetect delcommand FencAutoDetect | packadd fencview | FencAutoDetect
 endif
 
 " Plugins by tpope {{{
@@ -273,7 +273,7 @@ endif
 " VOoM (Vim Outliner of Markups) is a plugin for Vim that emulates a two-pane
 " text outliner
 if !exists(':Voom')
-  command! -nargs=* Voom delcommand Voom | packadd VOoM | Voom <args>
+  command -nargs=* Voom delcommand Voom | packadd VOoM | Voom <args>
 endif
 
 " vim-slime
@@ -307,8 +307,8 @@ endif
 
 " vim-easy-align
 if !exists(':EasyAlign')
-  command! -range -nargs=* EasyAlign delcommand EasyAlign |
-           \ packadd vim-easy-align | <line1>,<line2>EasyAlign <args>
+  command -range -nargs=* EasyAlign delcommand EasyAlign |
+          \ packadd vim-easy-align | <line1>,<line2>EasyAlign <args>
 endif
 
 " vim-closer
@@ -317,8 +317,8 @@ endif
 " ultisnips
 if !exists(':UltiSnipsEdit')
   augroup LoadUltiSnips
-    au!
-    autocmd InsertEnter * ++once packadd vim-snippets | packadd ultisnips
+    autocmd!
+    au InsertEnter * ++once packadd vim-snippets | packadd ultisnips
   augroup END
 endif
 let g:UltiSnipsExpandTrigger = '<C-j>'
@@ -326,8 +326,8 @@ let g:UltiSnipsExpandTrigger = '<C-j>'
 " YouCompleteMe {{{
 if !exists('g:loaded_youcompleteme')
   augroup LoadYouCompleteMe
-    au!
-    autocmd InsertEnter * ++once packadd YouCompleteMe
+    autocmd!
+    au InsertEnter * ++once packadd YouCompleteMe
   augroup END
 endif
 let g:ycm_add_preview_to_completeopt = 0
