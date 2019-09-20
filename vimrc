@@ -18,7 +18,6 @@ if has('gui_running')
     set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ 12
   endif
 else
-  set noicon
   set background=dark
 endif
 
@@ -107,7 +106,7 @@ set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}   " syntax id
 set statusline+=\ 0x%B\ \                          " character under cursor
 set statusline+=[%l/%L,%-4(%3(%c%V]%)%)\ %P        " offset
 
-set showmode
+"set noshowmode
 set wildmenu    " enable ctrl-n and ctrl-p to scroll thru matches
 set wildmode=list:longest    " make cmdline tab completion similar to bash
 set wildignore=*.o,*.obj,*~  " stuff to ignore when tab completing
@@ -140,8 +139,10 @@ noremap! <M-f> <C-Right>
 execute "set <M-b>=\eb"
 execute "set <M-f>=\ef"
 
-" Allow undoing <C-U> (delete text typed in current line)
+" Break undo before deleting
 inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
+
 " Make Y consistent with C and D. See :help Y
 nnoremap Y y$
 
