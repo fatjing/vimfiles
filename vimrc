@@ -116,7 +116,7 @@ set wildignore=*.o,*.obj,*~  " stuff to ignore when tab completing
 " Section: key mappings and commands
 
 set timeoutlen=2500    " mapping delay
-set ttimeoutlen=100    " key code delay
+set ttimeoutlen=80     " key code delay
 
 let mapleader = "\<Space>"
 
@@ -130,6 +130,15 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
+
+" navigation key bindings for insert and command-line mode
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+cnoremap <C-a> <C-b>
+noremap! <M-b> <C-Left>
+noremap! <M-f> <C-Right>
+execute "set <M-b>=\eb"
+execute "set <M-f>=\ef"
 
 " Allow undoing <C-U> (delete text typed in current line)
 inoremap <C-U> <C-G>u<C-U>
