@@ -276,33 +276,31 @@ if !exists(':Voom')
   command -nargs=* Voom delcommand Voom | packadd VOoM | Voom <args>
 endif
 
+" Lazy load plugin via key mapping
+" Pass function name as extra argument for plugin configuration
+function! LoadPlugin(pack, key, mode, ...) abort
+  execute 'unmap ' . a:key
+  if a:0 | execute 'call ' . a:1 . '()' | endif
+  execute 'packadd ' . a:pack
+  if a:mode == 'v' | execute 'normal gv' | endif
+  execute 'normal ' . a:key
+endfunction
+
 " vim-slime
 " Grab some text and 'send' it to a GNU Screen / tmux / whimrepl session.
 " Default key binding: <Ctrl-c><Ctrl-c> (hold Ctrl and double-tap c)
-function! LoadSlime(mode)
-  unmap <C-c><C-c>
-  packadd vim-slime
-  let g:slime_target = 'vimterminal'
-  if a:mode == 'v' | execute 'normal gv' | endif
-  execute "normal \<C-c>\<C-c>"
-endfunction
 if !exists('g:loaded_slime')
-  nnoremap <silent> <C-c><C-c> :<C-u>call LoadSlime('n')<CR>
-  vnoremap <silent> <C-c><C-c> :<C-u>call LoadSlime('v')<CR>
+  nnoremap <C-c><C-c> :call LoadPlugin('vim-slime', "\<lt>C-c>\<lt>C-c>", 'n')<CR>
+  vnoremap <C-c><C-c> :call LoadPlugin('vim-slime', "\<lt>C-c>\<lt>C-c>", 'v')<CR>
+  let g:slime_target = 'vimterminal'
 endif
 
 " scratch.vim
 " default key binding in normal and visual modes: *gs*
-function! LoadScratch(mode)
-  unmap gs
-  packadd scratch.vim
-  let g:scratch_insert_autohide = 0
-  if a:mode == 'v' | execute 'normal gv' | endif
-  normal gs
-endfunction
 if !exists('g:scratch_insert_autohide')
-  nnoremap <silent> gs :<C-u>call LoadScratch('n')<CR>
-  vnoremap <silent> gs :<C-u>call LoadScratch('v')<CR>
+  nnoremap gs :call LoadPlugin('scratch.vim', 'gs', 'n')<CR>
+  vnoremap gs :call LoadPlugin('scratch.vim', 'gs', 'v')<CR>
+  let g:scratch_insert_autohide = 0
 endif
 
 " vim-easy-align
