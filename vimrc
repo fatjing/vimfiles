@@ -236,19 +236,6 @@ let g:netrw_winsize = 25
 " Use *-* to open the current file directory
 let g:dirvish_mode = ':sort ,^.*[\/],'
 
-" Rainbow Parentheses Improved
-if !exists(':RainbowToggle')
-  command RainbowToggle delcommand RainbowToggle | packadd rainbow | RainbowToggle
-endif
-nnoremap <Leader>r :RainbowToggle<CR>
-let g:rainbow_active = 0
-
-" fencview
-" use :FencAutoDetect, or use :FencView and then select from encoding list
-if !exists(':FencAutoDetect')
-  command FencAutoDetect delcommand FencAutoDetect | packadd fencview | FencAutoDetect
-endif
-
 " Plugins by tpope {{{
 "
 " vim-abolish
@@ -256,9 +243,6 @@ endif
 
 " vim-commentary
 " Use *gcc* to comment out a line, *gc* to comment out the target of a motion
-
-" vim-dispatch
-" Asynchronous build and test dispatcher
 
 " vim-endwise
 " end certain structures automatically
@@ -276,15 +260,11 @@ endif
 " several pairs of bracket maps
 " }}} tpope
 
+" vim-closer
+" closes brackets when pressing Enter
+
 " ListToggle
 " Toggle quickfix/location list, default keymappings: *<Leader>q* *<Leader>l*
-
-" VOoM
-" VOoM (Vim Outliner of Markups) is a plugin for Vim that emulates a two-pane
-" text outliner
-if !exists(':Voom')
-  command -nargs=* Voom delcommand Voom | packadd VOoM | Voom <args>
-endif
 
 " Lazy load plugin via key mapping
 " Pass function name as extra argument for plugin configuration
@@ -306,21 +286,46 @@ if !exists('g:loaded_slime')
 endif
 
 " scratch.vim
-" default key binding in normal and visual modes: *gs*
 if !exists('g:scratch_insert_autohide')
   nnoremap gs :call LoadPlugin('scratch.vim', 'gs', 'n')<CR>
   vnoremap gs :call LoadPlugin('scratch.vim', 'gs', 'v')<CR>
   let g:scratch_insert_autohide = 0
 endif
 
+" fencview
+" use :FencAutoDetect, or use :FencView and then select from encoding list
+if !exists(':FencAutoDetect')
+  command FencAutoDetect delc FencAutoDetect | packadd fencview | FencAutoDetect
+endif
+
+" Rainbow Parentheses Improved
+if !exists(':RainbowToggle')
+  command RainbowToggle delc RainbowToggle | packadd rainbow | RainbowToggle
+endif
+nnoremap <Leader>r :RainbowToggle<CR>
+let g:rainbow_active = 0
+
+" VOoM
+" Vim Outliner of Markups is a plugin that emulates a two-pane text outliner
+if !exists(':Voom')
+  command -nargs=* Voom delcommand Voom | packadd VOoM | Voom <args>
+endif
+
+" asyncrun.vim
+if !exists(':AsyncRun')
+  command -bang -nargs=* -range -complete=file AsyncRun delc AsyncRun |
+          \ packadd asyncrun.vim | <line1>,<line2>AsyncRun<bang> <args>
+  " cooperate with fugitive
+  command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+endif
+let g:asyncrun_bell = 1
+let g:asyncrun_open = 15
+
 " vim-easy-align
 if !exists(':EasyAlign')
   command -range -nargs=* EasyAlign delcommand EasyAlign |
           \ packadd vim-easy-align | <line1>,<line2>EasyAlign <args>
 endif
-
-" vim-closer
-" closes brackets when pressing Enter
 
 " ultisnips
 if !exists(':UltiSnipsEdit')
