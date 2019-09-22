@@ -188,18 +188,18 @@ nnoremap <Leader>ev <C-w>v<C-w>l:e $MYVIMRC<CR>
 " fold tag
 nnoremap <Leader>FT Vatzf
 
-function! PreserveStateRun(command)
+function! s:preserve_state_run(command)
   " Preparation: save last search, and view of the current window
   let _s=@/
   let l:winview = winsaveview()
   " Do the business
   execute a:command
-  " Clean up: restore previous search history, and view of the window
+  " Cleanup: restore previous search history, and view of the window
   let @/=_s
   call winrestview(l:winview)
 endfunction
 " strip all trailing whitespace in the current file
-nnoremap <F4> :call PreserveStateRun("%s/\\s\\+$//e")<CR>
+nnoremap <F4> :call <SID>preserve_state_run("%s/\\s\\+$//e")<CR>
 
 " don't reset the cursor upon returning to a buffer:
 if &startofline
@@ -268,7 +268,7 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 
 " Lazy load plugin via key mapping
 " Pass function name as extra argument for plugin configuration
-function! LoadPlugin(pack, key, mode, ...) abort
+function! s:pack_add(pack, key, mode, ...) abort
   execute 'unmap ' . a:key
   if a:0 | execute 'call ' . a:1 . '()' | endif
   execute 'packadd ' . a:pack
@@ -280,15 +280,15 @@ endfunction
 " Grab some text and 'send' it to a GNU Screen / tmux / whimrepl session.
 " Default key binding: <Ctrl-c><Ctrl-c> (hold Ctrl and double-tap c)
 if !exists('g:loaded_slime')
-  nnoremap <C-c><C-c> :call LoadPlugin('vim-slime', "\<lt>C-c>\<lt>C-c>", 'n')<CR>
-  vnoremap <C-c><C-c> :call LoadPlugin('vim-slime', "\<lt>C-c>\<lt>C-c>", 'v')<CR>
+  nnoremap <C-c><C-c> :call <SID>pack_add('vim-slime', "\<lt>C-c>\<lt>C-c>", 'n')<CR>
+  vnoremap <C-c><C-c> :call <SID>pack_add('vim-slime', "\<lt>C-c>\<lt>C-c>", 'v')<CR>
   let g:slime_target = 'vimterminal'
 endif
 
 " scratch.vim
 if !exists('g:scratch_insert_autohide')
-  nnoremap gs :call LoadPlugin('scratch.vim', 'gs', 'n')<CR>
-  vnoremap gs :call LoadPlugin('scratch.vim', 'gs', 'v')<CR>
+  nnoremap gs :call <SID>pack_add('scratch.vim', 'gs', 'n')<CR>
+  vnoremap gs :call <SID>pack_add('scratch.vim', 'gs', 'v')<CR>
   let g:scratch_insert_autohide = 0
 endif
 
