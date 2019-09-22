@@ -320,6 +320,9 @@ if !exists(':AsyncRun')
 endif
 let g:asyncrun_bell = 1
 let g:asyncrun_open = 15
+if has('win32')
+  let g:asyncrun_encs = 'cp936'
+endif
 
 " vim-easy-align
 if !exists(':EasyAlign')
