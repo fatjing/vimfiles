@@ -42,7 +42,6 @@ set_dir "bundle/start"
 packageList=(
     tpope/vim-abolish
     tpope/vim-commentary
-    tpope/vim-dispatch
     tpope/vim-endwise
     tpope/vim-fugitive
     tpope/vim-repeat
@@ -76,6 +75,7 @@ packageList=(
     luochen1990/rainbow
     mbbill/fencview
     mtth/scratch.vim
+    skywind3000/asyncrun.vim
     vim-voom/VOoM
 
     sirver/ultisnips
