@@ -1,5 +1,4 @@
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
+" Use Vim defaults. Must put at the start
 set nocompatible
 
 filetype plugin indent on
@@ -7,12 +6,16 @@ if !exists('g:syntax_on')
   syntax enable
 endif
 
+set mouse=nvi
+set mousemodel=popup
+
 if has('gui_running')
   set guioptions=
+  set winaltkeys=no
   if has('gui_win32')
     set guifont=Consolas:h10
-    " set guifontwide=Microsoft\ YaHei\ Mono:h10.5
-    " set renderoptions=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
+    "set guifontwide=Microsoft\ YaHei\ Mono:h10
+    "set renderoptions=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
   elseif has('gui_gtk')
     set guifont=Inconsolata\ 12
     set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ 12
@@ -28,10 +31,6 @@ endif
 "let base16colorspace=256
 "color base16-tomorrow-night
 color hybrid
-
-set mouse=nvi
-set mousemodel=popup
-set winaltkeys=no
 
 if has('path_extra')
   setglobal tags-=./tags tags-=./tags; tags^=./tags;
@@ -68,13 +67,13 @@ if has('multi_byte')
   set formatoptions+=mM
 endif
 
-set smarttab        " tab in front of a line depends on 'shiftwidth'
-set tabstop=4       " number of spaces per tab for display
-set shiftwidth=4    " number of spaces to use for each step of (auto)indent
-set softtabstop=4   " number of spaces per tab in insert mode
-set expandtab       " in insert mode: use spaces to insert a <Tab>
-set autoindent      " automatically indent to match adjacent line
-set breakindent     " wrapped line continue visually indented
+set smarttab         " tab in front of a line depends on 'shiftwidth'
+set tabstop=4        " number of spaces per tab for display
+set shiftwidth=4     " number of spaces to use for each step of (auto)indent
+set softtabstop=4    " number of spaces per tab in insert mode
+set expandtab        " in insert mode: use spaces to insert a <Tab>
+set autoindent       " automatically indent to match adjacent line
+set breakindent      " wrapped line continue visually indented
 
 set foldmethod=marker
 set foldopen+=jump
@@ -93,21 +92,21 @@ set sidescrolloff=7
 
 set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
-set statusline+=%-n\                               " buffer number
-set statusline+=%<%.79f\                           " file name
-set statusline+=[%{strlen(&ft)?&ft:'n/a'},         " filetype
-set statusline+=%{&bomb?'bom,':''}                 " BOM
-set statusline+=%{&fenc},                          " file encoding
-set statusline+=%{&fileformat}]                    " file format
-set statusline+=%{fugitive#statusline()}           " FUGITIVE git branch
-set statusline+=%m%r%w                             " flags
-set statusline+=%=                                 " left/right separator
+set statusline+=%-n\                                  " buffer number
+set statusline+=%<%.79f\                              " file name
+set statusline+=[%{strlen(&ft)?&ft:'n/a'},            " filetype
+set statusline+=%{&bomb?'bom,':''}                    " BOM
+set statusline+=%{&fenc},                             " file encoding
+set statusline+=%{&fileformat}]                       " file format
+set statusline+=%{fugitive#statusline()}              " FUGITIVE git branch
+set statusline+=%m%r%w                                " flags
+set statusline+=%=                                    " left/right separator
 set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}   " syntax id
-set statusline+=\ 0x%B\ \                          " character under cursor
-set statusline+=[%l/%L,%-4(%3(%c%V]%)%)\ %P        " offset
+set statusline+=\ 0x%B\ \                             " character under cursor
+set statusline+=[%l/%L,%-4(%3(%c%V]%)%)\ %P           " offset
 
 "set noshowmode
-set wildmenu    " enable ctrl-n and ctrl-p to scroll thru matches
+set wildmenu                 " enable ctrl-n and ctrl-p to scroll thru matches
 set wildmode=list:longest    " make cmdline tab completion similar to bash
 set wildignore=*.o,*.obj,*~  " stuff to ignore when tab completing
 
