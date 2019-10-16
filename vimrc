@@ -79,7 +79,6 @@ set shiftwidth=4     " number of spaces to use for each step of (auto)indent
 set softtabstop=4    " number of spaces per tab in insert mode
 set expandtab        " in insert mode: use spaces to insert a <Tab>
 set autoindent       " automatically indent to match adjacent line
-set breakindent      " wrapped line continue visually indented
 
 set foldmethod=marker
 set foldopen+=jump
