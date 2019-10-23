@@ -416,7 +416,7 @@ nnoremap <Leader>fp :Leaderf! function<CR>
 nnoremap <Leader>ft :Leaderf tag<CR>
 nnoremap <Leader>fl :Leaderf line<CR>
 nnoremap <Leader>fe :Leaderf rg --wd-mode=c -e<Space>
-nnoremap <Leader>fr :LeaderfRgRecall<CR>
+nnoremap <Leader>fr :Leaderf! --recall<CR>
 
 let g:Lf_WindowHeight = 0.40
 let g:Lf_ShowRelativePath = 0
