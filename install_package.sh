@@ -16,8 +16,7 @@ package_install()
     repo_url="https://github.com/$1.git"
     if [ -d "$directory" ]; then
         cd "$directory"
-        until git fetch --depth 1 --force "$repo_url" \
-              && git reset --hard origin/master \
+        until git fetch --depth 1 --force && git reset --hard origin/master \
               && git clean -df
         do sleep 1; done
         cd ..
