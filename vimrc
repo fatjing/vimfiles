@@ -350,18 +350,15 @@ if !exists('g:loaded_youcompleteme')
     au InsertEnter * ++once packadd YouCompleteMe
   augroup END
 endif
+set completeopt=menu,menuone
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_key_invoke_completion = '<C-z>'
-noremap <C-z> <NOP>
-set completeopt=menu,menuone
-
 let g:ycm_semantic_triggers =  {
-            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-            \ 'cs,lua,javascript': ['re!\w{2}'],
-            \ }
+        \ 'c,cpp,cs,python,java,go,rust,erlang,lua,javascript,typescript,vue': ['re!\w{2}'],
+        \ }
 "let g:ycm_key_detailed_diagnostics = '<Leader>d'
 " }}} YCM
 
