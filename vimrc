@@ -153,7 +153,7 @@ nnoremap Y y$
 " buffer navigation
 nnoremap <silent> <left> :bprev<CR>
 nnoremap <silent> <right> :bnext<CR>
-"nnoremap <Leader>b :ls<CR>:e #
+nnoremap <Leader>b :ls<CR>:e #
 
 " searching and substituting
 set gdefault
@@ -410,7 +410,7 @@ hi! SpellRare gui=undercurl guisp=magenta
 
 " LeaderF {{{
 let g:Lf_ShortcutF = '<Leader>ff'
-let g:Lf_ShortcutB = '<Leader>b'
+let g:Lf_ShortcutB = '<Leader>fb'
 nnoremap <Leader>fm :Leaderf mru<CR>
 nnoremap <Leader>fp :Leaderf! function<CR>
 nnoremap <Leader>ft :Leaderf tag<CR>
