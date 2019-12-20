@@ -415,10 +415,11 @@ nnoremap <Leader>fl :Leaderf line<CR>
 nnoremap <Leader>fe :Leaderf rg --wd-mode=c -e<Space>
 nnoremap <Leader>fr :Leaderf! --recall<CR>
 
-let g:Lf_WindowHeight = 0.40
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_PopupHeight = 0.5
 let g:Lf_ShowRelativePath = 0
 let g:Lf_CacheDirectory = expand('~/.cache')
-let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0}
 let g:Lf_RootMarkers = ['.root', '.project', '.git', '.svn', '.hg']
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_HideHelp = 1
