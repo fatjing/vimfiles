@@ -410,7 +410,7 @@ let g:Lf_ShortcutF = '<Leader>ff'
 let g:Lf_ShortcutB = '<Leader>fb'
 nnoremap <Leader>fm :Leaderf mru<CR>
 nnoremap <Leader>fp :Leaderf! function<CR>
-nnoremap <Leader>ft :Leaderf tag<CR>
+nnoremap <Leader>ft :Leaderf! bufTag<CR>
 nnoremap <Leader>fl :Leaderf line<CR>
 nnoremap <Leader>fe :Leaderf rg --wd-mode=c -e<Space>
 nnoremap <Leader>fr :Leaderf! --recall<CR>
