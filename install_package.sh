@@ -30,16 +30,8 @@ package_install()
 }
 export -f package_install
 
-YouCompleteMePostInstallation()
-{
-    cd YouCompleteMe
-    git submodule update --init --recursive --depth 1
-}
-export -f YouCompleteMePostInstallation
-
 set_dir "bundle/start"
 packageList=(
-    tpope/vim-abolish
     tpope/vim-commentary
     tpope/vim-endwise
     tpope/vim-fugitive
@@ -49,20 +41,17 @@ packageList=(
     tpope/vim-unimpaired
 
     kana/vim-textobj-user
-    kana/vim-textobj-function
     kana/vim-textobj-indent
     kana/vim-textobj-syntax
     sgur/vim-textobj-parameter
+    whatyouhide/vim-textobj-xmlattr
 
     justinmk/vim-dirvish
-    rstacruz/vim-closer
     Valloric/ListToggle
     Yggdroot/LeaderF
-
     ludovicchabant/vim-gutentags
     skywind3000/gutentags_plus
-    w0rp/ale
-
+    honza/vim-snippets
     sheerun/vim-polyglot
 )
 printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
@@ -76,20 +65,22 @@ packageList=(
     mtth/scratch.vim
     skywind3000/asyncrun.vim
     vim-voom/VOoM
-
-    sirver/ultisnips
-    honza/vim-snippets
-    # "Valloric/YouCompleteMe YouCompleteMePostInstallation"
 )
 printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
 
 set_dir "colors/opt"
 packageList=(
     chriskempson/base16-vim
+    cocopon/iceberg.vim
     dsolstad/vim-wombat256i
     w0ng/vim-hybrid
 )
 printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
+
+# coc.nvim
+set_dir "bundle/start"
+rm -rf coc.nvim-release/
+curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzf -
 
 # rm -rf $PACK_DIR/*/*/*/.git
 printf "\nFinished\n"

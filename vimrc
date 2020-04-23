@@ -34,8 +34,6 @@ endif
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
   set t_Co=16
 endif
-"let base16colorspace=256
-"color base16-tomorrow-night
 color hybrid
 
 if has('path_extra')
@@ -100,16 +98,17 @@ set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
 set statusline+=%-n\                                  " buffer number
 set statusline+=%<%.79f\                              " file name
-set statusline+=[%{strlen(&ft)?&ft:'n/a'},            " filetype
+set statusline+=[%{strlen(&ft)?&ft:'no\ ft'},         " filetype
 set statusline+=%{&bomb?'bom,':''}                    " BOM
-set statusline+=%{&fenc},                             " file encoding
+set statusline+=%{strlen(&fenc)?&fenc.',':''}         " file encoding
 set statusline+=%{&fileformat}]                       " file format
 set statusline+=%{fugitive#statusline()}              " FUGITIVE git branch
 set statusline+=%m%r%w                                " flags
+set statusline+=\ %{coc#status()}%{get(b:,'coc_current_function','')} " coc
 set statusline+=%=                                    " left/right separator
 set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}   " syntax id
 set statusline+=\ 0x%B\ \                             " character under cursor
-set statusline+=[%l/%L,%-4(%3(%c%V]%)%)\ %P           " offset
+set statusline+=[%l/%L,%-6(%4(%c%V]%)%)\ %P           " offset
 
 "set noshowmode
 set wildmenu                 " enable ctrl-n and ctrl-p to scroll thru matches
@@ -223,7 +222,7 @@ if !exists(':DiffOrig')
 endif
 
 
-" Section: plugin shortcuts and settings
+" Section: plugin settings
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
@@ -242,10 +241,6 @@ let g:netrw_winsize = 25
 let g:dirvish_mode = ':sort ,^.*[\/],'
 
 " Plugins by tpope {{{
-"
-" vim-abolish
-" find, substitute, and abbreviate several variations of a word at once
-
 " vim-commentary
 " Use *gcc* to comment out a line, *gc* to comment out the target of a motion
 
@@ -264,9 +259,6 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 " vim-unimpaired
 " several pairs of bracket maps
 " }}} tpope
-
-" vim-closer
-" closes brackets when pressing Enter
 
 " ListToggle
 " Toggle quickfix/location list, default keymappings: *<Leader>q* *<Leader>l*
@@ -335,33 +327,6 @@ if !exists(':EasyAlign')
           \ packadd vim-easy-align | <line1>,<line2>EasyAlign <args>
 endif
 
-" ultisnips
-if !exists(':UltiSnipsEdit')
-  augroup LoadUltiSnips
-    autocmd!
-    au InsertEnter * ++once packadd vim-snippets | packadd ultisnips
-  augroup END
-endif
-let g:UltiSnipsExpandTrigger = '<C-j>'
-
-" YouCompleteMe {{{
-if !exists('g:loaded_youcompleteme')
-  augroup LoadYouCompleteMe
-    autocmd!
-    au InsertEnter * ++once packadd YouCompleteMe
-  augroup END
-endif
-set completeopt=menu,menuone
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_key_invoke_completion = '<C-z>'
-let g:ycm_semantic_triggers =  {
-        \ 'c,cpp,cs,python,java,go,rust,erlang,lua,javascript,typescript,vue': ['re!\w{2}'],
-        \ }
-"let g:ycm_key_detailed_diagnostics = '<Leader>d'
-" }}} YCM
-
 " vim-gutentags {{{
 let g:gutentags_project_root = ['.root', '.project', '.git', '.svn', '.hg']
 let g:gutentags_ctags_tagfile = '.tags'
@@ -382,29 +347,6 @@ let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']  " universal cta
 let g:gutentags_auto_add_gtags_cscope = 0
 " }}} vim-gutentags
 
-" ale {{{
-let g:ale_linters_explicit = 1
-let g:ale_completion_delay = 500
-let g:ale_echo_delay = 20
-let g:ale_lint_delay = 500
-let g:ale_echo_msg_format = '[%linter%] %code: %%s'
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
-
-let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
-let g:ale_c_cppcheck_options = ''
-let g:ale_cpp_cppcheck_options = ''
-
-let g:ale_sign_error = "\ue009\ue009"
-hi! clear SpellBad
-hi! clear SpellCap
-hi! clear SpellRare
-hi! SpellBad gui=undercurl guisp=red
-hi! SpellCap gui=undercurl guisp=blue
-hi! SpellRare gui=undercurl guisp=magenta
-" }}} ale
-
 " LeaderF {{{
 let g:Lf_ShortcutF = '<Leader>ff'
 "let g:Lf_ShortcutB = '<Leader>fb'
@@ -423,5 +365,14 @@ let g:Lf_CacheDirectory = expand('~/.cache')
 let g:Lf_RootMarkers = ['.root', '.project', '.git', '.svn', '.hg']
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_HideHelp = 1
+
+let g:Lf_WildIgnore = {
+      \ 'dir': ['.svn', '.git', '.hg', 'node_modules'],
+      \ 'file': ['*.sw?', '~$*', '*.bak', '*.exe', '*.o', '*.so', '*.py[co]']
+      \ }
 " }}} LeaderF
 
+" Coc
+let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+command! -nargs=1 SourceScript exec 'so '.s:home.'/'.'<args>'
+SourceScript init/coc.vim
