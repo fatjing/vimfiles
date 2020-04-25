@@ -236,6 +236,58 @@ let g:netrw_home = expand('~/.cache/netrw')
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
 
+" Plugin on-demand loading {{{
+" Load plugin on event
+function s:load_on_evnt(pack, event, pat)
+  augroup LoadPlugin
+    execute printf(
+      \ 'autocmd %s %s ++once packadd %s',
+      \ a:event, a:pat, a:pack)
+  augroup END
+endfunction
+
+" Load plugin on command
+function s:load_on_cmd(pack, cmd)
+  if !exists(':'.a:cmd)
+    execute printf(
+      \ 'command! -nargs=* -range -bang -complete=file %s delc %s | packadd %s | call s:exe_cmd(%s, "<bang>", <line1>, <line2>, <q-args>)',
+      \ a:cmd, a:cmd, a:pack, string(a:cmd))
+  endif
+endfunction
+
+function s:exe_cmd(cmd, bang, l1, l2, args)
+  execute printf('%s%s%s %s', (a:l1 == a:l2 ? '' : (a:l1.','.a:l2)), a:cmd, a:bang, a:args)
+endfunction
+
+" Load plugin on mapping
+function s:load_on_map(pack, map, modes)
+  for mode in a:modes
+    execute printf(
+      \ '%snoremap %s %s:<C-U>call <SID>exe_map(%s, %s, %s)<CR>',
+      \ mode, a:map, mode=='i'?'<C-O>':'', string(a:pack), string(substitute(a:map, '<', '\<lt>', 'g')), string(mode))
+  endfor
+endfunction
+
+function s:exe_map(pack, map, mode)
+  execute 'silent! unmap' a:map
+  execute 'silent! iunmap' a:map
+  execute 'packadd' a:pack
+  if a:mode != 'i'
+    let prefix = v:count ? v:count : ''
+    let prefix .= '"'.v:register
+    if a:mode == 'v' | let prefix .= 'gv' | endif
+    if mode(1) == 'no'
+      if v:operator == 'c'
+        let prefix = "\<esc>" . prefix
+      endif
+      let prefix .= v:operator
+    endif
+    call feedkeys(prefix, 'n')
+  endif
+  execute 'call feedkeys("' . substitute(a:map, '<', '\\<', 'g') . '")'
+endfunction
+" }}}
+
 " dirvish
 " Use *-* to open the current file directory
 let g:dirvish_mode = ':sort ,^.*[\/],'
@@ -263,69 +315,41 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 " ListToggle
 " Toggle quickfix/location list, default keymappings: *<Leader>q* *<Leader>l*
 
-" Lazy load plugin via key mapping
-" Pass function name as extra argument for plugin configuration
-function! s:pack_add(pack, key, mode, ...) abort
-  execute 'unmap ' . a:key
-  if a:0 | execute 'call ' . a:1 . '()' | endif
-  execute 'packadd ' . a:pack
-  if a:mode == 'v' | execute 'normal gv' | endif
-  execute 'normal ' . a:key
-endfunction
-
 " vim-slime
 " Grab some text and 'send' it to a GNU Screen / tmux / whimrepl session.
 " Default key binding: <Ctrl-c><Ctrl-c> (hold Ctrl and double-tap c)
-if !exists('g:loaded_slime')
-  nnoremap <C-c><C-c> :call <SID>pack_add('vim-slime', "\<lt>C-c>\<lt>C-c>", 'n')<CR>
-  vnoremap <C-c><C-c> :call <SID>pack_add('vim-slime', "\<lt>C-c>\<lt>C-c>", 'v')<CR>
-  let g:slime_target = 'vimterminal'
-endif
+call s:load_on_map('vim-slime', '<C-c><C-c>', ['n', 'v'])
+let g:slime_target = 'vimterminal'
 
 " scratch.vim
-if !exists('g:scratch_insert_autohide')
-  nnoremap gs :call <SID>pack_add('scratch.vim', 'gs', 'n')<CR>
-  vnoremap gs :call <SID>pack_add('scratch.vim', 'gs', 'v')<CR>
-  let g:scratch_insert_autohide = 0
-endif
+call s:load_on_map('scratch.vim', 'gs', ['n', 'v'])
+let g:scratch_insert_autohide = 0
 
 " fencview
 " use :FencAutoDetect, or use :FencView and then select from encoding list
-if !exists(':FencAutoDetect')
-  command FencAutoDetect delc FencAutoDetect | packadd fencview | FencAutoDetect
-endif
+call s:load_on_cmd('fencview', 'FencAutoDetect')
 
 " Rainbow Parentheses Improved
-if !exists(':RainbowToggle')
-  command RainbowToggle delc RainbowToggle | packadd rainbow | RainbowToggle
-endif
+call s:load_on_cmd('rainbow', 'RainbowToggle')
 nnoremap <Leader>r :RainbowToggle<CR>
 let g:rainbow_active = 0
 
 " VOoM
 " Vim Outliner of Markups is a plugin that emulates a two-pane text outliner
-if !exists(':Voom')
-  command -nargs=* Voom delcommand Voom | packadd VOoM | Voom <args>
-endif
+call s:load_on_cmd('VOoM', 'Voom')
 
 " asyncrun.vim
-if !exists(':AsyncRun')
-  command -bang -nargs=* -range -complete=file AsyncRun delc AsyncRun |
-          \ packadd asyncrun.vim | <line1>,<line2>AsyncRun<bang> <args>
-  " cooperate with fugitive
-  command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
-endif
+call s:load_on_cmd('asyncrun.vom', 'AsyncRun')
 let g:asyncrun_bell = 1
 let g:asyncrun_open = 15
 if has('win32')
   let g:asyncrun_encs = 'cp936'
 endif
+" cooperate with fugitive
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 " vim-easy-align
-if !exists(':EasyAlign')
-  command -range -nargs=* EasyAlign delcommand EasyAlign |
-          \ packadd vim-easy-align | <line1>,<line2>EasyAlign <args>
-endif
+call s:load_on_cmd('vim-easy-align', 'EasyAlign')
 
 " vim-gutentags {{{
 let g:gutentags_project_root = ['.root', '.project', '.git', '.svn', '.hg']
