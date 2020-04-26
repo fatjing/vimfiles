@@ -6,8 +6,9 @@ let g:coc_config_home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 "       \ 'coc-python', 'coc-java'
 "       \ ]
 
+exe 'let &statusline="'.substitute(&statusline, '%=', " %{coc#status()}%{get(b:,'coc_current_function','')}%=", '').'"'
 "set cmdheight=2
-set updatetime=400
+set updatetime=300
 set shortmess+=c
 "set signcolumn=yes
 
@@ -68,6 +69,10 @@ nmap <leader>gq <Plug>(coc-format-selected)
 
 " Add `:Format` command to format current buffer
 command! -nargs=0 Format :call CocAction('format')
+
+" Apply codeAction to the selected region
+xmap <leader>ga <Plug>(coc-codeaction-selected)
+nmap <leader>ga <Plug>(coc-codeaction-selected)
 
 " Introduce function text object
 xmap if <Plug>(coc-funcobj-i)

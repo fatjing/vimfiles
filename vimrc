@@ -104,7 +104,6 @@ set statusline+=%{strlen(&fenc)?&fenc.',':''}         " file encoding
 set statusline+=%{&fileformat}]                       " file format
 set statusline+=%{fugitive#statusline()}              " FUGITIVE git branch
 set statusline+=%m%r%w                                " flags
-set statusline+=\ %{coc#status()}%{get(b:,'coc_current_function','')} " coc
 set statusline+=%=                                    " left/right separator
 set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}   " syntax id
 set statusline+=\ 0x%B\ \                             " character under cursor
@@ -398,5 +397,8 @@ let g:Lf_WildIgnore = {
 
 " Coc
 let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-command! -nargs=1 SourceScript exec 'so '.s:home.'/'.'<args>'
-SourceScript init/coc.vim
+command! -nargs=1 SourceScript execute 'source '.s:home.'/'.'<args>'
+augroup LoadCoc
+  autocmd!
+  au InsertEnter * SourceScript init/coc.vim | packadd coc.nvim-release | au! LoadCoc
+augroup END

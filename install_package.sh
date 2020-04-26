@@ -78,7 +78,7 @@ packageList=(
 printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
 
 # coc.nvim
-set_dir "bundle/start"
+set_dir "bundle/opt"
 rm -rf coc.nvim-release/
 curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzf -
 
