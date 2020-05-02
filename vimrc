@@ -98,10 +98,10 @@ set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
 set statusline+=%-n\                                  " buffer number
 set statusline+=%<%.79f\                              " file name
-set statusline+=[%{strlen(&ft)?&ft:'no\ ft'},         " filetype
+set statusline+=[%{&ft==''?'no\ ft':&ft},             " filetype
 set statusline+=%{&bomb?'bom,':''}                    " BOM
-set statusline+=%{strlen(&fenc)?&fenc.',':''}         " file encoding
-set statusline+=%{&fileformat}]                       " file format
+set statusline+=%{&fenc==''?&enc:&fenc},              " file encoding
+set statusline+=%{&ff}]                               " file format
 set statusline+=%{fugitive#statusline()}              " FUGITIVE git branch
 set statusline+=%m%r%w                                " flags
 set statusline+=%=                                    " left/right separator
@@ -204,7 +204,7 @@ endfunction
 " strip all trailing whitespace in the current file
 nnoremap <F4> :call <SID>preserve_state_run("%s/\\s\\+$//e")<CR>
 
-" don't reset the cursor upon returning to a buffer:
+" don't reset the cursor upon returning to a buffer
 if &startofline
   augroup StayPut
     autocmd!
@@ -262,7 +262,7 @@ endfunction
 function s:load_on_map(pack, map, modes)
   for mode in a:modes
     execute printf(
-      \ '%snoremap %s %s:<C-U>call <SID>exe_map(%s, %s, %s)<CR>',
+      \ '%snoremap <silent> %s %s:<C-U>call <SID>exe_map(%s, %s, %s)<CR>',
       \ mode, a:map, mode=='i'?'<C-O>':'', string(a:pack), string(substitute(a:map, '<', '\<lt>', 'g')), string(mode))
   endfor
 endfunction
