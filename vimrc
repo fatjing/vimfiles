@@ -34,7 +34,7 @@ endif
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
   set t_Co=16
 endif
-color hybrid
+silent! color hybrid
 
 if has('path_extra')
   setglobal tags-=./tags tags-=./tags; tags^=./tags;
@@ -134,9 +134,9 @@ nnoremap gj j
 nnoremap gk k
 
 " navigation key bindings for insert and command-line mode
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-cnoremap <C-a> <C-b>
+inoremap <C-A> <Home>
+inoremap <C-E> <End>
+cnoremap <C-A> <C-B>
 noremap! <M-b> <C-Left>
 noremap! <M-f> <C-Right>
 execute "set <M-b>=\eb"
@@ -150,8 +150,8 @@ inoremap <C-W> <C-G>u<C-W>
 nnoremap Y y$
 
 " buffer navigation
-nnoremap <silent> <left> :bprev<CR>
-nnoremap <silent> <right> :bnext<CR>
+nnoremap <silent> <Left> :bprev<CR>
+nnoremap <silent> <Right> :bnext<CR>
 "nnoremap <Leader>b :ls<CR>:e #
 
 " searching and substituting
@@ -166,12 +166,12 @@ nnoremap <Leader>s :%s/
 nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 
 set splitright
-nnoremap <Leader>w <C-w>
+nnoremap <Leader>w <C-W>
 " open a new vertical split and switch over to it
-nnoremap <Leader>v <C-w>v<C-w>l
+nnoremap <Leader>v <C-W>v<C-W>l
 " navigate through split windows
-nnoremap <C-j> <C-w>w
-nnoremap <C-k> <C-w>W
+nnoremap <C-J> <C-W>w
+nnoremap <C-K> <C-W>W
 
 " copy to / paste from system clipboard
 nnoremap <Leader>y "+y
@@ -186,7 +186,7 @@ nnoremap <Leader>d :cd %:p:h<CR>:pwd<CR>
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " edit .vimrc file on the fly
-nnoremap <Leader>ev <C-w>v<C-w>l:e $MYVIMRC<CR>
+nnoremap <Leader>ev <C-W>v<C-W>l:e $MYVIMRC<CR>
 
 " fold tag
 nnoremap <Leader>FT Vatzf
@@ -277,7 +277,7 @@ function s:exe_map(pack, map, mode)
     if a:mode == 'v' | let prefix .= 'gv' | endif
     if mode(1) == 'no'
       if v:operator == 'c'
-        let prefix = "\<esc>" . prefix
+        let prefix = "\<Esc>" . prefix
       endif
       let prefix .= v:operator
     endif
@@ -317,7 +317,7 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 " vim-slime
 " Grab some text and 'send' it to a GNU Screen / tmux / whimrepl session.
 " Default key binding: <Ctrl-c><Ctrl-c> (hold Ctrl and double-tap c)
-call s:load_on_map('vim-slime', '<C-c><C-c>', ['n', 'v'])
+call s:load_on_map('vim-slime', '<C-C><C-C>', ['n', 'v'])
 let g:slime_target = 'vimterminal'
 
 " scratch.vim
