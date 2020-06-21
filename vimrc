@@ -128,11 +128,6 @@ vnoremap ; :
 nnoremap \ ;
 vnoremap \ ;
 
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
-
 " navigation key bindings for insert and command-line mode
 inoremap <C-A> <Home>
 inoremap <C-E> <End>
