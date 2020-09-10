@@ -373,7 +373,7 @@ nnoremap <Leader>fp :Leaderf! function<CR>
 nnoremap <Leader>ft :Leaderf! bufTag<CR>
 nnoremap <Leader>fl :Leaderf line<CR>
 nnoremap <Leader>fe :Leaderf rg --wd-mode=c -e<Space>
-nnoremap <Leader>fr :Leaderf! --recall<CR>
+nnoremap <Leader>fr :Leaderf! rg --recall<CR>
 
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
