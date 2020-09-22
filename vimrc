@@ -188,16 +188,16 @@ nnoremap <Leader>FT Vatzf
 
 function! s:preserve_state_run(command)
   " Preparation: save last search, and view of the current window
-  let _s=@/
+  let l:search=@/
   let l:winview = winsaveview()
   " Do the business
   execute a:command
   " Cleanup: restore previous search history, and view of the window
-  let @/=_s
+  let @/=l:search
   call winrestview(l:winview)
 endfunction
 " strip all trailing whitespace in the current file
-nnoremap <F4> :call <SID>preserve_state_run("%s/\\s\\+$//e")<CR>
+nnoremap <F3> :call <SID>preserve_state_run("%s/\\s\\+$//e")<CR>
 
 " don't reset the cursor upon returning to a buffer
 if &startofline
