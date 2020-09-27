@@ -197,7 +197,7 @@ function! s:preserve_state_run(command)
   call winrestview(l:winview)
 endfunction
 " strip all trailing whitespace in the current file
-nnoremap <F3> :call <SID>preserve_state_run("%s/\\s\\+$//e")<CR>
+nnoremap <F4> :call <SID>preserve_state_run("%s/\\s\\+$//e")<CR>
 
 " don't reset the cursor upon returning to a buffer
 if &startofline
@@ -372,7 +372,7 @@ nnoremap <Leader>fm :Leaderf mru<CR>
 nnoremap <Leader>fp :Leaderf! function<CR>
 nnoremap <Leader>ft :Leaderf! bufTag<CR>
 nnoremap <Leader>fl :Leaderf line<CR>
-nnoremap <Leader>fe :Leaderf rg --wd-mode=c -e<Space>
+nnoremap <Leader>fe :Leaderf rg --wd-mode=Ac -e<Space>
 nnoremap <Leader>fr :Leaderf! rg --recall<CR>
 
 let g:Lf_WindowPosition = 'popup'
