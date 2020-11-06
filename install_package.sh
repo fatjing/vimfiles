@@ -15,10 +15,10 @@ package_install()
     directory="${1##*/}"
     repo_url="https://github.com/$1.git"
     if [ -d "$directory" ]; then
-        cd "$directory"
-        until git fetch --depth 1 --force && git reset --hard origin/master \
-              && git clean -df
-        do sleep 1; done
+        cd "$directory" || exit
+        [ -d ".git" ] &&
+        until git fetch --depth 1 --force && git reset --hard origin/master && git clean -df
+            do sleep 1; done
         cd ..
     else
         until git clone --depth 1 "$repo_url"; do
