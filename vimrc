@@ -388,6 +388,9 @@ let g:Lf_WildIgnore = {
       \ 'dir': ['.svn', '.git', '.hg', 'node_modules'],
       \ 'file': ['*.sw?', '~$*', '*.bak', '*.exe', '*.o', '*.so', '*.py[co]']
       \ }
+let g:Lf_RgConfig = [
+      \ '--glob=!node_modules/*'
+      \ ]
 " }}} LeaderF
 
 " Coc
