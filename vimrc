@@ -122,7 +122,7 @@ set ttimeoutlen=80     " key code delay
 
 let mapleader = "\<Space>"
 
-inoremap ;f <Esc>
+"inoremap jk <Esc>
 nnoremap ; :
 vnoremap ; :
 nnoremap \ ;

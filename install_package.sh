@@ -47,6 +47,7 @@ packageList=(
     whatyouhide/vim-textobj-xmlattr
 
     justinmk/vim-dirvish
+    zhou13/vim-easyescape
     Valloric/ListToggle
     Yggdroot/LeaderF
     ludovicchabant/vim-gutentags
