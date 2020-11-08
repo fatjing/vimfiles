@@ -122,12 +122,6 @@ set ttimeoutlen=80     " key code delay
 
 let mapleader = "\<Space>"
 
-"inoremap jk <Esc>
-nnoremap ; :
-vnoremap ; :
-nnoremap \ ;
-vnoremap \ ;
-
 " navigation key bindings for insert and command-line mode
 inoremap <C-A> <Home>
 inoremap <C-E> <End>
