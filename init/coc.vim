@@ -10,7 +10,7 @@ exe 'let &statusline="'.substitute(&statusline, '%=', " %{coc#status()}%{get(b:,
 "set cmdheight=2
 set updatetime=300
 set shortmess+=c
-"set signcolumn=yes
+"set signcolumn=number
 
 " Use tab for trigger completion with characters ahead and navigate
 inoremap <silent><expr> <TAB>
@@ -55,8 +55,10 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
@@ -74,8 +76,15 @@ command! -nargs=0 Format :call CocAction('format')
 xmap <leader>ga <Plug>(coc-codeaction-selected)
 nmap <leader>ga <Plug>(coc-codeaction-selected)
 
-" Introduce function text object
+" Apply AutoFix to problem on the current line
+nmap <leader>gf <Plug>(coc-fix-current)
+
+" Map function and class text objects
 xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
 omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
