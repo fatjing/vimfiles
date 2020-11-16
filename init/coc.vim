@@ -24,12 +24,6 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1] =~# '\s'
 endfunction
 
-" Close the preview window when completion is done
-augroup user_plugin_coc
-  autocmd!
-  autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
-augroup END
-
 " Notify coc.nvim to format on enter
 inoremap <silent> <CR> <C-g>u<CR><C-r>=coc#on_enter()<CR>
 
@@ -88,3 +82,10 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
+
+" Use CTRL-S for selections ranges.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" coc-yank
+nnoremap <silent> <leader>fy :<C-u>CocList --normal yank<CR>
