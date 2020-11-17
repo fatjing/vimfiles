@@ -24,8 +24,9 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1] =~# '\s'
 endfunction
 
-" Notify coc.nvim to format on enter
-inoremap <silent> <CR> <C-g>u<CR><C-r>=coc#on_enter()<CR>
+" Use <CR> to confirm completion and notify coc.nvim to format on enter
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() :
+      \ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
 " Use <C-j> for both snippet expand and jump
 imap <C-j> <Plug>(coc-snippets-expand-jump)
@@ -83,7 +84,7 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-" Use CTRL-S for selections ranges.
+" Use CTRL-S for selections ranges
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
