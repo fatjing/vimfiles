@@ -14,10 +14,11 @@ package_install()
 {
     directory="${1##*/}"
     repo_url="https://github.com/$1.git"
+    [ "$2" ] && branch="$2" || branch="master"
     if [ -d "$directory" ]; then
         cd "$directory" || exit
         [ -d ".git" ] &&
-        until git fetch --depth 1 --force && git reset --hard origin/master && git clean -df
+        until git fetch --depth 1 --force && git reset --hard origin/"$branch" && git clean -df
             do sleep 1; done
         cd ..
     else
@@ -26,7 +27,8 @@ package_install()
         done
     fi
 
-    [ ! -z $2 ] && ($2)
+    # post-installation hook
+    [ "$3" ] && ($3)
 }
 export -f package_install
 
@@ -47,7 +49,6 @@ packageList=(
     whatyouhide/vim-textobj-xmlattr
 
     justinmk/vim-dirvish
-    zhou13/vim-easyescape
     Valloric/ListToggle
     Yggdroot/LeaderF
     ludovicchabant/vim-gutentags
@@ -59,7 +60,7 @@ printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install 
 
 set_dir "bundle/opt"
 packageList=(
-    jpalardy/vim-slime
+    "jpalardy/vim-slime main"
     junegunn/vim-easy-align
     luochen1990/rainbow
     mbbill/fencview
