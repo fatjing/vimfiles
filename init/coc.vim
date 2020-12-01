@@ -87,6 +87,3 @@ omap ac <Plug>(coc-classobj-a)
 " Use CTRL-S for selections ranges
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
-
-" coc-yank
-nnoremap <silent> <leader>fy :<C-u>CocList --normal yank<CR>
