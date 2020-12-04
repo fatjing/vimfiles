@@ -374,6 +374,7 @@ let g:Lf_PreviewInPopup = 1
 let g:Lf_PopupHeight = 0.5
 let g:Lf_ShowRelativePath = 0
 let g:Lf_CacheDirectory = expand('~/.cache')
+let g:Lf_UseCache = 0
 let g:Lf_RootMarkers = ['.root', '.project', '.git', '.svn', '.hg']
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_HideHelp = 1
