@@ -56,7 +56,7 @@ packageList=(
     honza/vim-snippets
     sheerun/vim-polyglot
 )
-printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
+printf "%s\n" "${packageList[@]}" | xargs -P5 -n2 -I{} bash -c "package_install {}"
 
 set_dir "bundle/opt"
 packageList=(
@@ -68,7 +68,7 @@ packageList=(
     skywind3000/asyncrun.vim
     vim-voom/VOoM
 )
-printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
+printf "%s\n" "${packageList[@]}" | xargs -P5 -n2 -I{} bash -c "package_install {}"
 
 set_dir "colors/opt"
 packageList=(
@@ -77,7 +77,7 @@ packageList=(
     dsolstad/vim-wombat256i
     w0ng/vim-hybrid
 )
-printf "%s\n" "${packageList[@]}" | xargs -P4 -n2 -I{} bash -c "package_install {}"
+printf "%s\n" "${packageList[@]}" | xargs -P5 -n2 -I{} bash -c "package_install {}"
 
 # coc.nvim
 set_dir "bundle/opt"

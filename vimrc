@@ -14,11 +14,11 @@ if has('gui_running')
   set winaltkeys=no
   if has('gui_win32')
     set guifont=Consolas:h10
-    "set guifontwide=Microsoft\ YaHei\ Mono:h10
+    "set guifontwide=NSimSun:h11
     "set renderoptions=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
   elseif has('gui_gtk')
-    set guifont=Inconsolata\ 12
-    set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ 12
+    set guifont=Inconsolata\ 11
+    set guifontwide=Sarasa\ Mono\ SC\ 11
   endif
 else
   set background=dark
@@ -91,6 +91,7 @@ set cursorline
 set display=lastline
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set relativenumber
+set signcolumn=number
 set scrolloff=1
 set sidescrolloff=7
 
@@ -311,6 +312,7 @@ let g:slime_target = 'vimterminal'
 
 " scratch.vim
 call s:load_on_map('scratch.vim', 'gs', ['n', 'v'])
+let g:scratch_autohide = 0
 let g:scratch_insert_autohide = 0
 
 " fencview

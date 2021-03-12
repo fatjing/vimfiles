@@ -10,7 +10,6 @@ exe 'let &statusline="'.substitute(&statusline, '%=', " %{coc#status()}%{get(b:,
 "set cmdheight=2
 set updatetime=300
 set shortmess+=c
-"set signcolumn=number
 
 " Use tab for trigger completion with characters ahead and navigate
 inoremap <silent><expr> <TAB>
