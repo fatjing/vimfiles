@@ -236,6 +236,12 @@ function s:load_on_evnt(pack, event, pat)
 endfunction
 
 " Load plugin on command
+function s:load_on_cmds(pack, cmds)
+  for cmd in a:cmds
+    call s:load_on_cmd(a:pack, cmd)
+  endfor
+endfunction
+
 function s:load_on_cmd(pack, cmd)
   if !exists(':'.a:cmd)
     execute printf(
@@ -329,7 +335,7 @@ let g:rainbow_active = 0
 call s:load_on_cmd('VOoM', 'Voom')
 
 " asyncrun.vim
-call s:load_on_cmd('asyncrun.vom', 'AsyncRun')
+call s:load_on_cmd('asyncrun.vim', 'AsyncRun')
 let g:asyncrun_bell = 1
 let g:asyncrun_open = 15
 if has('win32')
@@ -337,6 +343,11 @@ if has('win32')
 endif
 " cooperate with fugitive
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+
+" asynctasks.vim
+call s:load_on_cmds('asynctasks.vim', ['AsyncTask', 'AsyncTaskList'])
+noremap <silent><F5> :AsyncTask file-run<CR>
+noremap <silent><F9> :AsyncTask file-build<CR>
 
 " vim-easy-align
 call s:load_on_cmd('vim-easy-align', 'EasyAlign')

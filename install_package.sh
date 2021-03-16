@@ -66,6 +66,7 @@ packageList=(
     mbbill/fencview
     mtth/scratch.vim
     skywind3000/asyncrun.vim
+    skywind3000/asynctasks.vim
     vim-voom/VOoM
 )
 printf "%s\n" "${packageList[@]}" | xargs -P5 -n2 -I{} bash -c "package_install {}"
