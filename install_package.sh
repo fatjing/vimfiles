@@ -38,7 +38,6 @@ packageList=(
     tpope/vim-endwise
     tpope/vim-fugitive
     tpope/vim-repeat
-    tpope/vim-sleuth
     tpope/vim-surround
     tpope/vim-unimpaired
 
@@ -54,11 +53,13 @@ packageList=(
     ludovicchabant/vim-gutentags
     skywind3000/gutentags_plus
     honza/vim-snippets
+    sheerun/vim-polyglot
 )
 printf "%s\n" "${packageList[@]}" | xargs -P5 -n2 -I{} bash -c "package_install {}"
 
 set_dir "bundle/opt"
 packageList=(
+    tpope/vim-sleuth
     "jpalardy/vim-slime main"
     junegunn/vim-easy-align
     luochen1990/rainbow
@@ -85,4 +86,4 @@ rm -rf coc.nvim-release/
 curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzf -
 
 # rm -rf $PACK_DIR/*/*/*/.git
-printf "\nFinished\n"
+printf "\nDone\n"
