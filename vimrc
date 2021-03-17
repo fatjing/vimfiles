@@ -229,64 +229,6 @@ let g:netrw_home = expand('~/.cache/netrw')
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
 
-" Plugin on-demand loading {{{
-" Load plugin on event
-function s:load_on_evnt(pack, event, pat)
-  augroup LoadPlugin
-    execute printf(
-      \ 'autocmd %s %s ++once packadd %s',
-      \ a:event, a:pat, a:pack)
-  augroup END
-endfunction
-
-" Load plugin on command
-function s:load_on_cmds(pack, cmds)
-  for cmd in a:cmds
-    call s:load_on_cmd(a:pack, cmd)
-  endfor
-endfunction
-
-function s:load_on_cmd(pack, cmd)
-  if !exists(':'.a:cmd)
-    execute printf(
-      \ 'command! -nargs=* -range -bang -complete=file %s delc %s | packadd %s | call s:exe_cmd(%s, "<bang>", <line1>, <line2>, <q-args>)',
-      \ a:cmd, a:cmd, a:pack, string(a:cmd))
-  endif
-endfunction
-
-function s:exe_cmd(cmd, bang, l1, l2, args)
-  execute printf('%s%s%s %s', (a:l1 == a:l2 ? '' : (a:l1.','.a:l2)), a:cmd, a:bang, a:args)
-endfunction
-
-" Load plugin on mapping
-function s:load_on_map(pack, map, modes)
-  for mode in a:modes
-    execute printf(
-      \ '%snoremap <silent> %s %s:<C-U>call <SID>exe_map(%s, %s, %s)<CR>',
-      \ mode, a:map, mode=='i'?'<C-O>':'', string(a:pack), string(substitute(a:map, '<', '\<lt>', 'g')), string(mode))
-  endfor
-endfunction
-
-function s:exe_map(pack, map, mode)
-  execute 'silent! unmap' a:map
-  execute 'silent! iunmap' a:map
-  execute 'packadd' a:pack
-  if a:mode != 'i'
-    let prefix = v:count ? v:count : ''
-    let prefix .= '"'.v:register
-    if a:mode == 'v' | let prefix .= 'gv' | endif
-    if mode(1) == 'no'
-      if v:operator == 'c'
-        let prefix = "\<Esc>" . prefix
-      endif
-      let prefix .= v:operator
-    endif
-    call feedkeys(prefix, 'n')
-  endif
-  execute 'call feedkeys("' . substitute(a:map, '<', '\\<', 'g') . '")'
-endfunction
-" }}}
-
 " dirvish
 " Use *-* to open the current file directory
 let g:dirvish_mode = ':sort ,^.*[\/],'
@@ -297,9 +239,11 @@ let g:polyglot_disabled = ['sensible']
 " Plugins by tpope {{{
 " vim-commentary
 " Use *gcc* to comment out a line, *gc* to comment out the target of a motion
+call load_plugin#load_on_map('vim-commentary', 'gc', ['n', 'v'])
 
 " vim-endwise
 " end certain structures automatically
+call load_plugin#load_on_evnt('vim-endwise', 'InsertEnter', '*')
 
 " vim-fugitive
 " git wrapper
@@ -318,25 +262,25 @@ let g:polyglot_disabled = ['sensible']
 " Toggle quickfix/location list, default keymappings: *<Leader>q* *<Leader>l*
 
 " scratch.vim
-call s:load_on_map('scratch.vim', 'gs', ['n', 'v'])
+call load_plugin#load_on_map('scratch.vim', 'gs', ['n', 'v'])
 let g:scratch_autohide = 0
 let g:scratch_insert_autohide = 0
 
 " fencview
 " use :FencAutoDetect, or use :FencView and then select from encoding list
-call s:load_on_cmd('fencview', 'FencAutoDetect')
+call load_plugin#load_on_cmd('fencview', 'FencAutoDetect')
 
 " Rainbow Parentheses Improved
-call s:load_on_cmd('rainbow', 'RainbowToggle')
+call load_plugin#load_on_cmd('rainbow', 'RainbowToggle')
 nnoremap <Leader>r :RainbowToggle<CR>
 let g:rainbow_active = 0
 
 " VOoM
 " Vim Outliner of Markups is a plugin that emulates a two-pane text outliner
-call s:load_on_cmd('VOoM', 'Voom')
+call load_plugin#load_on_cmd('VOoM', 'Voom')
 
 " asyncrun.vim
-call s:load_on_cmd('asyncrun.vim', 'AsyncRun')
+call load_plugin#load_on_cmd('asyncrun.vim', 'AsyncRun')
 let g:asyncrun_bell = 1
 let g:asyncrun_open = 12
 if has('win32')
@@ -346,12 +290,12 @@ endif
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 " asynctasks.vim
-call s:load_on_cmds('asynctasks.vim', ['AsyncTask', 'AsyncTaskList'])
+call load_plugin#load_on_cmd('asynctasks.vim', ['AsyncTask', 'AsyncTaskList'])
 noremap <silent><F5> :AsyncTask file-run<CR>
 noremap <silent><F9> :AsyncTask file-build<CR>
 
 " vim-easy-align
-call s:load_on_cmd('vim-easy-align', 'EasyAlign')
+call load_plugin#load_on_cmd('vim-easy-align', 'EasyAlign')
 
 " vim-gutentags {{{
 let g:gutentags_project_root = ['.root', '.project', '.git', '.svn', '.hg']

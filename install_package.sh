@@ -34,8 +34,6 @@ export -f package_install
 
 set_dir "bundle/start"
 packageList=(
-    tpope/vim-commentary
-    tpope/vim-endwise
     tpope/vim-fugitive
     tpope/vim-repeat
     tpope/vim-surround
@@ -60,6 +58,8 @@ printf "%s\n" "${packageList[@]}" | xargs -P5 -n2 -I{} bash -c "package_install 
 
 set_dir "bundle/opt"
 packageList=(
+    tpope/vim-commentary
+    tpope/vim-endwise
     tpope/vim-sleuth
     junegunn/vim-easy-align
     luochen1990/rainbow
