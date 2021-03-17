@@ -44,6 +44,7 @@ packageList=(
     kana/vim-textobj-user
     kana/vim-textobj-indent
     kana/vim-textobj-syntax
+    adriaanzon/vim-textobj-matchit
     sgur/vim-textobj-parameter
     whatyouhide/vim-textobj-xmlattr
 
