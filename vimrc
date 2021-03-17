@@ -169,6 +169,10 @@ vnoremap <Leader>y "+y
 nnoremap <Leader>p "+p
 vnoremap <Leader>p "+p
 
+" cycle through numbered registers
+" first do '"1p' and then do 'u.' repeatedly, see |redo-register|
+nnoremap <Leader>1 "1p
+
 " set working directory to the current file
 nnoremap <Leader>d :cd %:p:h<CR>:pwd<CR>
 
