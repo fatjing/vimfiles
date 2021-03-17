@@ -1,5 +1,10 @@
 " Plugin on-demand loading
 
+if exists('g:autoloaded_load_plugin')
+  finish
+endif
+let g:autoloaded_load_plugin = 1
+
 " to list
 function! s:to_a(v)
   return type(a:v) == type([]) ? a:v : [a:v]
