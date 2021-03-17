@@ -22,16 +22,12 @@ endfunction
 " load plugin on command
 function! load_plugin#load_on_cmd(pack, cmds)
   for cmd in s:to_a(a:cmds)
-    call s:load_on_cmd_helper(a:pack, cmd)
+    if !exists(':'.cmd)
+      execute printf(
+        \ 'command! -nargs=* -range -bang -complete=file %s delc %s | packadd %s | call s:exe_cmd(%s, "<bang>", <line1>, <line2>, <q-args>)',
+        \ cmd, cmd, a:pack, string(cmd))
+    endif
   endfor
-endfunction
-
-function! s:load_on_cmd_helper(pack, cmd)
-  if !exists(':'.a:cmd)
-    execute printf(
-      \ 'command! -nargs=* -range -bang -complete=file %s delc %s | packadd %s | call s:exe_cmd(%s, "<bang>", <line1>, <line2>, <q-args>)',
-      \ a:cmd, a:cmd, a:pack, string(a:cmd))
-  endif
 endfunction
 
 function! s:exe_cmd(cmd, bang, l1, l2, args)
