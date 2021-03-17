@@ -317,12 +317,6 @@ let g:polyglot_disabled = ['sensible']
 " ListToggle
 " Toggle quickfix/location list, default keymappings: *<Leader>q* *<Leader>l*
 
-" vim-slime
-" Grab some text and 'send' it to a GNU Screen / tmux / whimrepl session.
-" Default key binding: <Ctrl-c><Ctrl-c> (hold Ctrl and double-tap c)
-call s:load_on_map('vim-slime', '<C-C><C-C>', ['n', 'v'])
-let g:slime_target = 'vimterminal'
-
 " scratch.vim
 call s:load_on_map('scratch.vim', 'gs', ['n', 'v'])
 let g:scratch_autohide = 0
@@ -344,7 +338,7 @@ call s:load_on_cmd('VOoM', 'Voom')
 " asyncrun.vim
 call s:load_on_cmd('asyncrun.vim', 'AsyncRun')
 let g:asyncrun_bell = 1
-let g:asyncrun_open = 15
+let g:asyncrun_open = 12
 if has('win32')
   let g:asyncrun_encs = 'cp936'
 endif

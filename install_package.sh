@@ -60,7 +60,6 @@ printf "%s\n" "${packageList[@]}" | xargs -P5 -n2 -I{} bash -c "package_install 
 set_dir "bundle/opt"
 packageList=(
     tpope/vim-sleuth
-    "jpalardy/vim-slime main"
     junegunn/vim-easy-align
     luochen1990/rainbow
     mbbill/fencview
