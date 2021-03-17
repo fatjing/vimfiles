@@ -40,7 +40,7 @@ endfunction
 
 " load plugin on mapping
 function! load_plugin#load_on_map(pack, map, modes)
-  for mode in a:modes
+  for mode in split(a:modes, '\zs')
     execute printf(
       \ '%snoremap <silent> %s %s:<C-U>call <SID>exe_map(%s, %s, %s)<CR>',
       \ mode, a:map, mode=='i'?'<C-O>':'', string(a:pack), string(substitute(a:map, '<', '\<lt>', 'g')), string(mode))

@@ -239,7 +239,7 @@ let g:polyglot_disabled = ['sensible']
 " Plugins by tpope {{{
 " vim-commentary
 " Use *gcc* to comment out a line, *gc* to comment out the target of a motion
-call load_plugin#load_on_map('vim-commentary', 'gc', ['n', 'v'])
+call load_plugin#load_on_map('vim-commentary', 'gc', 'nv')
 
 " vim-endwise
 " end certain structures automatically
@@ -262,7 +262,7 @@ call load_plugin#load_on_evnt('vim-endwise', 'InsertEnter', '*')
 " Toggle quickfix/location list, default keymappings: *<Leader>q* *<Leader>l*
 
 " scratch.vim
-call load_plugin#load_on_map('scratch.vim', 'gs', ['n', 'v'])
+call load_plugin#load_on_map('scratch.vim', 'gs', 'nv')
 let g:scratch_autohide = 0
 let g:scratch_insert_autohide = 0
 
