@@ -10,22 +10,28 @@ function! s:to_a(v)
   return type(a:v) == type([]) ? a:v : [a:v]
 endfunction
 
+function! s:dummy()
+endfunction
+let g:load_plugin_callbacks = {}
+
 " load plugin on event
-function! load_plugin#load_on_evnt(pack, event, pat)
+function! load_plugin#load_on_evnt(pack, event, pat, ...)
+  let g:load_plugin_callbacks[a:pack] = a:0 > 0 ? a:1 : function('s:dummy')
   augroup LoadPlugin
     execute printf(
-      \ 'autocmd %s %s ++once packadd %s',
-      \ a:event, a:pat, a:pack)
+      \ 'autocmd %s %s ++once call g:load_plugin_callbacks[%s]() | packadd %s',
+      \ a:event, a:pat, string(a:pack), a:pack)
   augroup END
 endfunction
 
 " load plugin on command
-function! load_plugin#load_on_cmd(pack, cmds)
+function! load_plugin#load_on_cmd(pack, cmds, ...)
+  let g:load_plugin_callbacks[a:pack] = a:0 > 0 ? a:1 : function('s:dummy')
   for cmd in s:to_a(a:cmds)
     if !exists(':'.cmd)
       execute printf(
-        \ 'command! -nargs=* -range -bang -complete=file %s delc %s | packadd %s | call s:exe_cmd(%s, "<bang>", <line1>, <line2>, <q-args>)',
-        \ cmd, cmd, a:pack, string(cmd))
+        \ 'command! -nargs=* -range -bang -complete=file %s delc %s | call g:load_plugin_callbacks[%s]() | packadd %s | call s:exe_cmd(%s, "<bang>", <line1>, <line2>, <q-args>)',
+        \ cmd, cmd, string(a:pack), a:pack, string(cmd))
     endif
   endfor
 endfunction
@@ -35,11 +41,12 @@ function! s:exe_cmd(cmd, bang, l1, l2, args)
 endfunction
 
 " load plugin on mapping
-function! load_plugin#load_on_map(pack, map, modes)
+function! load_plugin#load_on_map(pack, map, modes, ...)
+  let g:load_plugin_callbacks[a:pack] = a:0 > 0 ? a:1 : function('s:dummy')
   for mode in split(a:modes, '\zs')
     execute printf(
-      \ '%snoremap <silent> %s %s:<C-U>call <SID>exe_map(%s, %s, %s)<CR>',
-      \ mode, a:map, mode=='i'?'<C-O>':'', string(a:pack), string(substitute(a:map, '<', '\<lt>', 'g')), string(mode))
+      \ '%snoremap <silent> %s %s:<C-U>call g:load_plugin_callbacks[%s]() <Bar> call <SID>exe_map(%s, %s, %s)<CR>',
+      \ mode, a:map, mode=='i'?'<C-O>':'', string(a:pack), string(a:pack), string(substitute(a:map, '<', '\<lt>', 'g')), string(mode))
   endfor
 endfunction
 
