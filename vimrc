@@ -243,7 +243,7 @@ call load_plugin#load_on_map('vim-commentary', 'gc', 'nv')
 
 " vim-endwise
 " end certain structures automatically
-call load_plugin#load_on_evnt('vim-endwise', 'InsertEnter', '*')
+"call load_plugin#load_on_evnt('vim-endwise', 'InsertEnter', '*')
 
 " vim-fugitive
 " git wrapper

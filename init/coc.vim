@@ -3,7 +3,7 @@
 let g:coc_config_home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 " let g:coc_global_extensions = ['coc-pairs', 'coc-snippets', 'coc-tag', 'coc-json',
 "       \ 'coc-html', 'coc-css', 'coc-eslint', 'coc-tsserver', 'coc-vetur',
-"       \ 'coc-python', 'coc-java'
+"       \ 'coc-pyright', 'coc-java'
 "       \ ]
 
 exe 'let &statusline="'.substitute(&statusline, '%=', " %{coc#status()}%{get(b:,'coc_current_function','')}%=", '').'"'
@@ -24,8 +24,10 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <CR> to confirm completion and notify coc.nvim to format on enter
-inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() :
-      \ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
+" Work with vim-endwise
+inoremap <silent><expr> <Plug>CustomCocCR
+      \ pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
+imap <CR> <Plug>CustomCocCR<Plug>DiscretionaryEnd
 
 " Use <C-j> for both snippet expand and jump
 imap <C-j> <Plug>(coc-snippets-expand-jump)
