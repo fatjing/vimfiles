@@ -321,11 +321,12 @@ let g:gutentags_auto_add_gtags_cscope = 0
 let g:Lf_ShortcutF = '<Leader>ff'
 "let g:Lf_ShortcutB = '<Leader>fb'
 nnoremap <Leader>fm :Leaderf mru<CR>
-nnoremap <Leader>fp :Leaderf! function<CR>
-nnoremap <Leader>ft :Leaderf! bufTag<CR>
+nnoremap <Leader>fp :Leaderf function<CR>
+nnoremap <Leader>ft :Leaderf bufTag<CR>
 nnoremap <Leader>fl :Leaderf line<CR>
 nnoremap <Leader>fe :Leaderf rg -e<Space>
 nnoremap <Leader>fr :Leaderf! --recall<CR>
+nnoremap <Leader>fq :Leaderf quickfix<CR>
 
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
