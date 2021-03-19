@@ -324,7 +324,7 @@ nnoremap <Leader>fm :Leaderf mru<CR>
 nnoremap <Leader>fp :Leaderf! function<CR>
 nnoremap <Leader>ft :Leaderf! bufTag<CR>
 nnoremap <Leader>fl :Leaderf line<CR>
-nnoremap <Leader>fe :Leaderf rg -S<Space>
+nnoremap <Leader>fe :Leaderf rg -e<Space>
 nnoremap <Leader>fr :Leaderf! --recall<CR>
 
 let g:Lf_WindowPosition = 'popup'
@@ -342,6 +342,7 @@ let g:Lf_WildIgnore = {
       \ 'file': ['*.sw?', '~$*', '*.bak', '*.exe', '*.o', '*.so', '*.py[co]']
       \ }
 let g:Lf_RgConfig = [
+      \ '--smart-case',
       \ '--glob=!node_modules/*'
       \ ]
 " }}} LeaderF
