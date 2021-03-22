@@ -123,6 +123,11 @@ set ttimeoutlen=80     " key code delay
 
 let mapleader = "\<Space>"
 
+nnoremap ; :
+vnoremap ; :
+nnoremap \ ;
+vnoremap \ ;
+
 " navigation key bindings for insert and command-line mode
 inoremap <C-A> <Home>
 inoremap <C-E> <End>
@@ -172,6 +177,7 @@ vnoremap <Leader>p "+p
 " cycle through numbered registers
 " first do '"1p' and then do 'u.' repeatedly, see |redo-register|
 nnoremap <Leader>1 "1p
+nnoremap <Leader>0 "0p
 
 " set working directory to the current file
 nnoremap <Leader>d :cd %:p:h<CR>:pwd<CR>
@@ -260,6 +266,7 @@ call load_plugin#load_on_map('vim-commentary', 'gc', 'nv')
 
 " ListToggle
 " Toggle quickfix/location list, default keymappings: *<Leader>q* *<Leader>l*
+let g:lt_height = 12
 
 " scratch.vim
 call load_plugin#load_on_map('scratch.vim', 'gs', 'nv')
