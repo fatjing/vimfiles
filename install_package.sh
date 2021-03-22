@@ -47,6 +47,7 @@ packageList=(
     sgur/vim-textobj-parameter
     whatyouhide/vim-textobj-xmlattr
 
+    easymotion/vim-easymotion
     justinmk/vim-dirvish
     Valloric/ListToggle
     Yggdroot/LeaderF

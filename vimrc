@@ -268,6 +268,11 @@ call load_plugin#load_on_map('vim-commentary', 'gc', 'nv')
 " Toggle quickfix/location list, default keymappings: *<Leader>q* *<Leader>l*
 let g:lt_height = 12
 
+" vim-easymotion
+map s <Plug>(easymotion-s2)
+let g:EasyMotion_keys='fjdkslghrueiwoqptybzxcnvma;'
+let g:EasyMotion_smartcase = 1
+
 " scratch.vim
 call load_plugin#load_on_map('scratch.vim', 'gs', 'nv')
 let g:scratch_autohide = 0
