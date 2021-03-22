@@ -15,7 +15,6 @@ if has('gui_running')
   if has('gui_win32')
     set guifont=Consolas:h10
     "set guifontwide=NSimSun:h11
-    "set renderoptions=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
   elseif has('gui_gtk')
     set guifont=Inconsolata\ 11
     set guifontwide=Sarasa\ Mono\ SC\ 11
@@ -366,5 +365,6 @@ let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 command! -nargs=1 SourceScript execute 'source '.s:home.'/'.'<args>'
 augroup LoadCoc
   autocmd!
-  au InsertEnter * SourceScript init/coc.vim | packadd vim-snippets | packadd coc.nvim-release | au! LoadCoc
+  au InsertEnter * SourceScript init/coc.vim
+        \ | packadd vim-snippets | packadd coc.nvim-release | au! LoadCoc
 augroup END
