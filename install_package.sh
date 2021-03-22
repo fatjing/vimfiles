@@ -49,19 +49,19 @@ packageList=(
 
     easymotion/vim-easymotion
     justinmk/vim-dirvish
-    Valloric/ListToggle
     Yggdroot/LeaderF
     ludovicchabant/vim-gutentags
     skywind3000/gutentags_plus
-    honza/vim-snippets
     sheerun/vim-polyglot
 )
 printf "%s\n" "${packageList[@]}" | xargs -P5 -n2 -I{} bash -c "package_install {}"
 
 set_dir "bundle/opt"
 packageList=(
+    Valloric/ListToggle
     tpope/vim-commentary
     tpope/vim-sleuth
+    honza/vim-snippets
     junegunn/vim-easy-align
     luochen1990/rainbow
     mbbill/fencview

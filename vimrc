@@ -266,6 +266,7 @@ call load_plugin#load_on_map('vim-commentary', 'gc', 'nv')
 
 " ListToggle
 " Toggle quickfix/location list, default keymappings: *<Leader>q* *<Leader>l*
+call load_plugin#load_on_map('ListToggle', '<Space>q', 'n')
 let g:lt_height = 12
 
 " vim-easymotion
@@ -365,5 +366,5 @@ let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 command! -nargs=1 SourceScript execute 'source '.s:home.'/'.'<args>'
 augroup LoadCoc
   autocmd!
-  au InsertEnter * SourceScript init/coc.vim | packadd coc.nvim-release | au! LoadCoc
+  au InsertEnter * SourceScript init/coc.vim | packadd vim-snippets | packadd coc.nvim-release | au! LoadCoc
 augroup END
