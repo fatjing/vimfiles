@@ -62,6 +62,7 @@ packageList=(
     tpope/vim-commentary
     tpope/vim-sleuth
     honza/vim-snippets
+    junegunn/gv.vim
     junegunn/vim-easy-align
     luochen1990/rainbow
     mbbill/fencview
