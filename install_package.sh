@@ -67,6 +67,7 @@ packageList=(
     luochen1990/rainbow
     mbbill/fencview
     mtth/scratch.vim
+    "neoclide/coc.nvim release"
     skywind3000/asyncrun.vim
     skywind3000/asynctasks.vim
     vim-voom/VOoM
@@ -81,11 +82,6 @@ packageList=(
     w0ng/vim-hybrid
 )
 printf "%s\n" "${packageList[@]}" | xargs -P5 -n2 -I{} bash -c "package_install {}"
-
-# coc.nvim
-set_dir "bundle/opt"
-rm -rf coc.nvim-release/
-curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzf -
 
 # rm -rf $PACK_DIR/*/*/*/.git
 printf "\nDone\n"

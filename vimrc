@@ -369,5 +369,5 @@ command! -nargs=1 SourceScript execute 'source '.s:home.'/'.'<args>'
 augroup LoadCoc
   autocmd!
   au InsertEnter * SourceScript init/coc.vim
-        \ | packadd vim-snippets | packadd coc.nvim-release | au! LoadCoc
+        \ | packadd vim-snippets | packadd coc.nvim | au! LoadCoc
 augroup END
