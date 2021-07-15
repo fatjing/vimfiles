@@ -113,6 +113,7 @@ set statusline+=[%l/%L,%-6(%4(%c%V]%)%)\ %P           " offset
 set wildmenu                 " enable ctrl-n and ctrl-p to scroll thru matches
 set wildmode=list:longest    " make cmdline tab completion similar to bash
 set wildignore=*.o,*.obj,*~  " stuff to ignore when tab completing
+set wildignore+=*/.git/*,*/.svn/*,*/node_modules/*
 
 
 " Section: key mappings and commands
