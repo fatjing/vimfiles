@@ -97,7 +97,7 @@ set sidescrolloff=7
 set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
 set statusline+=%-n\                                  " buffer number
-set statusline+=%<%.79f\                              " file name
+set statusline+=%<%.79{expand('%:~:.')}\              " relative path
 set statusline+=[%{&ft==''?'no\ ft':&ft},             " filetype
 set statusline+=%{&bomb?'bom,':''}                    " BOM
 set statusline+=%{&fenc==''?&enc:&fenc},              " file encoding
