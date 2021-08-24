@@ -62,12 +62,12 @@ packageList=(
     tpope/vim-commentary
     tpope/vim-sleuth
     honza/vim-snippets
-    junegunn/gv.vim
     junegunn/vim-easy-align
     luochen1990/rainbow
     mbbill/fencview
     mtth/scratch.vim
     "neoclide/coc.nvim release"
+    rbong/vim-flog
     skywind3000/asyncrun.vim
     skywind3000/asynctasks.vim
     vim-voom/VOoM

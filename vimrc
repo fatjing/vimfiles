@@ -269,8 +269,8 @@ call load_plugin#load_on_map('vim-commentary', 'gc', 'nv')
 call load_plugin#load_on_map('ListToggle', '<Space>q', 'n')
 let g:lt_height = 12
 
-" gv.vim
-call load_plugin#load_on_cmd('gv.vim', 'GV')
+" vim-flog
+call load_plugin#load_on_cmd('vim-flog', 'Flog')
 
 " vim-easymotion
 map s <Plug>(easymotion-s2)
