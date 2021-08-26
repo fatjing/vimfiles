@@ -128,14 +128,27 @@ vnoremap ; :
 nnoremap \ ;
 vnoremap \ ;
 
-" navigation key bindings for insert and command-line mode
-inoremap <C-A> <Home>
-inoremap <C-E> <End>
-cnoremap <C-A> <C-B>
+" movement enhancement
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+cnoremap <C-a> <C-b>
+noremap! <C-d> <Del>
 noremap! <M-b> <C-Left>
 noremap! <M-f> <C-Right>
-execute "set <M-b>=\eb"
-execute "set <M-f>=\ef"
+noremap! <M-h> <C-Left>
+noremap! <M-l> <C-Right>
+
+nnoremap <M-j> gj
+nnoremap <M-k> gk
+tnoremap <M-n> <C-\><C-n>
+
+" fix alt key as meta key, see :set-termcap
+if !has('gui_running') && !has('nvim')
+  for i in range(26)
+    let key = nr2char(char2nr('a') + i)
+    execute "set <M-".key.">=\e".key
+  endfor
+endif
 
 " Break undo before deleting
 inoremap <C-U> <C-G>u<C-U>
