@@ -54,7 +54,7 @@ packageList=(
     skywind3000/gutentags_plus
     sheerun/vim-polyglot
 )
-printf "%s\n" "${packageList[@]}" | xargs -P5 -n2 -I{} bash -c "package_install {}"
+printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
 set_dir "bundle/opt"
 packageList=(
@@ -72,7 +72,7 @@ packageList=(
     skywind3000/asynctasks.vim
     vim-voom/VOoM
 )
-printf "%s\n" "${packageList[@]}" | xargs -P5 -n2 -I{} bash -c "package_install {}"
+printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
 set_dir "colors/opt"
 packageList=(
@@ -81,7 +81,7 @@ packageList=(
     dsolstad/vim-wombat256i
     w0ng/vim-hybrid
 )
-printf "%s\n" "${packageList[@]}" | xargs -P5 -n2 -I{} bash -c "package_install {}"
+printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
 # rm -rf $PACK_DIR/*/*/*/.git
 printf "\nDone\n"
