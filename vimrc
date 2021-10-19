@@ -162,7 +162,6 @@ nnoremap <silent> <Right> :bnext<CR>
 "nnoremap <Leader>b :ls<CR>:e #
 
 " searching and substituting
-set gdefault
 set ignorecase
 set smartcase
 set incsearch
