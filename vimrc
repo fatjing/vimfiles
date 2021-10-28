@@ -6,6 +6,9 @@ if !exists('g:syntax_on')
   syntax enable
 endif
 
+
+" Section: ui settings
+
 set mouse=nvi
 set mousemodel=popup
 
@@ -29,11 +32,23 @@ if &term =~ '256color' && $TMUX != ''
   " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
   set t_ut=
 endif
+
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
   set t_Co=16
 endif
+
 silent! color hybrid
+
+if !has('gui_running')
+  hi Normal guibg=NONE ctermbg=NONE
+  hi NonText guibg=NONE ctermbg=NONE
+  hi SignColumn guibg=NONE ctermbg=NONE
+  hi LineNr guibg=NONE ctermbg=NONE
+endif
+
+
+" Section: general settings
 
 if has('path_extra')
   setglobal tags-=./tags tags-=./tags; tags^=./tags;
@@ -161,7 +176,7 @@ nnoremap <silent> <Left> :bprev<CR>
 nnoremap <silent> <Right> :bnext<CR>
 "nnoremap <Leader>b :ls<CR>:e #
 
-" searching and substituting
+" search and substitute
 set ignorecase
 set smartcase
 set incsearch
@@ -171,11 +186,10 @@ vnoremap / /\v
 nnoremap <Leader>s :%s/
 nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 
+" split windows
 set splitright
 nnoremap <Leader>w <C-W>
-" open a new vertical split and switch over to it
 nnoremap <Leader>v <C-W>v<C-W>l
-" navigate through split windows
 nnoremap <C-J> <C-W>w
 nnoremap <C-K> <C-W>W
 
