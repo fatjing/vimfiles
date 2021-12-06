@@ -264,7 +264,7 @@ let g:netrw_winsize = 25
 let g:dirvish_mode = ':sort ,^.*[\/],'
 
 " vim-polyglot
-let g:polyglot_disabled = ['sensible']
+let g:polyglot_disabled = ['autoindent', 'sensible']
 
 " Plugins by tpope {{{
 " vim-commentary

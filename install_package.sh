@@ -37,6 +37,7 @@ packageList=(
     tpope/vim-endwise
     tpope/vim-fugitive
     tpope/vim-repeat
+    tpope/vim-sleuth
     tpope/vim-surround
     tpope/vim-unimpaired
 
@@ -60,7 +61,6 @@ set_dir "bundle/opt"
 packageList=(
     Valloric/ListToggle
     tpope/vim-commentary
-    tpope/vim-sleuth
     honza/vim-snippets
     junegunn/vim-easy-align
     luochen1990/rainbow
