@@ -1,5 +1,6 @@
 " coc.nvim settings
 
+let g:coc_start_at_startup = 0
 let g:coc_config_home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 " let g:coc_global_extensions = ['coc-pairs', 'coc-snippets', 'coc-tag', 'coc-json',
 "       \ 'coc-html', 'coc-css', 'coc-eslint', 'coc-tsserver', 'coc-vetur',
