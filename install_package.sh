@@ -22,7 +22,7 @@ package_install()
             do sleep 1; done
         cd ..
     else
-        until git clone --depth 1 "$repo_url"; do
+        until git clone --depth 1 --branch "$branch" --single-branch "$repo_url"; do
             sleep 1; [ -d "$directory" ] && rm -rf "$directory"
         done
     fi
@@ -76,7 +76,7 @@ printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
 set_dir "colors/opt"
 packageList=(
-    chriskempson/base16-vim
+    "base16-project/base16-vim main"
     cocopon/iceberg.vim
     dsolstad/vim-wombat256i
     w0ng/vim-hybrid
