@@ -387,11 +387,12 @@ let g:Lf_RgConfig = [
       \ ]
 " }}} LeaderF
 
-" Coc
 let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 command! -nargs=1 SourceScript execute 'source '.s:home.'/'.'<args>'
-augroup LoadCoc
+
+" Coc
+SourceScript init/coc.vim
+augroup StartCoc
   autocmd!
-  au InsertEnter * SourceScript init/coc.vim
-        \ | packadd vim-snippets | packadd coc.nvim | call coc#rpc#start_server() | au! LoadCoc
+  au InsertEnter * packadd vim-snippets | call coc#rpc#start_server() | au! StartCoc
 augroup END

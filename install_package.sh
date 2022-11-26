@@ -51,6 +51,7 @@ packageList=(
     easymotion/vim-easymotion
     justinmk/vim-dirvish
     Yggdroot/LeaderF
+    "neoclide/coc.nvim release"
     ludovicchabant/vim-gutentags
     skywind3000/gutentags_plus
     sheerun/vim-polyglot
@@ -66,7 +67,6 @@ packageList=(
     luochen1990/rainbow
     mbbill/fencview
     mtth/scratch.vim
-    "neoclide/coc.nvim release"
     rbong/vim-flog
     skywind3000/asyncrun.vim
     skywind3000/asynctasks.vim
