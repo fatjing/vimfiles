@@ -92,6 +92,7 @@ set expandtab        " in insert mode: use spaces to insert a <Tab>
 set autoindent       " automatically indent to match adjacent line
 
 set foldmethod=marker
+set smoothscroll
 
 
 " Section: message and info display
