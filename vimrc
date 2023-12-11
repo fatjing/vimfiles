@@ -189,9 +189,11 @@ nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR
 " split windows
 set splitright
 nnoremap <Leader>w <C-W>
-nnoremap <Leader>v <C-W>v<C-W>l
+nnoremap <Leader>v <C-W>v
 nnoremap <C-J> <C-W>w
 nnoremap <C-K> <C-W>W
+nnoremap <C-H> <C-W>h
+nnoremap <C-L> <C-W>l
 
 " copy to / paste from system clipboard
 nnoremap <Leader>y "+y
