@@ -266,9 +266,6 @@ let g:netrw_winsize = 25
 " Use *-* to open the current file directory
 let g:dirvish_mode = ':sort ,^.*[\/],'
 
-" vim-polyglot
-let g:polyglot_disabled = ['autoindent', 'sensible']
-
 " Plugins by tpope {{{
 " vim-commentary
 " Use *gcc* to comment out a line, *gc* to comment out the target of a motion
