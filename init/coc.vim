@@ -2,9 +2,9 @@
 
 let g:coc_start_at_startup = 0
 let g:coc_config_home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-" let g:coc_global_extensions = ['coc-pairs', 'coc-snippets', 'coc-tag', 'coc-json',
-"       \ 'coc-html', 'coc-css', 'coc-eslint', 'coc-tsserver', 'coc-vetur',
-"       \ 'coc-pyright', 'coc-java'
+" let g:coc_global_extensions = ['coc-pairs', 'coc-snippets', 'coc-tag', 'coc-word',
+"       \ 'coc-html', 'coc-css', 'coc-json', 'coc-eslint', 'coc-tsserver', 'coc-volar',
+"       \ 'coc-pyright'
 "       \ ]
 
 exe 'let &statusline="'.substitute(&statusline, '%=', " %{coc#status()}%{get(b:,'coc_current_function','')}%=", '').'"'
