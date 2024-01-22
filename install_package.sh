@@ -76,10 +76,9 @@ printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
 set_dir "colors/opt"
 packageList=(
-    "base16-project/base16-vim main"
     cocopon/iceberg.vim
-    dsolstad/vim-wombat256i
     w0ng/vim-hybrid
+    wesQ3/wombat.vim
 )
 printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
