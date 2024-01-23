@@ -38,7 +38,7 @@ if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
   set t_Co=16
 endif
 
-silent! color hybrid
+silent! color iceberg
 
 if !has('gui_running')
   hi Normal guibg=NONE ctermbg=NONE
@@ -262,44 +262,35 @@ let g:netrw_home = expand('~/.cache/netrw')
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
 
-" dirvish
-" Use *-* to open the current file directory
+" vim-dirvish
+" Use `-` to open the current file directory
 let g:dirvish_mode = ':sort ,^.*[\/],'
 
-" Plugins by tpope {{{
+" vim-sneak
+" Type `s` followed by two characters to move; use `z` for operations
+let g:sneak#s_next = 1
+
 " vim-commentary
-" Use *gcc* to comment out a line, *gc* to comment out the target of a motion
+" Use `gcc` to comment out a line, `gc` to comment out the target of a motion
 call load_plugin#load_on_map('vim-commentary', 'gc', 'nv')
 
 " vim-endwise
-" end certain structures automatically
+" End certain structures automatically
 "call load_plugin#load_on_evnt('vim-endwise', 'InsertEnter', '*')
-
-" vim-fugitive
-" git wrapper
-
-" vim-sleuth
-" Automatically adjusts 'shiftwidth' and 'expandtab' heuristically
 
 " vim-surround
 " A tool for dealing with pairs of surroundings. See :h surround
 
 " vim-unimpaired
-" several pairs of bracket maps
-" }}} tpope
+" Provide several pairs of bracket maps. See :h unimpaired
 
 " ListToggle
-" Toggle quickfix/location list, default keymappings: *<Leader>q* *<Leader>l*
+" Toggle quickfix/location list, default keymappings: `<Leader>q` `<Leader>l`
 call load_plugin#load_on_map('ListToggle', '<Space>q', 'n')
 let g:lt_height = 12
 
 " vim-flog
 call load_plugin#load_on_cmd('vim-flog', 'Flog')
-
-" vim-easymotion
-map s <Plug>(easymotion-s2)
-let g:EasyMotion_keys='fjdkslghrueiwoqptybzxcnvma;'
-let g:EasyMotion_smartcase = 1
 
 " scratch.vim
 call load_plugin#load_on_map('scratch.vim', 'gs', 'nv')
