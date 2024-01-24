@@ -269,6 +269,7 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 " vim-sneak
 " Type `s` followed by two characters to move; use `z` for operations
 let g:sneak#s_next = 1
+let g:sneak#use_ic_scs = 1
 
 " vim-commentary
 " Use `gcc` to comment out a line, `gc` to comment out the target of a motion

@@ -1,5 +1,6 @@
 {
-	"suggest.noselect": true,
-	"languageserver": {
-	}
+  "suggest.defaultSortMethod": "none",
+  "suggest.noselect": true,
+  "languageserver": {
+  }
 }

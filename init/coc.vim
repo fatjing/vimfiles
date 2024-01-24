@@ -67,15 +67,21 @@ nmap <leader>gn <Plug>(coc-rename)
 xmap <leader>gq <Plug>(coc-format-selected)
 nmap <leader>gq <Plug>(coc-format-selected)
 
-" Apply codeAction to the selected region
+" Apply code actions to the selected code block
 xmap <leader>ga <Plug>(coc-codeaction-selected)
 nmap <leader>ga <Plug>(coc-codeaction-selected)
 
-" Apply codeAction to the current buffer
-nmap <leader>gc <Plug>(coc-codeaction)
+" Apply code actions to the current buffer
+nmap <leader>gb <Plug>(coc-codeaction-source)
 
-" Apply AutoFix to problem on the current line
+" Apply code actions at the cursor position
+nmap <leader>gc <Plug>(coc-codeaction-cursor)
+
+" Apply quickfix action to fix diagnostic on the current line
 nmap <leader>gf <Plug>(coc-fix-current)
+
+" Apply refactor code actions
+nmap <leader>ge <Plug>(coc-codeaction-refactor)
 
 " Run Code Lens action on the current line
 nmap <leader>gl <Plug>(coc-codelens-action)
