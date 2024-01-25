@@ -169,6 +169,8 @@ nnoremap Y y$
 nnoremap <silent> <Left> :bprev<CR>
 nnoremap <silent> <Right> :bnext<CR>
 "nnoremap <Leader>b :ls<CR>:e #
+" delete a buffer without closing the window
+nnoremap <silent> <Leader>d :bp<Bar>bd#<CR>
 
 " search and substitute
 set ignorecase
@@ -201,7 +203,7 @@ nnoremap <Leader>1 "1p
 nnoremap <Leader>0 "0p
 
 " set working directory to the current file
-nnoremap <Leader>d :cd %:p:h<CR>:pwd<CR>
+nnoremap <Leader>wd :cd %:p:h<CR>:pwd<CR>
 
 " reselect last paste
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
