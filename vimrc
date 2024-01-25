@@ -40,12 +40,6 @@ endif
 
 silent! color iceberg
 
-if !has('gui_running')
-  hi Normal guibg=NONE ctermbg=NONE
-  hi NonText guibg=NONE ctermbg=NONE
-  hi LineNr guibg=NONE ctermbg=NONE
-endif
-
 
 " Section: general settings
 

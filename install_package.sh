@@ -55,6 +55,7 @@ packageList=(
     "neoclide/coc.nvim release"
     ludovicchabant/vim-gutentags
     skywind3000/gutentags_plus
+    skywind3000/vim-color-patch
 )
 printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
