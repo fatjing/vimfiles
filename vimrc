@@ -110,7 +110,6 @@ set sidescrolloff=7
 
 set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
-set statusline+=%-n\                                  " buffer number
 set statusline+=%<%.79{expand('%:~:.')}\              " relative path
 set statusline+=[%{&ft==''?'no\ ft':&ft},             " filetype
 set statusline+=%{&bomb?'bom,':''}                    " BOM
@@ -118,6 +117,7 @@ set statusline+=%{&fenc==''?&enc:&fenc},              " file encoding
 set statusline+=%{&ff}]                               " file format
 set statusline+=%{fugitive#statusline()}              " FUGITIVE git branch
 set statusline+=%m%r%w                                " flags
+set statusline+=%{gutentags#statusline('\ ')}         " Gutentags
 set statusline+=%=                                    " left/right separator
 set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}   " syntax id
 set statusline+=\ 0x%B\ \                             " character under cursor
