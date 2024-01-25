@@ -327,7 +327,6 @@ call load_plugin#load_on_cmd('vim-easy-align', 'EasyAlign')
 
 " vim-gutentags {{{
 let g:gutentags_project_root = ['.root', '.project', '.git', '.svn', '.hg']
-let g:gutentags_ctags_tagfile = '.tags'
 let g:gutentags_cache_dir = expand('~/.cache/tags')
 
 let g:gutentags_modules = []
@@ -338,11 +337,15 @@ if executable('gtags-cscope') && executable('gtags')
   let g:gutentags_modules += ['gtags_cscope']
 endif
 
+let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_ctags_exclude = [ '*/build/*' ]
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']  " universal ctags
+
 let g:gutentags_auto_add_gtags_cscope = 0
+let $GTAGSLABEL = 'native-pygments'
 " }}} vim-gutentags
 
 " LeaderF {{{
