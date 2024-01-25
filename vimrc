@@ -368,6 +368,7 @@ let g:Lf_UseCache = 0
 let g:Lf_RootMarkers = ['.root', '.project', '.git', '.svn', '.hg']
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_HideHelp = 1
+let g:Lf_GtagsAutoUpdate = 0
 
 let g:Lf_WildIgnore = {
       \ 'dir': ['.svn', '.git', '.hg', 'node_modules'],
