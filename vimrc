@@ -338,7 +338,7 @@ if executable('gtags-cscope') && executable('gtags')
 endif
 
 let g:gutentags_ctags_tagfile = '.tags'
-let g:gutentags_ctags_exclude = [ '*/build/*' ]
+let g:gutentags_ctags_exclude = ['*/build/*', '*/dist/*']
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
