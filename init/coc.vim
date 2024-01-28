@@ -58,33 +58,41 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol and its references
-nmap <silent> <leader>gh :call CocActionAsync('highlight')<CR>
+nmap <silent> <leader>ah :call CocActionAsync('highlight')<CR>
 
 " Symbol renaming
-nmap <leader>gn <Plug>(coc-rename)
+nmap <leader>an <Plug>(coc-rename)
 
 " Formatting selected code
 xmap <leader>gq <Plug>(coc-format-selected)
 nmap <leader>gq <Plug>(coc-format-selected)
 
+augroup MyCocEventGroup
+  autocmd!
+  " Setup formatexpr specified filetype(s)
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
 " Apply code actions to the selected code block
-xmap <leader>ga <Plug>(coc-codeaction-selected)
-nmap <leader>ga <Plug>(coc-codeaction-selected)
+xmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
 
 " Apply code actions to the current buffer
-nmap <leader>gb <Plug>(coc-codeaction-source)
+nmap <leader>ab <Plug>(coc-codeaction-source)
 
 " Apply code actions at the cursor position
-nmap <leader>gc <Plug>(coc-codeaction-cursor)
+nmap <leader>ac <Plug>(coc-codeaction-cursor)
 
 " Apply quickfix action to fix diagnostic on the current line
-nmap <leader>gf <Plug>(coc-fix-current)
+nmap <leader>af <Plug>(coc-fix-current)
 
 " Apply refactor code actions
-nmap <leader>ge <Plug>(coc-codeaction-refactor)
+nmap <leader>ar <Plug>(coc-codeaction-refactor)
 
 " Run Code Lens action on the current line
-nmap <leader>gl <Plug>(coc-codelens-action)
+nmap <leader>al <Plug>(coc-codelens-action)
 
 " Map function and class text objects
 xmap if <Plug>(coc-funcobj-i)
@@ -109,3 +117,18 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 
+" Mappings for CoCList
+" Show all diagnostics
+nnoremap <silent><nowait> <Leader>ld :CocList diagnostics<CR>
+" Show commands
+nnoremap <silent><nowait> <Leader>lc :CocList commands<CR>
+" Find symbol of current document
+nnoremap <silent><nowait> <Leader>lo :CocList outline<CR>
+" Search workspace symbols
+nnoremap <silent><nowait> <Leader>ls :CocList -I symbols<CR>
+" Do default action for next item
+nnoremap <silent><nowait> <Leader>lj :CocNext<CR>
+" Do default action for previous item
+nnoremap <silent><nowait> <Leader>lk :CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent><nowait> <Leader>lr :CocListResume<CR>

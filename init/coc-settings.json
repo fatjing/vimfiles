@@ -1,6 +1,15 @@
 {
   "suggest.defaultSortMethod": "none",
   "suggest.noselect": true,
+  "list.floatPreview": true,
+  "list.insertMappings": {
+    "<C-o>": "do:chooseaction",
+    "<Tab>": "do:togglemode"
+  },
+  "list.normalMappings": {
+    "<C-o>": "do:chooseaction",
+    "<Tab>": "do:togglemode"
+  },
   "languageserver": {
   }
 }
