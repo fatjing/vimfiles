@@ -362,7 +362,6 @@ nnoremap <Leader>fr :Leaderf! --recall<CR>
 nnoremap <Leader>fq :Leaderf quickfix<CR>
 
 let g:Lf_WindowPosition = 'popup'
-let g:Lf_PopupHeight = 0.5
 let g:Lf_CacheDirectory = expand('~/.cache')
 let g:Lf_UseCache = 0
 let g:Lf_RootMarkers = ['.root', '.project', '.git', '.svn', '.hg']
