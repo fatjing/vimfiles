@@ -357,7 +357,7 @@ nnoremap <Leader>fo :Leaderf bufTag<CR>
 nnoremap <Leader>fg :Leaderf function<CR>
 nnoremap <Leader>fl :Leaderf line<CR>
 nnoremap <Leader>fs :Leaderf self<CR>
-nnoremap <Leader>fe :LeaderfRgInteractive<CR>
+nnoremap <Leader>fe :Leaderf rg -e<Space>
 nnoremap <Leader>fr :Leaderf! --recall<CR>
 nnoremap <Leader>fq :Leaderf quickfix<CR>
 
