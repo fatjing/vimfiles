@@ -115,7 +115,7 @@ set statusline+=%{gutentags#statusline('\ ')}         " Gutentags
 set statusline+=%=                                    " left/right separator
 set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}   " syntax id
 set statusline+=\ 0x%B\                               " character under cursor
-set statusline+=[%l/%L,%-6(%4(%c%V]%)%)\ %P           " offset
+set statusline+=[%l/%L,%-6(%4(%c%V]%)%)%P             " offset
 
 "set noshowmode
 set wildmenu                 " enable ctrl-n and ctrl-p to scroll thru matches
