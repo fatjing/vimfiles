@@ -177,6 +177,7 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+set shortmess-=S
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <Leader>s :%s/
