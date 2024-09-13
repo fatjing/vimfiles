@@ -104,7 +104,7 @@ set sidescrolloff=7
 
 set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
-set statusline+=%<%.79{expand('%:~:.')}\              " relative path
+set statusline+=%f\                                   " relative path
 set statusline+=[%{&ft==''?'no\ ft':&ft},             " filetype
 set statusline+=%{&bomb?'bom,':''}                    " BOM
 set statusline+=%{&fenc==''?&enc:&fenc},              " file encoding
@@ -113,9 +113,9 @@ set statusline+=%{fugitive#statusline()}              " FUGITIVE git branch
 set statusline+=%m%r%w                                " flags
 set statusline+=%{gutentags#statusline('\ ')}         " Gutentags
 set statusline+=%=                                    " left/right separator
-set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}   " syntax id
+"set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}    " syntax id
 set statusline+=\ 0x%B\                               " character under cursor
-set statusline+=[%l/%L,%-6(%4(%c%V]%)%)%P             " offset
+set statusline+=[%l/%L,%2v]\ %P                       " offset
 
 "set noshowmode
 set wildmenu                 " enable ctrl-n and ctrl-p to scroll thru matches

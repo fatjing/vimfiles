@@ -7,7 +7,7 @@ let g:coc_config_home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 "       \ 'coc-pyright'
 "       \ ]
 
-exe 'let &statusline="'.substitute(&statusline, '%=', " %{coc#status()}%{get(b:,'coc_current_function','')}%=", '').'"'
+exe 'let &statusline="'.substitute(&statusline, '%=', ' %{coc#status()}%=', '').'"'
 set updatetime=300
 
 " Use tab for trigger completion with characters ahead and navigate
