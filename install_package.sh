@@ -56,7 +56,6 @@ packageList=(
     "neoclide/coc.nvim release"
     ludovicchabant/vim-gutentags
     skywind3000/gutentags_plus
-    skywind3000/vim-color-patch
 )
 printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
@@ -76,9 +75,11 @@ packageList=(
 )
 printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
-set_dir "colors/opt"
+set_dir "colors/start"
 packageList=(
+    skywind3000/vim-color-patch
     cocopon/iceberg.vim
+    gkeep/iceberg-dark
     w0ng/vim-hybrid
     wesQ3/wombat.vim
 )
