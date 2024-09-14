@@ -104,19 +104,19 @@ set signcolumn=number
 
 set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
-set statusline+=%f\                                   " relative path
-set statusline+=[%{&ft!=#''?&ft:'no\ ft'},            " filetype
-set statusline+=%{&bomb?'bom,':''}                    " BOM
-set statusline+=%{&fenc!=#''?&fenc:&enc},             " file encoding
-set statusline+=%{&ff}]                               " file format
-set statusline+=%m%r%w                                " flags
-set statusline+=\ %{FugitiveHead()}                   " Fugitive git branch
-set statusline+=%{gutentags#statusline('\ ')}         " Gutentags
-set statusline+=\ %{coc#status()}                     " coc status
-set statusline+=%=                                    " left/right separator
+set statusline+=%f\                                     " relative path
+set statusline+=[%{&ft!=#''?&ft:'no\ ft'},              " filetype
+set statusline+=%{&bomb?'bom,':''}                      " BOM
+set statusline+=%{&fenc!=#''?&fenc:&enc},               " file encoding
+set statusline+=%{&ff}]                                 " file format
+set statusline+=%m%r%w                                  " flags
+set statusline+=\ %{FugitiveHead()}                     " Fugitive git branch
+set statusline+=%{gutentags#statusline('\ ')}           " Gutentags
+set statusline+=\ %{coc#status()}                       " coc status
+set statusline+=%=                                      " left/right separator
 set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}    " syntax id
-set statusline+=\ %B\                                 " character under cursor
-set statusline+=%4([\ %v%):%l/%L\ ]\ %P               " offset
+set statusline+=\ %B\                                   " character under cursor
+set statusline+=%4([\ %v%):%l/%L\ ]\ %P                 " offset
 
 set wildmenu                 " enable ctrl-n and ctrl-p to scroll thru matches
 set wildmode=list:longest    " make cmdline tab completion similar to bash
