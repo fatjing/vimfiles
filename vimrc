@@ -17,10 +17,8 @@ if has('gui_running')
   set winaltkeys=no
   if has('gui_win32')
     set guifont=Consolas:h10
-    "set guifontwide=NSimSun:h11
   elseif has('gui_gtk')
     set guifont=Inconsolata\ 11
-    set guifontwide=Sarasa\ Mono\ SC\ 11
   endif
 else
   set background=dark
@@ -34,7 +32,7 @@ if &term =~ '256color' && $TMUX != ''
 endif
 
 " Allow color schemes to do bright colors without forcing bold.
-if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+if &t_Co == 8 && $TERM !~# '^Eterm'
   set t_Co=16
 endif
 
@@ -52,6 +50,7 @@ if !empty(&viminfo)
 endif
 set history=5000    " cmdline history
 set sessionoptions-=options
+set viewoptions-=options
 
 set nobackup
 set nowritebackup
@@ -86,7 +85,11 @@ set expandtab        " in insert mode: use spaces to insert a <Tab>
 set autoindent       " automatically indent to match adjacent line
 
 set foldmethod=marker
+set display=truncate
 set smoothscroll
+set scrolloff=1
+set sidescroll=1
+set sidescrolloff=7
 
 
 " Section: message and info display
@@ -95,12 +98,9 @@ set lazyredraw
 set visualbell
 
 set cursorline
-set display=lastline
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set relativenumber
 set signcolumn=number
-set scrolloff=1
-set sidescrolloff=7
 
 set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
@@ -117,7 +117,6 @@ set statusline+=%=                                    " left/right separator
 set statusline+=\ 0x%B\                               " character under cursor
 set statusline+=[%l/%L,%2v]\ %P                       " offset
 
-"set noshowmode
 set wildmenu                 " enable ctrl-n and ctrl-p to scroll thru matches
 set wildmode=list:longest    " make cmdline tab completion similar to bash
 set wildignore=*.o,*.obj,*~  " stuff to ignore when tab completing
@@ -126,6 +125,8 @@ set wildignore+=*/.git/*,*/.svn/*,*/node_modules/*
 
 " Section: key mappings and commands
 
+set nolangremap
+set ttimeout
 set timeoutlen=2500    " mapping delay
 set ttimeoutlen=80     " key code delay
 
@@ -181,7 +182,7 @@ set shortmess-=S
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <Leader>s :%s/
-nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
+nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 " split windows
 set splitright
@@ -215,6 +216,9 @@ nnoremap <Leader>ev <C-W>v<C-W>l:e $MYVIMRC<CR>
 " fold tag
 nnoremap <Leader>FT Vatzf
 
+" strip all trailing whitespace in the current file
+nnoremap <F4> :call <SID>preserve_state_run("%s/\\s\\+$//e")<CR>
+
 function! s:preserve_state_run(command)
   " Preparation: save last search, and view of the current window
   let l:search=@/
@@ -225,8 +229,6 @@ function! s:preserve_state_run(command)
   let @/=l:search
   call winrestview(l:winview)
 endfunction
-" strip all trailing whitespace in the current file
-nnoremap <F4> :call <SID>preserve_state_run("%s/\\s\\+$//e")<CR>
 
 " don't reset the cursor upon returning to a buffer
 if &startofline
@@ -239,6 +241,7 @@ endif
 
 set diffopt+=vertical  " start diff mode with vertical splits
 set diffopt+=indent-heuristic,algorithm:histogram
+" see the difference between the current buffer and the file it was loaded from
 if !exists(':DiffOrig')
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
                    \ | wincmd p | diffthis
