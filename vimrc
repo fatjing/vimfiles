@@ -105,17 +105,18 @@ set signcolumn=number
 set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
 set statusline+=%f\                                   " relative path
-set statusline+=[%{&ft==''?'no\ ft':&ft},             " filetype
+set statusline+=[%{&ft!=#''?&ft:'no\ ft'},            " filetype
 set statusline+=%{&bomb?'bom,':''}                    " BOM
-set statusline+=%{&fenc==''?&enc:&fenc},              " file encoding
+set statusline+=%{&fenc!=#''?&fenc:&enc},             " file encoding
 set statusline+=%{&ff}]                               " file format
-set statusline+=%{fugitive#statusline()}              " FUGITIVE git branch
 set statusline+=%m%r%w                                " flags
+set statusline+=\ %{FugitiveHead()}                   " Fugitive git branch
 set statusline+=%{gutentags#statusline('\ ')}         " Gutentags
+set statusline+=\ %{coc#status()}                     " coc status
 set statusline+=%=                                    " left/right separator
-"set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}    " syntax id
-set statusline+=\ 0x%B\                               " character under cursor
-set statusline+=[%l/%L,%2v]\ %P                       " offset
+set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}    " syntax id
+set statusline+=\ %B\                                 " character under cursor
+set statusline+=%4([\ %v%):%l/%L\ ]\ %P               " offset
 
 set wildmenu                 " enable ctrl-n and ctrl-p to scroll thru matches
 set wildmode=list:longest    " make cmdline tab completion similar to bash
@@ -182,7 +183,7 @@ set shortmess-=S
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <Leader>s :%s/
-nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 " split windows
 set splitright

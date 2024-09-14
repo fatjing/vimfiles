@@ -1,14 +1,11 @@
 " coc.nvim settings
 
+set updatetime=300
+" execute 'let &statusline="'.substitute(&statusline, '%=', ' %{coc#status()}%=', '').'"'
+
 let g:coc_start_at_startup = 0
 let g:coc_config_home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-" let g:coc_global_extensions = ['coc-pairs', 'coc-snippets', 'coc-tag', 'coc-word',
-"       \ 'coc-html', 'coc-css', 'coc-json', 'coc-eslint', 'coc-tsserver', 'coc-volar',
-"       \ 'coc-pyright'
-"       \ ]
-
-exe 'let &statusline="'.substitute(&statusline, '%=', ' %{coc#status()}%=', '').'"'
-set updatetime=300
+" let g:coc_global_extensions = ['coc-pairs', 'coc-snippets', 'coc-tag', 'coc-word', 'coc-json']
 
 " Use tab for trigger completion with characters ahead and navigate
 inoremap <silent><expr> <TAB>
