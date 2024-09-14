@@ -102,6 +102,11 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set relativenumber
 set signcolumn=number
 
+set wildmenu                   " enable ctrl-n and ctrl-p to scroll thru matches
+set wildmode=list:longest      " make cmdline tab completion similar to bash
+set wildignore=*.o,*.obj,*~    " stuff to ignore when tab completing
+set wildignore+=*/.git/*,*/.svn/*,*/node_modules/*
+
 set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
 set statusline+=%f\                                     " relative path
@@ -114,24 +119,39 @@ set statusline+=\ %{FugitiveHead()}                     " Fugitive git branch
 set statusline+=%{gutentags#statusline('\ ')}           " Gutentags
 set statusline+=\ %{coc#status()}                       " coc status
 set statusline+=%=                                      " left/right separator
-set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}    " syntax id
+set statusline+=%{StatuslineGetSyntaxID()}              " syntax id
 set statusline+=\ %B\                                   " character under cursor
 set statusline+=%4([\ %v%):%l/%L\ ]\ %P                 " offset
 
-set wildmenu                 " enable ctrl-n and ctrl-p to scroll thru matches
-set wildmode=list:longest    " make cmdline tab completion similar to bash
-set wildignore=*.o,*.obj,*~  " stuff to ignore when tab completing
-set wildignore+=*/.git/*,*/.svn/*,*/node_modules/*
+" statusline: toggle syntax id {{{
+function! StatuslineGetSyntaxID()
+  if exists('g:syntax_id_toggle') && g:syntax_id_toggle
+    return synIDattr(synID(line('.'), col('.'), 1), 'name')
+  else
+    return ''
+  endif
+endfunction
+
+function! StatuslineToggleSyntaxID()
+  if exists('g:syntax_id_toggle')
+    let g:syntax_id_toggle = !g:syntax_id_toggle
+  else
+    let g:syntax_id_toggle = 1
+  endif
+endfunction
+" }}}
 
 
 " Section: key mappings and commands
+
+let mapleader = "\<Space>"
+
+nnoremap <silent> <Leader>i :call StatuslineToggleSyntaxID()<CR>
 
 set nolangremap
 set ttimeout
 set timeoutlen=2500    " mapping delay
 set ttimeoutlen=80     " key code delay
-
-let mapleader = "\<Space>"
 
 nnoremap ; :
 vnoremap ; :
@@ -205,11 +225,11 @@ vnoremap <Leader>p "+p
 nnoremap <Leader>1 "1p
 nnoremap <Leader>0 "0p
 
-" set working directory to the current file
-nnoremap <Leader>wd :cd %:p:h<CR>:pwd<CR>
-
 " reselect last paste
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+" set working directory to the current file
+nnoremap <Leader>wd :cd %:p:h<CR>:pwd<CR>
 
 " edit .vimrc file on the fly
 nnoremap <Leader>ev <C-W>v<C-W>l:e $MYVIMRC<CR>
@@ -351,7 +371,7 @@ let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']  " universal cta
 
 let g:gutentags_auto_add_gtags_cscope = 0
 let $GTAGSLABEL = 'native-pygments'
-" }}} vim-gutentags
+" }}}
 
 " LeaderF {{{
 let g:Lf_ShortcutF = '<Leader>ff'
@@ -382,7 +402,7 @@ let g:Lf_RgConfig = [
       \ '--smart-case',
       \ '--glob=!node_modules/*'
       \ ]
-" }}} LeaderF
+" }}}
 
 let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 command! -nargs=1 SourceScript execute 'source '.s:home.'/'.'<args>'
