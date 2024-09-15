@@ -29,6 +29,7 @@ if &term =~ '256color' && $TMUX != ''
   " render properly when inside 256-color tmux and GNU screen.
   " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
   set t_ut=
+  set termguicolors
 endif
 
 " Allow color schemes to do bright colors without forcing bold.
