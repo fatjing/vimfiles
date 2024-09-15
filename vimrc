@@ -34,15 +34,12 @@ endif
 silent! color iceberg
 
 " set cursor shape, see |termcap-cursor-shape|
-if &term =~ 'xterm' || exists('$TMUX')
-  let &t_SI = "\e[5 q"    " blinking bar for insert mode
-  let &t_SR = "\e[3 q"    " blinking underline for replace mode
-  let &t_EI = "\e[1 q"    " blinking block for other modes
-  augroup cursor_shape
-    autocmd!
-    "autocmd VimEnter * silent !echo -ne "\e[1 q"
-    autocmd VimLeave * silent !echo -ne "\e[5 q"
-  augroup END
+if &term =~ 'xterm\|tmux'
+  let &t_SI = "\e[5 q"      " blink bar for insert mode
+  let &t_SR = "\e[3 q"      " blink underline for replace mode
+  let &t_EI = "\e[1 q"      " blink block for other modes
+  let &t_ti ..= "\e[1 q"    " blink block when vim starts
+  let &t_te ..= "\e[0 q"    " terminal default when vim exits
 endif
 
 
