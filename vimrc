@@ -231,8 +231,8 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 " set working directory to the current file
 nnoremap <Leader>wd :cd %:p:h<CR>:pwd<CR>
 
-" edit .vimrc file on the fly
-nnoremap <Leader>ev <C-W>v<C-W>l:e $MYVIMRC<CR>
+" edit vimrc file on the fly
+nnoremap <Leader>ev <C-W>v:e ~/.vim/vimrc<CR>
 
 " fold tag
 nnoremap <Leader>FT Vatzf
