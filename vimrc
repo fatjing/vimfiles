@@ -290,6 +290,28 @@ let g:netrw_home = expand('~/.cache/netrw')
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
 
+" lightline.vim {{{
+let g:lightline = {
+      \ 'colorscheme': 'Tomorrow_Night_Bright',
+      \ 'active': {
+      \   'left': [['mode', 'paste'], ['relativepath', 'modified', 'readonly'], ['fileinfo'],
+      \             ['gitbranch'], ['gutentags'], ['cocstatus']],
+      \   'right': [['lineinfo'], ['percent'], ['charvaluehex'], ['syntax_id']]
+      \   },
+      \ 'component': {
+      \   'relativepath': '%<%f',
+      \   'lineinfo': '%2v:%l/%-2L',
+      \   'fileinfo': '%{&ft!=#""?&ft:"no\ ft"},%{&bomb?"bom,":""}%{&fenc!=#""?&fenc:&enc},%{&ff}',
+      \   },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead',
+      \   'gutentags': 'gutentags#statusline',
+      \   'cocstatus': 'coc#status',
+      \   'syntax_id': 'StatuslineGetSyntaxID'
+      \   }
+      \ }
+" }}}
+
 " vim-dirvish
 " Use `-` to open the current file directory
 let g:dirvish_mode = ':sort ,^.*[\/],'

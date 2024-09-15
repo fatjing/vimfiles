@@ -48,6 +48,7 @@ packageList=(
     sgur/vim-textobj-parameter
     whatyouhide/vim-textobj-xmlattr
 
+    itchyny/lightline.vim
     gcmt/wildfire.vim
     romainl/vim-cool
     justinmk/vim-dirvish
