@@ -15,6 +15,7 @@ set mousemodel=popup
 if has('gui_running')
   set guioptions=
   set winaltkeys=no
+
   if has('gui_win32')
     set guifont=Consolas:h10
   elseif has('gui_gtk')
@@ -31,6 +32,18 @@ if &t_Co == 8 && $TERM !~# '^Eterm'
 endif
 
 silent! color iceberg
+
+" set cursor shape, see |termcap-cursor-shape|
+if &term =~ 'xterm' || exists('$TMUX')
+  let &t_SI = "\e[5 q"    " blinking bar for insert mode
+  let &t_SR = "\e[3 q"    " blinking underline for replace mode
+  let &t_EI = "\e[1 q"    " blinking block for other modes
+  augroup cursor_shape
+    autocmd!
+    "autocmd VimEnter * silent !echo -ne "\e[1 q"
+    autocmd VimLeave * silent !echo -ne "\e[5 q"
+  augroup END
+endif
 
 
 " Section: general settings
