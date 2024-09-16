@@ -9,9 +9,6 @@ endif
 
 " Section: ui settings
 
-set mouse=nvi
-set mousemodel=popup
-
 if has('gui_running')
   set guioptions=
   set winaltkeys=no
@@ -22,6 +19,8 @@ if has('gui_running')
     set guifont=Inconsolata\ 11
   endif
 endif
+
+set mouse=nvi    " to select text with the terminal, go to command-line mode first
 
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^Eterm'
@@ -222,10 +221,10 @@ nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
 
 " copy to / paste from system clipboard
-nnoremap <Leader>y "+y
-vnoremap <Leader>y "+y
-nnoremap <Leader>p "+p
-vnoremap <Leader>p "+p
+nnoremap <Leader>y "*y
+vnoremap <Leader>y "*y
+nnoremap <Leader>p "*p
+vnoremap <Leader>p "*p
 
 " cycle through numbered registers
 " first do '"1p' and then do 'u.' repeatedly, see |redo-register|
