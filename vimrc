@@ -21,9 +21,6 @@ if has('gui_running')
   elseif has('gui_gtk')
     set guifont=Inconsolata\ 11
   endif
-else
-  set background=dark
-  set termguicolors
 endif
 
 " Allow color schemes to do bright colors without forcing bold.
@@ -31,6 +28,12 @@ if &t_Co == 8 && $TERM !~# '^Eterm'
   set t_Co=16
 endif
 
+if &term =~ '256color'
+  "set t_ut=           " disable Background Color Erase (BCE)
+  set termguicolors    " use true colors in the terminal
+endif
+
+set background=dark
 silent! color iceberg
 
 " set cursor shape, see |termcap-cursor-shape|
