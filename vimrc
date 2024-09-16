@@ -116,7 +116,7 @@ set wildignore+=*/.git/*,*/.svn/*,*/node_modules/*
 
 set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
-set statusline+=%f\                                     " relative path
+set statusline+=%<%f\                                   " relative path
 set statusline+=[%{&ft!=#''?&ft:'no\ ft'},              " filetype
 set statusline+=%{&bomb?'bom,':''}                      " BOM
 set statusline+=%{&fenc!=#''?&fenc:&enc},               " file encoding
@@ -301,7 +301,7 @@ let g:lightline = {
       \ 'component': {
       \   'relativepath': '%<%f',
       \   'lineinfo': '%2v:%l/%-2L',
-      \   'fileinfo': '%{&ft!=#""?&ft:"no\ ft"},%{&bomb?"bom,":""}%{&fenc!=#""?&fenc:&enc},%{&ff}',
+      \   'fileinfo': '[%{&ft!=#""?&ft:"no\ ft"},%{&bomb?"bom,":""}%{&fenc!=#""?&fenc:&enc},%{&ff}]',
       \   },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead',
