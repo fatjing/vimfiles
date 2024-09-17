@@ -117,9 +117,9 @@ set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
 set statusline+=%<%f\                                   " relative path
 set statusline+=[%{&ft!=#''?&ft:'no\ ft'},\             " filetype
-set statusline+=%{&bomb?'bom,\ ':''}                    " BOM
-set statusline+=%{&fenc!=#''?&fenc:&enc},\              " file encoding
-set statusline+=%{&ff}]                                 " file format
+set statusline+=%{&fenc!=#''?&fenc:&enc}                " file encoding
+set statusline+=%{&bomb?',\ bom':''}                    " BOM
+set statusline+=%{&ff!=#'unix'?',\ '.&ff:''}]           " file format
 set statusline+=%m%r%w                                  " flags
 set statusline+=\ %{FugitiveHead()}                     " Fugitive git branch
 set statusline+=%{gutentags#statusline('\ ')}           " Gutentags
@@ -300,7 +300,7 @@ let g:lightline = {
     \ 'component': {
     \   'relativepath': '%<%f',
     \   'lineinfo': '%2v:%l/%-2L',
-    \   'fileinfo': '[%{&ft!=#""?&ft:"no ft"}, %{&bomb?"bom, ":""}%{&fenc!=#""?&fenc:&enc}, %{&ff}]',
+    \   'fileinfo': '[%{&ft!=#""?&ft:"no ft"}, %{&fenc!=#""?&fenc:&enc}%{&bomb?", bom":""}%{&ff!=#"unix"?", ".&ff:""}]',
     \   },
     \ 'component_function': {
     \   'gitbranch': 'FugitiveHead',
