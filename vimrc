@@ -405,14 +405,15 @@ let $GTAGSLABEL = 'native-pygments'
 let g:Lf_ShortcutF = '<Leader>ff'
 "let g:Lf_ShortcutB = '<Leader>fb'
 nnoremap <Leader>fm :Leaderf mru<CR>
-nnoremap <Leader>ft :Leaderf tag<CR>
-nnoremap <Leader>fo :Leaderf bufTag<CR>
-nnoremap <Leader>fg :Leaderf function<CR>
+nnoremap <Leader>fz :Leaderf tag<CR>
+nnoremap <Leader>ft :Leaderf bufTag<CR>
+nnoremap <Leader>fc :Leaderf function<CR>
 nnoremap <Leader>fl :Leaderf line<CR>
-nnoremap <Leader>fs :Leaderf self<CR>
-nnoremap <Leader>fe :Leaderf rg -e<Space>
-nnoremap <Leader>fr :Leaderf! --recall<CR>
 nnoremap <Leader>fq :Leaderf quickfix<CR>
+nnoremap <Leader>fs :Leaderf self<CR>
+nnoremap <Leader>fo :Leaderf! --recall<CR>
+nnoremap <Leader>fe :Leaderf rg -e<Space>
+nnoremap <Leader>fg :Leaderf git<CR>
 
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_CacheDirectory = expand('~/.cache')
