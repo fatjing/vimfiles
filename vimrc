@@ -408,7 +408,7 @@ nnoremap <Leader>fc :Leaderf function<CR>
 nnoremap <Leader>fl :Leaderf line<CR>
 nnoremap <Leader>fq :Leaderf quickfix<CR>
 nnoremap <Leader>fs :Leaderf self<CR>
-nnoremap <Leader>fo :Leaderf! --recall<CR>
+nnoremap <Leader>fr :Leaderf! --recall<CR>
 nnoremap <Leader>fe :Leaderf rg -e<Space>
 nnoremap <Leader>fg :Leaderf git<CR>
 
