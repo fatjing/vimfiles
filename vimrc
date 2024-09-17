@@ -159,10 +159,8 @@ set ttimeout
 set timeoutlen=2500    " mapping delay
 set ttimeoutlen=80     " key code delay
 
-nnoremap ; :
-vnoremap ; :
-nnoremap \ ;
-vnoremap \ ;
+noremap ; :
+noremap \ ;
 
 " movement enhancement
 inoremap <C-a> <Home>
@@ -174,8 +172,8 @@ noremap! <M-f> <C-Right>
 noremap! <M-h> <C-Left>
 noremap! <M-l> <C-Right>
 
-nnoremap <M-j> gj
-nnoremap <M-k> gk
+noremap <M-j> gj
+noremap <M-k> gk
 tnoremap <M-n> <C-\><C-n>
 
 " fix alt key as meta key, see :set-termcap
@@ -206,8 +204,7 @@ set smartcase
 set incsearch
 set hlsearch
 set shortmess-=S
-nnoremap / /\v
-vnoremap / /\v
+noremap / /\v
 nnoremap <Leader>s :%s/
 nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
@@ -221,15 +218,13 @@ nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
 
 " copy to / paste from system clipboard
-nnoremap <Leader>y "*y
-vnoremap <Leader>y "*y
-nnoremap <Leader>p "*p
-vnoremap <Leader>p "*p
+noremap <Leader>y "*y
+noremap <Leader>p "*p
 
 " cycle through numbered registers
 " first do '"1p' and then do 'u.' repeatedly, see |redo-register|
-nnoremap <Leader>1 "1p
-nnoremap <Leader>0 "0p
+noremap <Leader>1 "1p
+noremap <Leader>0 "0p
 
 " reselect last paste
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
