@@ -100,7 +100,6 @@ set sidescrolloff=7
 
 " Section: message and info display
 
-set lazyredraw
 set visualbell
 
 set cursorline
@@ -150,14 +149,14 @@ endfunction
 
 " Section: key mappings and commands
 
-let mapleader = "\<Space>"
-
-nnoremap <silent> <Leader>i :call StatuslineToggleSyntaxID()<CR>
-
 set nolangremap
 set ttimeout
 set timeoutlen=2500    " mapping delay
-set ttimeoutlen=80     " key code delay
+set ttimeoutlen=50     " key code delay
+
+let mapleader = "\<Space>"
+
+nnoremap <silent> <Leader>i :call StatuslineToggleSyntaxID()<CR>
 
 noremap ; :
 noremap \ ;
