@@ -69,7 +69,6 @@ packageList=(
     luochen1990/rainbow
     mbbill/fencview
     mtth/scratch.vim
-    rbong/vim-flog
     skywind3000/asyncrun.vim
     skywind3000/asynctasks.vim
     vim-voom/VOoM

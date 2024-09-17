@@ -339,9 +339,6 @@ call load_plugin#load_on_map('vim-commentary', 'gc', 'nv')
 call load_plugin#load_on_map('ListToggle', '<Space>q', 'n')
 let g:lt_height = 12
 
-" vim-flog
-call load_plugin#load_on_cmd('vim-flog', 'Flog')
-
 " scratch.vim
 call load_plugin#load_on_map('scratch.vim', 'gs', 'nv')
 let g:scratch_autohide = 0
