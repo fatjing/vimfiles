@@ -156,7 +156,7 @@ set ttimeoutlen=50     " key code delay
 
 let mapleader = "\<Space>"
 
-nnoremap <silent> <Leader>i :call StatuslineToggleSyntaxID()<CR>
+nnoremap <silent> <Leader>ts :call StatuslineToggleSyntaxID()<CR>
 
 noremap ; :
 noremap \ ;
@@ -321,6 +321,9 @@ call load_plugin#load_on_map('vim-commentary', 'gc', 'nv')
 " vim-endwise
 " End certain structures automatically
 "call load_plugin#load_on_evnt('vim-endwise', 'InsertEnter', '*')
+
+" vim-fugitive
+nnoremap <Leader>i :Git<CR>
 
 " vim-surround
 " A tool for dealing with pairs of surroundings. See :h surround
