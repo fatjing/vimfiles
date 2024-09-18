@@ -12,12 +12,6 @@ endif
 if has('gui_running')
   set guioptions=
   set winaltkeys=no
-
-  if has('gui_win32')
-    set guifont=Consolas:h10
-  elseif has('gui_gtk')
-    set guifont=Inconsolata\ 11
-  endif
 endif
 
 set mouse=nvi    " to select text with the terminal, go to command-line mode first
