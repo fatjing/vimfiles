@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# PACK_DIR=${0%/*}/pack
-PACK_DIR=~/.vim/pack
+PACK_DIR=~/.config/vim/pack
 
 set_dir()
 {

@@ -226,7 +226,7 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 nnoremap <Leader>wd :cd %:p:h<CR>:pwd<CR>
 
 " edit vimrc file on the fly
-nnoremap <Leader>ev <C-W>v:e ~/.vim/vimrc<CR>
+nnoremap <Leader>ev <C-W>v:e ~/.config/vim/vimrc<CR>
 
 " fold tag
 nnoremap <Leader>FT Vatzf
@@ -348,6 +348,12 @@ let g:rainbow_active = 0
 " Vim Outliner of Markups is a plugin that emulates a two-pane text outliner
 call load_plugin#load_on_cmd('VOoM', 'Voom')
 
+" vim-easy-align
+call load_plugin#load_on_cmd('vim-easy-align', 'EasyAlign')
+
+" vim-color-patch
+let g:cpatch_path = '~/.config/vim/colors/patch'
+
 " asyncrun.vim
 call load_plugin#load_on_cmd('asyncrun.vim', 'AsyncRun')
 let g:asyncrun_bell = 1
@@ -362,9 +368,6 @@ command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 call load_plugin#load_on_cmd('asynctasks.vim', ['AsyncTask', 'AsyncTaskList'])
 noremap <silent><F5> :AsyncTask file-run<CR>
 noremap <silent><F9> :AsyncTask file-build<CR>
-
-" vim-easy-align
-call load_plugin#load_on_cmd('vim-easy-align', 'EasyAlign')
 
 " vim-gutentags {{{
 let g:gutentags_project_root = ['.root', '.project', '.git', '.svn', '.hg']
