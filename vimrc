@@ -162,7 +162,7 @@ set ttimeoutlen=50     " key code delay
 
 let mapleader = "\<Space>"
 
-nnoremap <silent> <Leader>ts :call StatuslineToggleSyntaxID()<CR>
+noremap <Leader>ts <Cmd>call StatuslineToggleSyntaxID()<CR>
 
 noremap ; :
 noremap \ ;
@@ -320,7 +320,7 @@ let g:sneak#use_ic_scs = 1
 
 " vim-commentary
 " Use `gcc` to comment out a line, `gc` to comment out the target of a motion
-call load_plugin#load_on_map('vim-commentary', 'gc', 'nv')
+call load_plugin#load_on_map('vim-commentary', 'gc', 'nxo')
 
 " vim-endwise
 " End certain structures automatically
@@ -351,7 +351,7 @@ call load_plugin#load_on_cmd('fencview', 'FencAutoDetect')
 
 " Rainbow Parentheses Improved
 call load_plugin#load_on_cmd('rainbow', 'RainbowToggle')
-nnoremap <Leader>r :RainbowToggle<CR>
+noremap <Leader>r <Cmd>RainbowToggle<CR>
 let g:rainbow_active = 0
 
 " VOoM
