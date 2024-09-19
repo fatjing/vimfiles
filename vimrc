@@ -94,6 +94,7 @@ set sidescrolloff=7
 
 " Section: message and info display
 
+set lazyredraw
 set visualbell
 
 set cursorline
