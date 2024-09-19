@@ -45,19 +45,28 @@ function! load_plugin#load_on_map(pack, map, modes, ...)
   let g:load_plugin_callbacks[a:pack] = a:0 > 0 ? a:1 : function('s:dummy')
   for mode in split(a:modes, '\zs')
     execute printf(
-      \ '%snoremap <silent> %s %s:<C-U>call g:load_plugin_callbacks[%s]() <Bar> call <SID>exe_map(%s, %s, %s)<CR>',
-      \ mode, a:map, mode=='i'?'<C-O>':'', string(a:pack), string(a:pack), string(substitute(a:map, '<', '\<lt>', 'g')), string(mode))
+      \ '%snoremap %s <Cmd>call g:load_plugin_callbacks[%s]() <Bar> call <SID>exe_map(%s, %s, %s)<CR>',
+      \ mode, a:map, string(a:pack), string(a:pack), string(substitute(a:map, '<', '\<lt>', 'g')), string(mode))
   endfor
 endfunction
 
 function! s:exe_map(pack, map, mode)
   execute 'silent! unmap' a:map
-  execute 'silent! iunmap' a:map
+  execute 'silent! unmap!' a:map
   execute 'packadd' a:pack
+  let extra = ''
+  while 1
+    let c = getchar(0)
+    if c == 0
+      break
+    endif
+    let extra .= nr2char(c)
+  endwhile
+
   if a:mode != 'i'
     let prefix = v:count ? v:count : ''
     let prefix .= '"'.v:register
-    if a:mode == 'v' | let prefix .= 'gv' | endif
+    if a:mode =~ '[xv]' | let prefix .= 'gv' | endif
     if mode(1) == 'no'
       if v:operator == 'c'
         let prefix = "\<Esc>" . prefix
@@ -66,5 +75,5 @@ function! s:exe_map(pack, map, mode)
     endif
     call feedkeys(prefix, 'n')
   endif
-  execute 'call feedkeys("' . substitute(a:map, '<', '\\<', 'g') . '")'
+  execute 'call feedkeys("' . substitute(a:map, '<', '\\<', 'g') . extra . '")'
 endfunction
