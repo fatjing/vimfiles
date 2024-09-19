@@ -129,3 +129,6 @@ nnoremap <silent><nowait> <Leader>lj :CocNext<CR>
 nnoremap <silent><nowait> <Leader>lk :CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <Leader>lr :CocListResume<CR>
+
+" coc-explorer
+noremap <Leader>ex <Cmd>CocCommand explorer<CR>
