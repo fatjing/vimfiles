@@ -120,6 +120,7 @@ set statusline+=\ %{coc#status()}                       " coc status
 set statusline+=%=                                      " left/right separator
 set statusline+=%{StatuslineGetSyntaxID()}              " syntax id
 set statusline+=\ %B\                                   " character under cursor
+set statusline+=%{v:hlsearch?LastSearchCount():''}      " search count
 set statusline+=%4([\ %v%):%l/%L\ ]\ %P                 " offset
 
 " statusline: toggle syntax id {{{
@@ -136,6 +137,21 @@ function! StatuslineToggleSyntaxID()
     let g:syntax_id_toggle = !g:syntax_id_toggle
   else
     let g:syntax_id_toggle = 1
+
+" get last search count, see |searchcount()|
+function! LastSearchCount() abort
+  let result = searchcount(#{maxcount: 300})
+  if empty(result)
+    return ''
+  endif
+
+  if result.incomplete ==# 0    " search fully completed
+    return printf('[%d/%d]', result.current, result.total)
+  elseif result.incomplete ==# 2    " max count exceeded
+    let current = result.current > result.maxcount ? '>'.result.maxcount : result.current
+    return printf('[%s/>%d]', current, result.maxcount)
+  else    " timed out
+    return printf('[?/??]')
   endif
 endfunction
 " }}}
@@ -196,7 +212,6 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
-set shortmess-=S
 noremap / /\v
 nnoremap <Leader>s :%s/
 nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
@@ -281,12 +296,13 @@ let g:lightline = {
     \ 'active': {
     \   'left': [['mode', 'paste'], ['relativepath', 'modified', 'readonly'], ['fileinfo'],
     \             ['gitbranch'], ['gutentags'], ['cocstatus']],
-    \   'right': [['lineinfo'], ['percent'], ['charvaluehex'], ['syntax_id']]
+    \   'right': [['lineinfo'], ['percent'], ['searchcount'], ['charvaluehex'], ['syntax_id']]
     \   },
     \ 'component': {
     \   'relativepath': '%<%f',
     \   'lineinfo': '%2v:%l/%-2L',
     \   'fileinfo': '[%{&ft!=#""?&ft:"no ft"}, %{&fenc!=#""?&fenc:&enc}%{&bomb?", bom":""}%{&ff!=#"unix"?", ".&ff:""}]',
+    \   'searchcount': '%{v:hlsearch?LastSearchCount():""}'
     \   },
     \ 'component_function': {
     \   'gitbranch': 'FugitiveHead',
