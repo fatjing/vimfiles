@@ -336,7 +336,7 @@ call load_plugin#load_on_map('ListToggle', '<Space>q', 'n')
 let g:lt_height = 12
 
 " scratch.vim
-call load_plugin#load_on_map('scratch.vim', 'gs', 'nv')
+call load_plugin#load_on_map('scratch.vim', 'gs', 'nx')
 let g:scratch_autohide = 0
 let g:scratch_insert_autohide = 0
 
