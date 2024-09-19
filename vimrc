@@ -123,20 +123,16 @@ set statusline+=\ %B\                                   " character under cursor
 set statusline+=%{v:hlsearch?LastSearchCount():''}      " search count
 set statusline+=%4([\ %v%):%l/%L\ ]\ %P                 " offset
 
-" statusline: toggle syntax id {{{
+" statusline helpers {{{
+" toggle syntax id
+let g:syntax_id_toggle = 0
 function! StatuslineGetSyntaxID()
-  if exists('g:syntax_id_toggle') && g:syntax_id_toggle
-    return synIDattr(synID(line('.'), col('.'), 1), 'name')
-  else
-    return ''
-  endif
+  return g:syntax_id_toggle ? synIDattr(synID(line('.'), col('.'), 1), 'name') : ''
 endfunction
 
 function! StatuslineToggleSyntaxID()
-  if exists('g:syntax_id_toggle')
-    let g:syntax_id_toggle = !g:syntax_id_toggle
-  else
-    let g:syntax_id_toggle = 1
+  let g:syntax_id_toggle = !g:syntax_id_toggle
+endfunction
 
 " get last search count, see |searchcount()|
 function! LastSearchCount() abort
