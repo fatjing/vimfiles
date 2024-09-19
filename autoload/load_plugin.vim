@@ -66,7 +66,6 @@ function! s:exe_map(pack, map, mode)
   if a:mode != 'i'
     let prefix = v:count ? v:count : ''
     let prefix .= '"'.v:register
-    if a:mode =~ '[xv]' | let prefix .= 'gv' | endif
     if mode(1) == 'no'
       if v:operator == 'c'
         let prefix = "\<Esc>" . prefix
