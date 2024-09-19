@@ -243,16 +243,11 @@ nnoremap <Leader>ev <C-W>v:e ~/.config/vim/vimrc<CR>
 nnoremap <Leader>FT Vatzf
 
 " strip all trailing whitespace in the current file
-nnoremap <F4> :call <SID>preserve_state_run("%s/\\s\\+$//e")<CR>
+nnoremap <F4> :call TrimTrailingWhitespace()<CR>
 
-function! s:preserve_state_run(command)
-  " Preparation: save last search, and view of the current window
-  let l:search=@/
+function! TrimTrailingWhitespace()
   let l:winview = winsaveview()
-  " Do the business
-  execute a:command
-  " Cleanup: restore previous search history, and view of the window
-  let @/=l:search
+  execute '%s/\s\+$//e'
   call winrestview(l:winview)
 endfunction
 
