@@ -221,6 +221,8 @@ nnoremap <C-J> <C-W>w
 nnoremap <C-K> <C-W>W
 nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
+" count number of matches of the last search pattern
+nnoremap <Leader>n :%s///gn<CR>
 
 " copy to / paste from system clipboard
 noremap <Leader>y "*y
