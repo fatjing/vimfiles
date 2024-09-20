@@ -223,7 +223,7 @@ nnoremap <Leader>s :%s/
 nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 " count number of matches of the last search pattern
-nnoremap <Leader>n :call PreserveViewRun('%s///gn')<CR>
+nnoremap <Leader>n :call PreserveViewRun('%s///gne')<CR>
 
 " strip all trailing whitespace in the current file
 nnoremap <F4> :call PreserveViewRun('%s/\s\+$//e')<CR>
