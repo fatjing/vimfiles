@@ -204,6 +204,15 @@ nnoremap <silent> <Right> :bnext<CR>
 " delete a buffer without closing the window
 nnoremap <silent> <Leader>d :bp<Bar>bd#<CR>
 
+" split windows
+set splitright
+nnoremap <Leader>w <C-W>
+nnoremap <Leader>v <C-W>v
+nnoremap <C-J> <C-W>w
+nnoremap <C-K> <C-W>W
+nnoremap <C-H> <C-W>h
+nnoremap <C-L> <C-W>l
+
 " search and substitute
 set ignorecase
 set smartcase
@@ -213,14 +222,6 @@ noremap / /\v
 nnoremap <Leader>s :%s/
 nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
-" split windows
-set splitright
-nnoremap <Leader>w <C-W>
-nnoremap <Leader>v <C-W>v
-nnoremap <C-J> <C-W>w
-nnoremap <C-K> <C-W>W
-nnoremap <C-H> <C-W>h
-nnoremap <C-L> <C-W>l
 " count number of matches of the last search pattern
 nnoremap <Leader>n :%s///gn<CR>
 
