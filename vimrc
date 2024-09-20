@@ -137,7 +137,7 @@ endfunction
 
 " get last search count, see |searchcount()|
 function! LastSearchCount() abort
-  let result = searchcount(#{maxcount: 300})
+  let result = searchcount(#{maxcount: 1000})
   if empty(result)
     return ''
   endif
