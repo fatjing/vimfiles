@@ -223,7 +223,16 @@ nnoremap <Leader>s :%s/
 nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 " count number of matches of the last search pattern
-nnoremap <Leader>n :%s///gn<CR>
+nnoremap <Leader>n :call PreserveViewRun('%s///gn')<CR>
+
+" strip all trailing whitespace in the current file
+nnoremap <F4> :call PreserveViewRun('%s/\s\+$//e')<CR>
+
+function! PreserveViewRun(command)
+  let l:winview = winsaveview()
+  execute a:command
+  call winrestview(l:winview)
+endfunction
 
 " copy to / paste from system clipboard
 noremap <Leader>y "*y
@@ -245,15 +254,6 @@ nnoremap <Leader>ev <C-W>v:e ~/.config/vim/vimrc<CR>
 
 " fold tag
 nnoremap <Leader>FT Vatzf
-
-" strip all trailing whitespace in the current file
-nnoremap <F4> :call TrimTrailingWhitespace()<CR>
-
-function! TrimTrailingWhitespace()
-  let l:winview = winsaveview()
-  execute '%s/\s\+$//e'
-  call winrestview(l:winview)
-endfunction
 
 " don't reset the cursor upon returning to a buffer
 if &startofline
