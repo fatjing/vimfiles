@@ -421,6 +421,8 @@ let g:Lf_UseCache = 0
 let g:Lf_RootMarkers = ['.root', '.project', '.git', '.svn', '.hg']
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_HideHelp = 1
+let g:Lf_PreviewResult = { 'File': 0, 'Buffer': 0, 'Mru': 0, 'Tag': 0, 'BufTag': 0,
+      \ 'Function': 0, 'Line': 0, 'Colorscheme': 0, 'Rg': 0, 'Gtags': 0 }
 
 let g:Lf_WildIgnore = {
       \ 'dir': ['.svn', '.git', '.hg', 'node_modules'],
