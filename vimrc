@@ -310,7 +310,7 @@ let g:lightline = {
 
 " vim-dirvish
 " Use `-` to open the current file directory
-let g:dirvish_mode = ':sort ,^.*[\/],'
+let g:dirvish_mode = ':sort i ,^.*[\/],'
 
 " vim-sneak
 " Type `s` followed by two characters to move; use `z` for operations
