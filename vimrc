@@ -363,6 +363,11 @@ call load_plugin#load_on_cmd('vim-easy-align', 'EasyAlign')
 " vim-color-patch
 let g:cpatch_path = '~/.config/vim/colors/patch'
 
+" vim-terminal-help
+call load_plugin#load_on_map('vim-terminal-help', '<M-=>', 'nx')
+exe "set <M-=>=\e="
+let g:terminal_height = 15
+
 " asyncrun.vim
 call load_plugin#load_on_cmd('asyncrun.vim', 'AsyncRun')
 let g:asyncrun_bell = 1

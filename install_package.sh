@@ -70,6 +70,7 @@ packageList=(
     mtth/scratch.vim
     skywind3000/asyncrun.vim
     skywind3000/asynctasks.vim
+    skywind3000/vim-terminal-help
     vim-voom/VOoM
 )
 printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
