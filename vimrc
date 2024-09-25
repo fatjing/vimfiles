@@ -246,6 +246,10 @@ noremap <Leader>0 "0p
 " reselect last paste
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
+" move selected text up and down
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
 " set working directory to the current file
 nnoremap <Leader>wd :cd %:p:h<CR>:pwd<CR>
 
