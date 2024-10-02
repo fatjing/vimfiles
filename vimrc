@@ -168,11 +168,20 @@ noremap <Leader>ts <Cmd>call StatuslineToggleSyntaxID()<CR>
 noremap ; :
 noremap \ ;
 
-" movement enhancement
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-cnoremap <C-a> <C-b>
+" fix alt key as meta key, see :set-termcap
+if !has('gui_running') && !has('nvim')
+  for i in range(26)
+    let key = nr2char(char2nr('a') + i)
+    execute "set <M-".key.">=\e".key
+  endfor
+endif
+
+" readline emacs editing mode shortcuts
+noremap! <C-a> <Home>
+noremap! <C-e> <End>
 noremap! <C-d> <Del>
+noremap! <C-b> <Left>
+noremap! <C-f> <Right>
 noremap! <M-b> <C-Left>
 noremap! <M-f> <C-Right>
 noremap! <M-h> <C-Left>
@@ -181,14 +190,6 @@ noremap! <M-l> <C-Right>
 noremap <M-j> gj
 noremap <M-k> gk
 tnoremap <M-n> <C-\><C-n>
-
-" fix alt key as meta key, see :set-termcap
-if !has('gui_running') && !has('nvim')
-  for i in range(26)
-    let key = nr2char(char2nr('a') + i)
-    execute "set <M-".key.">=\e".key
-  endfor
-endif
 
 " Break undo before deleting
 inoremap <C-U> <C-G>u<C-U>
