@@ -26,7 +26,7 @@ if &term =~ '256color'
   set termguicolors    " use true colors in the terminal
 endif
 
-set background=dark
+set background=light
 silent! color iceberg
 
 " set cursor shape, see |termcap-cursor-shape|
@@ -433,7 +433,7 @@ augroup END
 
 " lightline.vim {{{
 let g:lightline = {
-    \ 'colorscheme': 'Tomorrow_Night_Bright',
+    \ 'colorscheme': 'iceberg',
     \ 'active': {
     \   'left': [['mode', 'paste'], ['relativepath', 'modified', 'readonly'], ['fileinfo'],
     \             ['gitbranch'], ['gutentags'], ['cocstatus']],
