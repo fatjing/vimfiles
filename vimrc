@@ -464,7 +464,7 @@ function! s:lightline_update()
     return
   endif
   try
-    let g:lightline.colorscheme = substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '')
+    let g:lightline.colorscheme = g:colors_name
     call lightline#init()
     call lightline#colorscheme()
     call lightline#update()
