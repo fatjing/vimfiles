@@ -82,6 +82,11 @@ packageList=(
     gkeep/iceberg-dark
     w0ng/vim-hybrid
     wesQ3/wombat.vim
+    cideM/yui
+    cormacrelf/vim-colors-github
+    kamwitsta/flatwhite-vim
+    NLKNguyen/papercolor-theme
+    "yorickpeterse/vim-paper main"
 )
 printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 

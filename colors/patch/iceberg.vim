@@ -1,1 +1,1 @@
-highlight diffSubname ctermfg=252 guifg=#c6c8d1
+highlight link diffSubname Normal
