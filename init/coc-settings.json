@@ -10,6 +10,7 @@
     "<C-o>": "do:chooseaction",
     "<Tab>": "do:togglemode"
   },
+  "explorer.icon.enableNerdfont": true,
   "languageserver": {
   }
 }

@@ -26,7 +26,7 @@ if &term =~ '256color'
   set termguicolors    " use true colors in the terminal
 endif
 
-set background=light
+set background=dark
 silent! color iceberg
 
 " set cursor shape, see |termcap-cursor-shape|
@@ -189,7 +189,7 @@ noremap! <M-l> <C-Right>
 
 noremap <M-j> gj
 noremap <M-k> gk
-tnoremap <M-n> <C-\><C-n>
+tnoremap <M-q> <C-\><C-n>
 
 " Break undo before deleting
 inoremap <C-U> <C-G>u<C-U>
