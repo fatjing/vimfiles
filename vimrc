@@ -396,10 +396,11 @@ nnoremap <Leader>fl :Leaderf line<CR>
 nnoremap <Leader>fq :Leaderf quickfix<CR>
 nnoremap <Leader>fs :Leaderf self<CR>
 nnoremap <Leader>fr :Leaderf! --recall<CR>
-nnoremap <Leader>fe :Leaderf rg -e<Space>
+nnoremap <Leader>fe :Leaderf rg --bottom -e<Space>
 nnoremap <Leader>fg :Leaderf git<CR>
 
 let g:Lf_WindowPosition = 'popup'
+let g:Lf_MruMaxFiles = 1000
 let g:Lf_CacheDirectory = expand('~/.cache')
 let g:Lf_UseCache = 0
 let g:Lf_RootMarkers = ['.root', '.project', '.git', '.svn', '.hg']
