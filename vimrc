@@ -252,10 +252,7 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " set working directory to the current file
-nnoremap <Leader>wd :cd %:p:h<CR>:pwd<CR>
-
-" edit vimrc file on the fly
-nnoremap <Leader>ev <C-W>v:e ~/.config/vim/vimrc<CR>
+nnoremap <Leader>z :cd %:p:h<CR>:pwd<CR>
 
 " fold tag
 nnoremap <Leader>FT Vatzf
