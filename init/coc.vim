@@ -5,7 +5,7 @@ set updatetime=300
 
 let g:coc_start_at_startup = 0
 let g:coc_config_home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-" let g:coc_global_extensions = ['coc-pairs', 'coc-snippets', 'coc-tag', 'coc-word', 'coc-json']
+" let g:coc_global_extensions = ['coc-explorer', 'coc-pairs', 'coc-snippets', 'coc-tag', 'coc-word']
 
 " Use tab for trigger completion with characters ahead and navigate
 inoremap <silent><expr> <TAB>
