@@ -221,7 +221,7 @@ set incsearch
 set hlsearch
 noremap / /\v
 nnoremap <Leader>s :%s/
-nnoremap <silent> <Leader>h :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 " count number of matches of the last search pattern
 nnoremap <Leader>n :call PreserveViewRun('%s///gne')<CR>
@@ -268,10 +268,10 @@ endif
 
 set diffopt+=vertical  " start diff mode with vertical splits
 set diffopt+=indent-heuristic,algorithm:histogram
-" see the difference between the current buffer and the file it was loaded from
-if !exists(':DiffOrig')
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-                   \ | wincmd p | diffthis
+" From `:help :DiffOrig`.
+if exists(":DiffOrig") != 2
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+        \ | diffthis | wincmd p | diffthis
 endif
 
 
@@ -374,7 +374,6 @@ if executable('gtags-cscope') && executable('gtags')
   let g:gutentags_modules += ['gtags_cscope']
 endif
 
-let g:gutentags_ctags_tagfile = '.tags'
 let g:gutentags_ctags_exclude = ['*/build/*', '*/dist/*']
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
@@ -383,6 +382,7 @@ let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']  " universal cta
 
 let g:gutentags_auto_add_gtags_cscope = 0
 let $GTAGSLABEL = 'native-pygments'
+"let $GTAGSFORCECPP = 1
 " }}}
 
 " LeaderF {{{
