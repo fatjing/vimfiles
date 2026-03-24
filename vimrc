@@ -396,6 +396,7 @@ noremap <Leader>fn :Leaderf --next<CR>
 noremap <Leader>fp :Leaderf --previous<CR>
 
 let g:Lf_Gtagslabel = 'native-pygments'
+nnoremap <Leader>ct :Leaderf gtags<CR>
 nnoremap <Leader>cu :Leaderf gtags --update<CR>
 noremap <leader>cd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
 noremap <leader>cr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
