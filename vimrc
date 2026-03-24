@@ -116,7 +116,6 @@ set statusline+=%{&bomb?',\ bom':''}                    " BOM
 set statusline+=%{&ff!=#'unix'?',\ '.&ff:''}]           " file format
 set statusline+=%m%r%w                                  " flags
 set statusline+=\ %{FugitiveHead()}                     " Fugitive git branch
-set statusline+=%{gutentags#statusline('\ ')}           " Gutentags
 set statusline+=\ %{coc#status()}                       " coc status
 set statusline+=%=                                      " left/right separator
 set statusline+=%{StatuslineGetSyntaxID()}              " syntax id
@@ -362,53 +361,28 @@ call load_plugin#load_on_cmd('asynctasks.vim', ['AsyncTask', 'AsyncTaskList'])
 noremap <silent><F5> :AsyncTask file-run<CR>
 noremap <silent><F9> :AsyncTask file-build<CR>
 
-" vim-gutentags {{{
-let g:gutentags_project_root = ['.root', '.project', '.git', '.svn', '.hg']
-let g:gutentags_cache_dir = expand('~/.cache/tags')
-
-let g:gutentags_modules = []
-if executable('ctags')
-  let g:gutentags_modules += ['ctags']
-endif
-if executable('gtags-cscope') && executable('gtags')
-  let g:gutentags_modules += ['gtags_cscope']
-endif
-
-let g:gutentags_ctags_exclude = ['*/build/*', '*/dist/*']
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']  " universal ctags
-
-let g:gutentags_auto_add_gtags_cscope = 0
-let $GTAGSLABEL = 'native-pygments'
-"let $GTAGSFORCECPP = 1
-" }}}
-
 " LeaderF {{{
 let g:Lf_ShortcutF = '<Leader>ff'
-"let g:Lf_ShortcutB = '<Leader>fb'
+"let g:Lf_ShortcutB = '<Leader>b'
 nnoremap <Leader>fm :Leaderf mru<CR>
-nnoremap <Leader>fz :Leaderf tag<CR>
 nnoremap <Leader>ft :Leaderf bufTag<CR>
 nnoremap <Leader>fc :Leaderf function<CR>
 nnoremap <Leader>fl :Leaderf line<CR>
 nnoremap <Leader>fq :Leaderf quickfix<CR>
 nnoremap <Leader>fs :Leaderf self<CR>
-nnoremap <Leader>fr :Leaderf! --recall<CR>
+nnoremap <Leader>fo :Leaderf! --recall<CR>
 nnoremap <Leader>fe :Leaderf rg --bottom -e<Space>
 nnoremap <Leader>fg :Leaderf git<CR>
 
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_MruMaxFiles = 1000
-let g:Lf_CacheDirectory = expand('~/.cache')
+let g:Lf_HideHelp = 1
 let g:Lf_UseCache = 0
+let g:Lf_MruMaxFiles = 1000
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_CacheDirectory = expand('~/.cache')
 let g:Lf_RootMarkers = ['.root', '.project', '.git', '.svn', '.hg']
 let g:Lf_WorkingDirectoryMode = 'Ac'
-let g:Lf_HideHelp = 1
 let g:Lf_PreviewResult = { 'File': 0, 'Buffer': 0, 'Mru': 0, 'Tag': 0, 'BufTag': 0,
       \ 'Function': 0, 'Line': 0, 'Colorscheme': 1, 'Rg': 0, 'Gtags': 0 }
-
 let g:Lf_WildIgnore = {
       \ 'dir': ['.svn', '.git', '.hg', 'node_modules'],
       \ 'file': ['*.sw?', '~$*', '*.bak', '*.exe', '*.o', '*.so', '*.py[co]']
@@ -417,11 +391,19 @@ let g:Lf_RgConfig = [
       \ '--smart-case',
       \ '--glob=!node_modules/*'
       \ ]
+
+let g:Lf_Gtagslabel = 'native-pygments'
+nmap <Leader>cu :Leaderf gtags --update<CR>
+noremap <leader>cd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>cr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>cc :<C-U><C-R>=printf("Leaderf! gtags --by-context --auto-jump")<CR><CR>
+noremap <leader>co :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>cn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>cp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 " }}}
 
 let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 command! -nargs=1 SourceScript execute 'source '.s:home.'/'.'<args>'
-
 " Coc
 SourceScript init/coc.vim
 augroup StartCoc
@@ -434,7 +416,7 @@ let g:lightline = {
     \ 'colorscheme': 'iceberg',
     \ 'active': {
     \   'left': [['mode', 'paste'], ['relativepath', 'modified', 'readonly'], ['fileinfo'],
-    \             ['gitbranch'], ['gutentags'], ['cocstatus']],
+    \             ['gitbranch'], ['cocstatus']],
     \   'right': [['lineinfo'], ['percent'], ['searchcount'], ['charvaluehex'], ['syntax_id']]
     \   },
     \ 'component': {
@@ -445,7 +427,6 @@ let g:lightline = {
     \   },
     \ 'component_function': {
     \   'gitbranch': 'FugitiveHead',
-    \   'gutentags': 'gutentags#statusline',
     \   'cocstatus': 'coc#status',
     \   'syntax_id': 'StatuslineGetSyntaxID'
     \   }

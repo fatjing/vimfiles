@@ -54,8 +54,6 @@ packageList=(
     justinmk/vim-sneak
     Yggdroot/LeaderF
     "neoclide/coc.nvim release"
-    ludovicchabant/vim-gutentags
-    skywind3000/gutentags_plus
 )
 printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
