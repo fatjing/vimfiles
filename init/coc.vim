@@ -1,15 +1,14 @@
 " coc.nvim settings
 
 set updatetime=300
-" execute 'let &statusline="'.substitute(&statusline, '%=', ' %{coc#status()}%=', '').'"'
+"execute 'let &statusline="'.substitute(&statusline, '%=', ' %{coc#status()}%=', '').'"'
 
 let g:coc_start_at_startup = 0
 let g:coc_config_home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-" let g:coc_global_extensions = ['coc-explorer', 'coc-pairs', 'coc-snippets', 'coc-tag', 'coc-word']
+"let g:coc_global_extensions = ['coc-explorer', 'coc-pairs', 'coc-snippets', 'coc-tag', 'coc-word']
 
 " Use tab for trigger completion with characters ahead and navigate
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) :
       \ <SID>check_backspace() ? "\<TAB>" : coc#refresh()
 
 inoremap <expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>"
@@ -20,8 +19,7 @@ function! s:check_backspace() abort
 endfunction
 
 " Use <CR> to confirm completion and notify coc.nvim to format on enter
-inoremap <silent><expr> <CR>
-      \ coc#pum#visible() && coc#pum#info()['index'] != -1 ? coc#pum#confirm() :
+inoremap <silent><expr> <CR> coc#pum#has_item_selected() ? coc#pum#confirm() :
       \ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>\<C-r>=EndwiseDiscretionary()\<CR>"
 
 " Use <C-j> for both snippet expand and jump
