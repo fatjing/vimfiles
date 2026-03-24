@@ -362,18 +362,6 @@ noremap <silent><F5> :AsyncTask file-run<CR>
 noremap <silent><F9> :AsyncTask file-build<CR>
 
 " LeaderF {{{
-let g:Lf_ShortcutF = '<Leader>ff'
-"let g:Lf_ShortcutB = '<Leader>b'
-nnoremap <Leader>fm :Leaderf mru<CR>
-nnoremap <Leader>ft :Leaderf bufTag<CR>
-nnoremap <Leader>fc :Leaderf function<CR>
-nnoremap <Leader>fl :Leaderf line<CR>
-nnoremap <Leader>fq :Leaderf quickfix<CR>
-nnoremap <Leader>fs :Leaderf self<CR>
-nnoremap <Leader>fo :Leaderf! --recall<CR>
-nnoremap <Leader>fe :Leaderf rg --bottom -e<Space>
-nnoremap <Leader>fg :Leaderf git<CR>
-
 let g:Lf_HideHelp = 1
 let g:Lf_UseCache = 0
 let g:Lf_MruMaxFiles = 1000
@@ -392,14 +380,26 @@ let g:Lf_RgConfig = [
       \ '--glob=!node_modules/*'
       \ ]
 
+let g:Lf_ShortcutF = '<Leader>ff'
+"let g:Lf_ShortcutB = '<Leader>b'
+nnoremap <Leader>fm :Leaderf mru<CR>
+nnoremap <Leader>ft :Leaderf bufTag<CR>
+nnoremap <Leader>fc :Leaderf function<CR>
+nnoremap <Leader>fl :Leaderf line<CR>
+nnoremap <Leader>fq :Leaderf quickfix<CR>
+nnoremap <Leader>fs :Leaderf self<CR>
+nnoremap <Leader>fg :Leaderf git<CR>
+nnoremap <Leader>fe :Leaderf rg --bottom -e<Space>
+
+nnoremap <Leader>fr :Leaderf! --recall<CR>
+noremap <Leader>fn :Leaderf --next<CR>
+noremap <Leader>fp :Leaderf --previous<CR>
+
 let g:Lf_Gtagslabel = 'native-pygments'
-nmap <Leader>cu :Leaderf gtags --update<CR>
+nnoremap <Leader>cu :Leaderf gtags --update<CR>
 noremap <leader>cd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
 noremap <leader>cr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
 noremap <leader>cc :<C-U><C-R>=printf("Leaderf! gtags --by-context --auto-jump")<CR><CR>
-noremap <leader>co :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
-noremap <leader>cn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
-noremap <leader>cp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 " }}}
 
 let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
