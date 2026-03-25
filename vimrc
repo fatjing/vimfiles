@@ -1,10 +1,5 @@
-" Use Vim defaults. Must put at the start
-set nocompatible
-
-filetype plugin indent on
-if !exists('g:syntax_on')
-  syntax enable
-endif
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
 
 
 " Section: ui settings
@@ -48,24 +43,22 @@ endif
 if !empty(&viminfo)
   set viminfo^=!
 endif
-set history=5000    " cmdline history
 set sessionoptions-=options
 set viewoptions-=options
+set history=5000    " cmdline history
+set tabpagemax=50
 
 set nobackup
 set nowritebackup
 set noswapfile
-"set undofile
-"au FocusLost * :wa    " save on losing focus
-
 set autoread
 set hidden    " allow buffer switching without saving
+"au FocusLost * :wa    " save on losing focus
 
 
 " Section: editing behavior and text display
 
 set backspace=indent,eol,start
-set nrformats-=octal
 set complete-=i
 set virtualedit=block
 
@@ -77,6 +70,9 @@ if has('multi_byte')
   set formatoptions+=mM
 endif
 
+set diffopt+=vertical  " start diff mode with vertical splits
+set diffopt+=indent-heuristic,algorithm:histogram
+
 set smarttab         " tab in front of a line depends on 'shiftwidth'
 set tabstop=4        " number of spaces per tab for display
 set shiftwidth=4     " number of spaces to use for each step of (auto)indent
@@ -85,7 +81,6 @@ set expandtab        " in insert mode: use spaces to insert a <Tab>
 set autoindent       " automatically indent to match adjacent line
 
 set foldmethod=marker
-set display=truncate
 set smoothscroll
 set scrolloff=1
 set sidescroll=1
@@ -155,11 +150,7 @@ endfunction
 
 " Section: key mappings and commands
 
-set nolangremap
-set ttimeout
 set timeoutlen=2500    " mapping delay
-set ttimeoutlen=50     " key code delay
-
 let mapleader = "\<Space>"
 
 noremap <Leader>ts <Cmd>call StatuslineToggleSyntaxID()<CR>
@@ -191,7 +182,6 @@ noremap <M-k> gk
 tnoremap <M-q> <C-\><C-n>
 
 " Break undo before deleting
-inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
 
 " Make Y consistent with C and D. See :help Y
@@ -216,7 +206,6 @@ nnoremap <C-L> <C-W>l
 " search and substitute
 set ignorecase
 set smartcase
-set incsearch
 set hlsearch
 noremap / /\v
 nnoremap <Leader>s :%s/
@@ -265,19 +254,11 @@ if &startofline
   augroup END
 endif
 
-set diffopt+=vertical  " start diff mode with vertical splits
-set diffopt+=indent-heuristic,algorithm:histogram
-" From `:help :DiffOrig`.
-if exists(":DiffOrig") != 2
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
-        \ | diffthis | wincmd p | diffthis
-endif
-
 
 " Section: plugin settings
 
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+" Load matchit.vim
+if !exists('g:loaded_matchit')
   runtime! macros/matchit.vim
 endif
 
