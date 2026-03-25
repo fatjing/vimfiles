@@ -79,7 +79,7 @@ augroup END
 " LeaderF {{{
 let g:Lf_HideHelp = 1
 let g:Lf_UseCache = 0
-let g:Lf_MruMaxFiles = 1000
+let g:Lf_MruMaxFiles = 2000
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_CacheDirectory = expand('~/.cache')
 let g:Lf_RootMarkers = ['.root', '.project', '.git', '.svn', '.hg']
