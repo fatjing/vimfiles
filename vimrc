@@ -240,7 +240,7 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " set working directory to the current file
-nnoremap <Leader>z :cd %:p:h<CR>:pwd<CR>
+nnoremap <Leader>z :lcd %:p:h<CR>:pwd<CR>
 
 " fold tag
 nnoremap <Leader>FT Vatzf
