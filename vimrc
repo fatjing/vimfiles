@@ -63,12 +63,16 @@ set complete-=i
 set virtualedit=block
 
 set fileformats=unix,dos
-set formatoptions+=j
 if has('multi_byte')
   set encoding=utf-8
   set fileencodings=ucs-bom,utf-8,gbk,gb18030,big5,euc-jp,latin1
   set formatoptions+=mM
 endif
+set formatoptions+=j
+augroup MyFormatoptions
+  autocmd!
+  au FileType * setlocal fo-=r fo-=o  " do not insert comment leader
+augroup END
 
 set diffopt+=vertical  " start diff mode with vertical splits
 set diffopt+=indent-heuristic,algorithm:histogram
