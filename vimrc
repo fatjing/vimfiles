@@ -224,13 +224,12 @@ function! PreserveViewRun(command)
 endfunction
 
 " copy to / paste from system clipboard
-noremap <Leader>y "*y
-noremap <Leader>p "*p
-
-" cycle through numbered registers
-" first do '"1p' and then do 'u.' repeatedly, see |redo-register|
-noremap <Leader>1 "1p
+noremap <Leader>Y "*y
+noremap <Leader>P "*p
+" paste from the most recent yank, see |v_P|
 noremap <Leader>0 "0p
+" cycle through numbered registers, see |redo-register|
+noremap <Leader>1 "1p
 
 " reselect last paste
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
