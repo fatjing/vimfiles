@@ -240,9 +240,6 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 " set working directory to the current file
 noremap <Leader>z <Cmd>lcd %:p:h<Bar>pwd<CR>
 
-" fold tag
-nnoremap <Leader>FT Vatzf
-
 " don't reset the cursor upon returning to a buffer
 if &startofline
   augroup StayPut
