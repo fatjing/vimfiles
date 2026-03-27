@@ -73,7 +73,7 @@ noremap <silent><F9> :AsyncTask file-build<CR>
 " Coc
 augroup StartCoc
   autocmd!
-  au InsertEnter * packadd vim-snippets | call coc#rpc#start_server() | au! StartCoc
+  au InsertEnter * ++once packadd vim-snippets | call coc#rpc#start_server()
 augroup END
 
 " LeaderF {{{
