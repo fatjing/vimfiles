@@ -1,7 +1,4 @@
-if exists('g:loaded_diff_algorithm')
-  finish
-endif
-let g:loaded_diff_algorithm = 1
+" usage: `:DiffAlgorithm <algorithm>`
 
 command! -nargs=1 -complete=custom,s:DiffAlgComplete DiffAlgorithm
       \ set diffopt-=algorithm:myers |
