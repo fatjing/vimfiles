@@ -190,11 +190,11 @@ inoremap <C-W> <C-G>u<C-W>
 nnoremap Y y$
 
 " buffer navigation
-nnoremap <silent> <Left> :bprev<CR>
-nnoremap <silent> <Right> :bnext<CR>
-"nnoremap <Leader>b :ls<CR>:e #
+noremap <silent> <Left> <Cmd>bprev<CR>
+noremap <silent> <Right> <Cmd>bnext<CR>
+"noremap <Leader>b :<C-u>ls<CR>:e #
 " delete a buffer without closing the window
-nnoremap <silent> <Leader>d :bp<Bar>bd#<CR>
+noremap <silent> <Leader>d <Cmd>bp<Bar>bd#<CR>
 
 " split windows
 set splitright
@@ -241,7 +241,7 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " set working directory to the current file
-nnoremap <Leader>z :lcd %:p:h<CR>:pwd<CR>
+noremap <Leader>z <Cmd>lcd %:p:h<Bar>pwd<CR>
 
 " fold tag
 nnoremap <Leader>FT Vatzf

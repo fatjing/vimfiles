@@ -107,8 +107,8 @@ nnoremap <Leader>fg :Leaderf git<CR>
 nnoremap <Leader>fe :Leaderf rg --bottom -e<Space>
 
 nnoremap <Leader>fr :Leaderf! --recall<CR>
-noremap <Leader>fn :Leaderf --next<CR>
-noremap <Leader>fp :Leaderf --previous<CR>
+noremap <Leader>fn <Cmd>Leaderf --next<CR>
+noremap <Leader>fp <Cmd>Leaderf --previous<CR>
 
 let g:Lf_Gtagslabel = 'native-pygments'
 nnoremap <Leader>cu :Leaderf gtags --update<CR>
