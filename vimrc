@@ -1,5 +1,5 @@
-unlet! skip_defaults_vim
-source $VIMRUNTIME/defaults.vim
+filetype plugin indent on
+syntax enable
 
 
 " Section: ui settings
@@ -24,7 +24,7 @@ endif
 set background=dark
 silent! color iceberg
 
-" set cursor shape, see |termcap-cursor-shape|
+" set cursor shape, see `:h termcap-cursor-shape`
 if &term =~ 'xterm\|tmux'
   let &t_SI = "\e[5 q"      " blink bar for insert mode
   let &t_SR = "\e[3 q"      " blink underline for replace mode
@@ -60,6 +60,7 @@ set hidden    " allow buffer switching without saving
 
 set backspace=indent,eol,start
 set complete-=i
+set nrformats-=octal
 set virtualedit=block
 set diffopt+=algorithm:histogram
 
@@ -83,6 +84,7 @@ set expandtab        " in insert mode: use spaces to insert a <Tab>
 set autoindent       " automatically indent to match adjacent line
 
 set foldmethod=marker
+set display=truncate
 set smoothscroll
 set scrolloff=1
 set sidescroll=1
@@ -131,7 +133,7 @@ function! StatuslineToggleSyntaxID()
   let g:syntax_id_toggle = !g:syntax_id_toggle
 endfunction
 
-" get last search count, see |searchcount()|
+" get last search count, see `:h searchcount()`
 function! LastSearchCount() abort
   let result = searchcount(#{maxcount: 1000})
   if empty(result)
@@ -152,7 +154,11 @@ endfunction
 
 " Section: key mappings and commands
 
+set nolangremap
+set ttimeout           " time out for key codes
+set ttimeoutlen=50     " key code delay
 set timeoutlen=2500    " mapping delay
+
 let mapleader = "\<Space>"
 
 noremap <Leader>ts <Cmd>call StatuslineToggleSyntaxID()<CR>
@@ -184,6 +190,7 @@ noremap <M-k> gk
 tnoremap <M-q> <C-\><C-n>
 
 " Break undo before deleting
+inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
 
 " Make Y consistent with C and D. See :help Y
@@ -209,6 +216,7 @@ nnoremap <C-L> <C-W>l
 set ignorecase
 set smartcase
 set hlsearch
+set incsearch
 noremap / /\v
 nnoremap <Leader>s :%s///g<Left><Left>
 vnoremap <Leader>s :s///g<Left><Left>
@@ -229,9 +237,9 @@ endfunction
 " copy to / paste from system clipboard
 noremap <Leader>y "*y
 noremap <Leader>p "*p
-" paste from the most recent yank, see |v_P|
+" paste from the most recent yank, see `:h v_P`
 noremap <Leader>0 "0p
-" cycle through numbered registers, see |redo-register|
+" cycle through numbered registers, see `:h redo-register`
 noremap <Leader>1 "1p
 
 " reselect last paste
@@ -239,6 +247,10 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " set working directory to the current file
 noremap <Leader>z <Cmd>lcd %:p:h<Bar>pwd<CR>
+
+" From `:help :DiffOrig`
+command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+      \ | diffthis | wincmd p | diffthis
 
 " don't reset the cursor upon returning to a buffer
 if &startofline
