@@ -61,6 +61,7 @@ set hidden    " allow buffer switching without saving
 set backspace=indent,eol,start
 set complete-=i
 set virtualedit=block
+set diffopt+=algorithm:histogram
 
 set fileformats=unix,dos
 if has('multi_byte')
@@ -73,9 +74,6 @@ augroup MyFormatoptions
   autocmd!
   au FileType * setlocal fo-=r fo-=o  " do not insert comment leader
 augroup END
-
-set diffopt+=vertical  " start diff mode with vertical splits
-set diffopt+=indent-heuristic,algorithm:histogram
 
 set smarttab         " tab in front of a line depends on 'shiftwidth'
 set tabstop=4        " number of spaces per tab for display
