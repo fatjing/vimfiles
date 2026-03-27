@@ -249,7 +249,7 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 noremap <Leader>z <Cmd>lcd %:p:h<Bar>pwd<CR>
 
 " jump to the last known cursor position, see :h `quote
-nnoremap <Leader>gm g`"
+nnoremap <Leader>' g`"
 
 " From `:help :DiffOrig`
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
