@@ -210,7 +210,8 @@ set ignorecase
 set smartcase
 set hlsearch
 noremap / /\v
-nnoremap <Leader>s :%s/
+nnoremap <Leader>s :%s///g<Left><Left>
+vnoremap <Leader>s :s///g<Left><Left>
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 " count number of matches of the last search pattern
@@ -226,8 +227,8 @@ function! PreserveViewRun(command)
 endfunction
 
 " copy to / paste from system clipboard
-noremap <Leader>Y "*y
-noremap <Leader>P "*p
+noremap <Leader>y "*y
+noremap <Leader>p "*p
 " paste from the most recent yank, see |v_P|
 noremap <Leader>0 "0p
 " cycle through numbered registers, see |redo-register|
@@ -235,10 +236,6 @@ noremap <Leader>1 "1p
 
 " reselect last paste
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-" move selected text up and down
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " set working directory to the current file
 noremap <Leader>z <Cmd>lcd %:p:h<Bar>pwd<CR>
