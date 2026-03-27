@@ -66,8 +66,6 @@ set diffopt+=algorithm:histogram
 
 set fileformats=unix,dos
 if has('multi_byte')
-  set encoding=utf-8
-  set fileencodings=ucs-bom,utf-8,gbk,gb18030,big5,euc-jp,latin1
   set formatoptions+=mM
 endif
 set formatoptions+=j
