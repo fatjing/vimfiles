@@ -281,3 +281,11 @@ SourceScript init/coc.vim
 
 " vim-color-patch
 let g:cpatch_path = s:home.'/colors/patch'
+
+
+" Section: filetype specific
+
+" Correctly highlight $() and other modern affordances in filetype=sh.
+if !exists('g:is_posix') && !exists('g:is_bash') && !exists('g:is_kornshell') && !exists('g:is_dash')
+  let g:is_posix = 1
+endif
