@@ -53,7 +53,6 @@ set nowritebackup
 set noswapfile
 set autoread
 set hidden    " allow buffer switching without saving
-"au FocusLost * :wa    " save on losing focus
 
 
 " Section: editing behavior and text display
