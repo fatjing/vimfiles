@@ -93,4 +93,4 @@ packageList=(
 printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
 # rm -rf $PACK_DIR/*/*/*/.git
-printf "\nDone\n"
+printf "Done\n"
