@@ -1,6 +1,10 @@
 filetype plugin indent on
 syntax enable
 
+augroup mygroup
+  autocmd!
+augroup END
+
 
 " Section: ui settings
 
@@ -68,10 +72,7 @@ if has('multi_byte')
   set formatoptions+=mM
 endif
 set formatoptions+=j
-augroup MyFormatoptions
-  autocmd!
-  au FileType * setlocal fo-=r fo-=o  " do not insert comment leader
-augroup END
+autocmd mygroup FileType * setlocal fo-=r fo-=o  " do not insert comment leader
 
 set smarttab         " tab in front of a line depends on 'shiftwidth'
 set tabstop=4        " number of spaces per tab for display

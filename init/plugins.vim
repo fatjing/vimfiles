@@ -71,10 +71,7 @@ noremap <silent><F5> :AsyncTask file-run<CR>
 noremap <silent><F9> :AsyncTask file-build<CR>
 
 " Coc
-augroup StartCoc
-  autocmd!
-  au InsertEnter * ++once packadd vim-snippets | call coc#rpc#start_server()
-augroup END
+autocmd mygroup InsertEnter * ++once packadd vim-snippets | call coc#rpc#start_server()
 
 " LeaderF {{{
 let g:Lf_HideHelp = 1
@@ -139,10 +136,7 @@ let g:lightline = {
     \ }
 
 " update lightline colorscheme in sync with vim colorscheme
-augroup LightlineColorscheme
-  autocmd!
-  autocmd ColorScheme * call s:lightline_update()
-augroup END
+autocmd mygroup ColorScheme * call s:lightline_update()
 
 function! s:lightline_update()
   if !exists('g:loaded_lightline')

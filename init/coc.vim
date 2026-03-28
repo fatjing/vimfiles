@@ -62,13 +62,10 @@ nmap <leader>an <Plug>(coc-rename)
 xmap <leader>gq <Plug>(coc-format-selected)
 nmap <leader>gq <Plug>(coc-format-selected)
 
-augroup MyCocEventGroup
-  autocmd!
-  " Setup formatexpr specified filetype(s)
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
+" Setup formatexpr specified filetype(s)
+autocmd mygroup FileType typescript,json setl formatexpr=CocAction('formatSelected')
+" Update signature help on jump placeholder
+autocmd mygroup User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 " Apply code actions to the selected code block
 xmap <leader>a <Plug>(coc-codeaction-selected)
