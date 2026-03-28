@@ -15,11 +15,14 @@ package_install()
     repo_url="https://github.com/$1.git"
     branch="${2:-master}"
     if [ -d "$directory" ]; then
+        (
         cd "$directory" || exit
-        [ -d ".git" ] &&
-        until git fetch --depth 1 --force && git reset --hard origin/"$branch" && git clean -df
-            do sleep 1; done
-        cd ..
+        [ -d ".git" ] || exit
+        until git fetch --depth 1 --force --prune origin "$branch" &&
+              git reset --hard FETCH_HEAD && git clean -df; do
+            sleep 1;
+        done
+        )
     else
         until git clone --depth 1 --branch "$branch" --single-branch "$repo_url"; do
             sleep 1; [ -d "$directory" ] && rm -rf "$directory"
