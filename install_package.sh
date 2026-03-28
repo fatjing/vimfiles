@@ -14,20 +14,21 @@ package_install()
     directory="${1##*/}"
     repo_url="https://github.com/$1.git"
     branch="${2:-master}"
-    if [ -d "$directory" ]; then
-        (
-        cd "$directory" || exit
-        [ -d ".git" ] || exit
-        until git fetch --depth 1 --force --prune origin "$branch" &&
-              git reset --hard FETCH_HEAD && git clean -df; do
-            sleep 1;
-        done
-        )
-    else
-        until git clone --depth 1 --branch "$branch" --single-branch "$repo_url"; do
-            sleep 1; [ -d "$directory" ] && rm -rf "$directory"
-        done
-    fi
+    buffer=$( {
+        if [ -d "$directory" ]; then
+            cd "$directory" || exit
+            [ -d ".git" ] || exit
+            until git fetch --depth 1 --force --prune origin "$branch" &&
+                  git reset --hard FETCH_HEAD && git clean -df; do
+                sleep 1;
+            done
+        else
+            until git clone --depth 1 --branch "$branch" --single-branch "$repo_url"; do
+                sleep 1; [ -d "$directory" ] && rm -rf "$directory"
+            done
+        fi
+    } 2>&1 )
+    printf "%s\n\n" "$buffer"
 
     # post-installation hook
     [ "$3" ] && ($3)
