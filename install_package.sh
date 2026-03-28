@@ -13,7 +13,7 @@ package_install()
 {
     directory="${1##*/}"
     repo_url="https://github.com/$1.git"
-    [ "$2" ] && branch="$2" || branch="master"
+    branch="${2:-master}"
     if [ -d "$directory" ]; then
         cd "$directory" || exit
         [ -d ".git" ] &&
