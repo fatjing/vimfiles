@@ -28,7 +28,7 @@ endfunction
 function! load_plugin#load_on_cmd(pack, cmds, ...)
   let g:load_plugin_callbacks[a:pack] = a:0 > 0 ? a:1 : function('s:dummy')
   for cmd in s:to_a(a:cmds)
-    if !exists(':'.cmd)
+    if !exists(':'..cmd)
       execute printf(
         \ 'command! -nargs=* -range -bang -complete=file %s delc %s | call g:load_plugin_callbacks[%s]() | packadd %s | call s:exe_cmd(%s, "<bang>", <line1>, <line2>, <q-args>)',
         \ cmd, cmd, string(a:pack), a:pack, string(cmd))
@@ -37,7 +37,7 @@ function! load_plugin#load_on_cmd(pack, cmds, ...)
 endfunction
 
 function! s:exe_cmd(cmd, bang, l1, l2, args)
-  execute printf('%s%s%s %s', (a:l1 == a:l2 ? '' : (a:l1.','.a:l2)), a:cmd, a:bang, a:args)
+  execute printf('%s%s%s %s', (a:l1 == a:l2 ? '' : (a:l1..','..a:l2)), a:cmd, a:bang, a:args)
 endfunction
 
 " load plugin on mapping
@@ -60,19 +60,19 @@ function! s:exe_map(pack, map, mode)
     if c == 0
       break
     endif
-    let extra .= nr2char(c)
+    let extra ..= nr2char(c)
   endwhile
 
   if a:mode != 'i'
     let prefix = v:count ? v:count : ''
-    let prefix .= '"'.v:register
+    let prefix ..= '"'..v:register
     if mode(1) == 'no'
       if v:operator == 'c'
-        let prefix = "\<Esc>" . prefix
+        let prefix = "\<Esc>"..prefix
       endif
-      let prefix .= v:operator
+      let prefix ..= v:operator
     endif
     call feedkeys(prefix, 'n')
   endif
-  execute 'call feedkeys("' . substitute(a:map, '<', '\\<', 'g') . extra . '")'
+  execute 'call feedkeys("'..substitute(a:map, '<', '\\<', 'g')..extra..'")'
 endfunction

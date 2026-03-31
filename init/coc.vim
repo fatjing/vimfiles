@@ -1,7 +1,7 @@
 " coc.nvim settings
 
 set updatetime=300
-"execute 'let &statusline="'.substitute(&statusline, '%=', ' %{coc#status()}%=', '').'"'
+"execute 'let &statusline="'..substitute(&statusline, '%=', ' %{coc#status()}%=', '')..'"'
 
 let g:coc_start_at_startup = 0
 let g:coc_config_home = fnamemodify(resolve(expand('<sfile>:p')), ':h')

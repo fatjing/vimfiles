@@ -110,7 +110,7 @@ set statusline+=%<%f\                                   " relative path
 set statusline+=[%{&ft!=#''?&ft:'no\ ft'},\             " filetype
 set statusline+=%{&fenc!=#''?&fenc:&enc}                " file encoding
 set statusline+=%{&bomb?',\ bom':''}                    " BOM
-set statusline+=%{&ff!=#'unix'?',\ '.&ff:''}]           " file format
+set statusline+=%{&ff!=#'unix'?',\ '..&ff:''}]          " file format
 set statusline+=%m%r%w                                  " flags
 set statusline+=\ %{FugitiveHead()}                     " Fugitive git branch
 set statusline+=\ %{coc#status()}                       " coc status
@@ -141,7 +141,7 @@ function! LastSearchCount() abort
   if result.incomplete ==# 0    " search fully completed
     return printf('[%d/%d]', result.current, result.total)
   elseif result.incomplete ==# 2    " max count exceeded
-    let current = result.current > result.maxcount ? '>'.result.maxcount : result.current
+    let current = result.current > result.maxcount ? '>'..result.maxcount : result.current
     return printf('[%s/>%d]', current, result.maxcount)
   else    " timed out
     return printf('[?/??]')
@@ -168,7 +168,7 @@ noremap \ ;
 if !has('gui_running') && !has('nvim')
   for i in range(26)
     let key = nr2char(char2nr('a') + i)
-    execute "set <M-".key.">=\e".key
+    execute "set <M-"..key..">=\e"..key
   endfor
 endif
 
@@ -241,7 +241,7 @@ noremap <Leader>0 "0p
 noremap <Leader>1 "1p
 
 " reselect last paste
-nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+nnoremap <expr> gp '`['..strpart(getregtype(), 0, 1)..'`]'
 
 " set working directory to the current file
 noremap <Leader>z <Cmd>lcd %:p:h<Bar>pwd<CR>
@@ -273,12 +273,12 @@ let g:netrw_liststyle = 3
 
 " source settings from ./init
 let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-command! -nargs=1 SourceScript execute 'source '.s:home.'/'.'<args>'
+command! -nargs=1 SourceScript execute 'source '..s:home..'/<args>'
 SourceScript init/plugins.vim
 SourceScript init/coc.vim
 
 " vim-color-patch
-let g:cpatch_path = s:home.'/colors/patch'
+let g:cpatch_path = s:home..'/colors/patch'
 
 
 " Section: filetype specific

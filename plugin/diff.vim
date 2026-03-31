@@ -6,11 +6,11 @@ function! s:Diff(spec)
   vertical new
   setlocal bufhidden=wipe buftype=nofile nobuflisted noswapfile
   if len(a:spec)
-    let cmd = "!git -C #:p:h:S show " . a:spec . ":./#:t:S"
+    let cmd = "!git -C #:p:h:S show "..a:spec..":./#:t:S"
   else
     let cmd = "++edit #"
   endif
-  execute "read " . cmd
+  execute "read "..cmd
   silent 0d_
   diffthis
   wincmd p

@@ -125,7 +125,7 @@ let g:lightline = {
     \ 'component': {
     \   'relativepath': '%<%f',
     \   'lineinfo': '%2v:%l/%-2L',
-    \   'fileinfo': '[%{&ft!=#""?&ft:"no ft"}, %{&fenc!=#""?&fenc:&enc}%{&bomb?", bom":""}%{&ff!=#"unix"?", ".&ff:""}]',
+    \   'fileinfo': '[%{&ft!=#""?&ft:"no ft"}, %{&fenc!=#""?&fenc:&enc}%{&bomb?", bom":""}%{&ff!=#"unix"?", "..&ff:""}]',
     \   'searchcount': '%{v:hlsearch?LastSearchCount():""}'
     \   },
     \ 'component_function': {
