@@ -133,19 +133,17 @@ endfunction
 
 " get last search count, see `:h searchcount()`
 function! LastSearchCount() abort
-  let result = searchcount(#{maxcount: 1000})
+  let result = searchcount(#{maxcount: 2000})
   if empty(result)
     return ''
   endif
-
-  if result.incomplete ==# 0    " search fully completed
-    return printf('[%d/%d]', result.current, result.total)
-  elseif result.incomplete ==# 2    " max count exceeded
+  if result.incomplete ==# 1     " timed out
+    return printf('[?/??]')
+  elseif result.incomplete ==# 2 " max count exceeded
     let current = result.current > result.maxcount ? '>'..result.maxcount : result.current
     return printf('[%s/>%d]', current, result.maxcount)
-  else    " timed out
-    return printf('[?/??]')
   endif
+  return printf('[%d/%d]', result.current, result.total)
 endfunction
 " }}}
 
