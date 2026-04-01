@@ -157,7 +157,7 @@ set timeoutlen=2500    " mapping delay
 
 let mapleader = "\<Space>"
 
-noremap <Leader>ts <Cmd>call StatuslineToggleSyntaxID()<CR>
+noremap <Leader>os <Cmd>call StatuslineToggleSyntaxID()<CR>
 
 noremap ; :
 noremap \ ;
@@ -192,21 +192,27 @@ inoremap <C-W> <C-G>u<C-W>
 " Make Y consistent with C and D. See :help Y
 nnoremap Y y$
 
-" buffer navigation
+" buffers
 noremap <silent> <Left> <Cmd>bprev<CR>
 noremap <silent> <Right> <Cmd>bnext<CR>
 "noremap <Leader>b :<C-u>ls<CR>:e #
 " delete a buffer without closing the window
 noremap <silent> <Leader>d <Cmd>bp<Bar>bd#<CR>
 
-" split windows
+" windows
 set splitright
-nnoremap <Leader>w <C-W>
-nnoremap <Leader>v <C-W>v
-nnoremap <C-J> <C-W>w
-nnoremap <C-K> <C-W>W
-nnoremap <C-H> <C-W>h
-nnoremap <C-L> <C-W>l
+noremap <Leader>w <C-W>
+noremap <Leader>v <C-W>v
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-H> <C-W>h
+noremap <C-L> <C-W>l
+
+" tabpage
+noremap <Leader>tt <Cmd>tabnew<CR>
+noremap <Leader>tc <Cmd>tabclose<CR>
+noremap <Leader>th <Cmd>tabmove -<CR>
+noremap <Leader>tl <Cmd>tabmove +<CR>
 
 " search and substitute
 set ignorecase
