@@ -119,7 +119,7 @@ set statusline+=%(%{StatuslineGetSyntaxID()}\ %)         " syntax id
 set statusline+=%B\                                      " character hex code
 set statusline+=%L\                                      " number of lines
 set statusline+=%{v:hlsearch?LastSearchCount()..'\ ':''} " search count
-set statusline+=%2p%%\ %4([\ %l%):%-4(%v\ ]%)            " line info
+set statusline+=%4([\ %l%):%-4(%v\ ]%)\ %2p%%            " line info
 
 " statusline helpers {{{
 " toggle syntax id
