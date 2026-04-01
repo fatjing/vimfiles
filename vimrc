@@ -106,19 +106,20 @@ set wildignore+=*/.git/*,*/.svn/*,*/node_modules/*
 
 set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
-set statusline+=%<%f\                                   " relative path
-set statusline+=[%{&ft!=#''?&ft:'no\ ft'},\             " filetype
-set statusline+=%{&fenc!=#''?&fenc:&enc}                " file encoding
-set statusline+=%{&bomb?',\ bom':''}                    " BOM
-set statusline+=%{&ff!=#'unix'?',\ '..&ff:''}]          " file format
-set statusline+=%m%r%w                                  " flags
-set statusline+=\ %{FugitiveHead()}                     " Fugitive git branch
-set statusline+=\ %{coc#status()}                       " coc status
-set statusline+=%=                                      " left/right separator
-set statusline+=%{StatuslineGetSyntaxID()}              " syntax id
-set statusline+=\ %B\                                   " character under cursor
-set statusline+=%{v:hlsearch?LastSearchCount():''}      " search count
-set statusline+=%4([\ %v%):%l/%L\ ]\ %P                 " offset
+set statusline+=%<%f\                                    " relative path
+set statusline+=[%{&ft!=#''?&ft:'no\ ft'},\              " filetype
+set statusline+=%{&fenc!=#''?&fenc:&enc}                 " file encoding
+set statusline+=%{&bomb?',\ bom':''}                     " BOM
+set statusline+=%{&ff!=#'unix'?',\ '..&ff:''}]           " file format
+set statusline+=%m%r%w                                   " flags
+set statusline+=%(\ %{FugitiveHead()}%)                  " Fugitive git branch
+set statusline+=%(\ %{coc#status()}%)                    " coc status
+set statusline+=%=                                       " separation point
+set statusline+=%(%{StatuslineGetSyntaxID()}\ %)         " syntax id
+set statusline+=%B\                                      " character hex code
+set statusline+=%L\                                      " number of lines
+set statusline+=%{v:hlsearch?LastSearchCount()..'\ ':''} " search count
+set statusline+=%2p%%\ %4([\ %l%):%-4(%v\ ]%)            " line info
 
 " statusline helpers {{{
 " toggle syntax id

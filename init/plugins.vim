@@ -116,24 +116,26 @@ noremap <leader>cc :<C-U><C-R>=printf("Leaderf! gtags --by-context --auto-jump")
 
 " lightline.vim {{{
 let g:lightline = {
-    \ 'colorscheme': 'iceberg',
-    \ 'active': {
-    \   'left': [['mode', 'paste'], ['relativepath', 'modified', 'readonly'], ['fileinfo'],
-    \             ['gitbranch'], ['cocstatus']],
-    \   'right': [['lineinfo'], ['percent'], ['searchcount'], ['charvaluehex'], ['syntax_id']]
-    \   },
-    \ 'component': {
-    \   'relativepath': '%<%f',
-    \   'lineinfo': '%2v:%l/%-2L',
-    \   'fileinfo': '[%{&ft!=#""?&ft:"no ft"}, %{&fenc!=#""?&fenc:&enc}%{&bomb?", bom":""}%{&ff!=#"unix"?", "..&ff:""}]',
-    \   'searchcount': '%{v:hlsearch?LastSearchCount():""}'
-    \   },
-    \ 'component_function': {
-    \   'gitbranch': 'FugitiveHead',
-    \   'cocstatus': 'coc#status',
-    \   'syntax_id': 'StatuslineGetSyntaxID'
-    \   }
-    \ }
+  \   'colorscheme': 'iceberg',
+  \   'active': {
+  \     'left': [['mode', 'paste'], ['relativepath', 'modified', 'readonly'],
+  \              ['fileinfo'], ['gitbranch'], ['cocstatus']],
+  \     'right': [['lineinfo'], ['percent'], ['searchcount'], ['linetotal'],
+  \               ['charvaluehex'], ['syntax_id']]
+  \   },
+  \   'component': {
+  \     'relativepath': '%<%f',
+  \     'lineinfo': '%3l:%-2v',
+  \     'linetotal': '%L',
+  \     'fileinfo': '[%{&ft!=#""?&ft:"no ft"}, %{&fenc!=#""?&fenc:&enc}%{&bomb?", bom":""}%{&ff!=#"unix"?", "..&ff:""}]',
+  \     'searchcount': '%{v:hlsearch?LastSearchCount():""}'
+  \   },
+  \   'component_function': {
+  \     'gitbranch': 'FugitiveHead',
+  \     'cocstatus': 'coc#status',
+  \     'syntax_id': 'StatuslineGetSyntaxID'
+  \   }
+  \ }
 
 " update lightline colorscheme in sync with vim colorscheme
 autocmd mygroup ColorScheme * call s:lightline_update()
