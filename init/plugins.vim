@@ -120,13 +120,12 @@ let g:lightline = {
   \   'active': {
   \     'left': [['mode', 'paste'], ['relativepath', 'modified', 'readonly'],
   \              ['fileinfo'], ['gitbranch'], ['cocstatus']],
-  \     'right': [['lineinfo'], ['percent'], ['searchcount'], ['linetotal'],
-  \               ['charvaluehex'], ['syntax_id']]
+  \     'right': [['lineinfo'], ['percent'], ['searchcount'], ['charvaluehex'],
+  \               ['syntax_id']]
   \   },
   \   'component': {
   \     'relativepath': '%<%f',
-  \     'lineinfo': '%3l:%-2v',
-  \     'linetotal': '%L',
+  \     'lineinfo': '%3l/%L:%-2v',
   \     'fileinfo': '[%{&ft!=#""?&ft:"no ft"}, %{&fenc!=#""?&fenc:&enc}%{&bomb?", bom":""}%{&ff!=#"unix"?", "..&ff:""}]',
   \     'searchcount': '%{v:hlsearch?LastSearchCount():""}'
   \   },
