@@ -1,3 +1,6 @@
+" vim-color-patch
+let g:cpatch_path = g:vimrc_path..'/colors/patch'
+
 " vim-dirvish
 " Use `-` to open the current file directory
 let g:dirvish_mode = ':sort i ,^.*[\/],'
@@ -6,10 +9,6 @@ let g:dirvish_mode = ':sort i ,^.*[\/],'
 " Type `s` followed by two characters to move; use `z` for operations
 let g:sneak#s_next = 1
 let g:sneak#use_ic_scs = 1
-
-" vim-commentary
-" Use `gcc` to comment out a line, `gc` to comment out the target of a motion
-call load_plugin#load_on_map('vim-commentary', 'gc', 'nxo')
 
 " vim-endwise
 " End certain structures automatically
@@ -24,11 +23,6 @@ nnoremap <Leader>i :Git<CR>
 " vim-unimpaired
 " Provide several pairs of bracket maps. See :h unimpaired
 
-" ListToggle
-" Toggle quickfix/location list, default keymappings: `<Leader>q` `<Leader>l`
-call load_plugin#load_on_map('ListToggle', '<Space>q', 'n')
-let g:lt_height = 12
-
 " scratch.vim
 call load_plugin#load_on_map('scratch.vim', 'gs', 'nx')
 let g:scratch_autohide = 0
@@ -42,10 +36,6 @@ call load_plugin#load_on_cmd('fencview', 'FencAutoDetect')
 call load_plugin#load_on_cmd('rainbow', 'RainbowToggle')
 noremap <Leader>r <Cmd>RainbowToggle<CR>
 let g:rainbow_active = 0
-
-" VOoM
-" Vim Outliner of Markups is a plugin that emulates a two-pane text outliner
-call load_plugin#load_on_cmd('VOoM', 'Voom')
 
 " vim-easy-align
 call load_plugin#load_on_cmd('vim-easy-align', 'EasyAlign')

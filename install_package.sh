@@ -63,8 +63,6 @@ printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
 set_dir "bundle/opt"
 packageList=(
-    Valloric/ListToggle
-    tpope/vim-commentary
     honza/vim-snippets
     junegunn/vim-easy-align
     luochen1990/rainbow
@@ -73,7 +71,6 @@ packageList=(
     skywind3000/asyncrun.vim
     skywind3000/asynctasks.vim
     skywind3000/vim-terminal-help
-    vim-voom/VOoM
 )
 printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 

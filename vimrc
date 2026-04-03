@@ -265,10 +265,10 @@ endif
 
 " Section: plugin settings
 
-" Load matchit.vim
-if !exists('g:loaded_matchit')
-  runtime! macros/matchit.vim
-endif
+" Load builtin plugins
+packadd! comment
+packadd! helptoc
+packadd! matchit
 
 " netrw
 let g:netrw_banner = 0
@@ -276,13 +276,10 @@ let g:netrw_home = expand('~/.cache/netrw')
 let g:netrw_liststyle = 3
 
 " source settings from ./init
-let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-command! -nargs=1 SourceScript execute 'source '..s:home..'/<args>'
+let g:vimrc_path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+command! -nargs=1 SourceScript execute 'source '..g:vimrc_path..'/<args>'
 SourceScript init/plugins.vim
 SourceScript init/coc.vim
-
-" vim-color-patch
-let g:cpatch_path = s:home..'/colors/patch'
 
 
 " Section: filetype specific
