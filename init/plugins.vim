@@ -42,7 +42,6 @@ call load_plugin#load_on_cmd('vim-easy-align', 'EasyAlign')
 
 " vim-terminal-help
 call load_plugin#load_on_map('vim-terminal-help', '<M-=>', 'nx')
-exe "set <M-=>=\e="
 let g:terminal_height = 15
 
 " asyncrun.vim

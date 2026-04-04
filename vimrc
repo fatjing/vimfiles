@@ -162,41 +162,57 @@ set ttimeoutlen=50     " key code delay
 set timeoutlen=2500    " mapping delay
 
 let mapleader = "\<Space>"
+noremap <Leader>; :
 
 noremap <Leader>os <Cmd>call StatuslineToggleSyntaxID()<CR>
 
-noremap ; :
-noremap \ ;
-
-" fix alt key as meta key, see :set-termcap
+" fix alt key as meta key, see `:h set-termcap`, `:h map-alt-keys`
 if !has('gui_running') && !has('nvim')
   for i in range(26)
     let key = nr2char(char2nr('a') + i)
-    execute "set <M-"..key..">=\e"..key
+    silent! exe "set <M-"..key..">=\<Esc>"..key
   endfor
+  silent! exe "set <M-=>=\<Esc>="
 endif
 
-" readline emacs editing mode shortcuts
-noremap! <C-a> <Home>
-noremap! <C-e> <End>
-noremap! <C-d> <Del>
-noremap! <C-b> <Left>
-noremap! <C-f> <Right>
-noremap! <M-b> <C-Left>
-noremap! <M-f> <C-Right>
-noremap! <M-h> <C-Left>
-noremap! <M-l> <C-Right>
+" readline (emacs) mappings for insert and command-line modes, reference vim-rsi
+inoremap        <C-A> <C-O>^
+inoremap   <C-X><C-A> <C-A>
+inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
+inoremap <expr> <C-B> getline('.')=~'^\s*$'&&col('.')>strlen(getline('.'))?"0\<Lt>C-D>\<Lt>Esc>kJs":"\<Lt>Left>"
+inoremap <expr> <C-F> col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"
+inoremap <expr> <C-D> col('.')>strlen(getline('.'))?"\<Lt>C-D>":"\<Lt>Del>"
 
+cnoremap        <C-A> <Home>
+cnoremap   <C-X><C-A> <C-A>
+cnoremap        <C-B> <Left>
+cnoremap <expr> <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
+cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+
+noremap!        <M-b> <S-Left>
+noremap!        <M-f> <S-Right>
+noremap!        <M-d> <C-O>dw
+cnoremap        <M-d> <S-Right><C-W>
+noremap!        <M-n> <Down>
+noremap!        <M-p> <Up>
+if !has('gui_running') && !has('nvim')
+  silent! exe "set <F34>=\<Esc>\<C-?>"
+  noremap!      <F34> <C-W>
+else
+  noremap!      <M-BS> <C-W>
+endif
+
+" navigate by screen lines
 noremap <M-j> gj
 noremap <M-k> gk
-tnoremap <M-q> <C-\><C-n>
 
 " Break undo before deleting
 inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
 
-" Make Y consistent with C and D. See :help Y
-nnoremap Y y$
+" quick save
+noremap  <C-s> <Cmd>update<CR>
+inoremap <C-s> <C-o><Cmd>update<CR>
 
 " buffers
 noremap <silent> <Left> <Cmd>bprev<CR>
@@ -208,16 +224,19 @@ noremap <silent> <Leader>d <Cmd>bp<Bar>bd#<CR>
 " windows
 noremap <Leader>w <C-W>
 noremap <Leader>v <C-W>v
-noremap <C-J> <C-W>j
-noremap <C-K> <C-W>k
-noremap <C-H> <C-W>h
-noremap <C-L> <C-W>l
+noremap <Leader>q <C-W>c
+noremap <C-j> <C-W>w
+noremap <C-k> <C-W>W
 
 " tabpage
 noremap <Leader>tt <Cmd>tabnew<CR>
 noremap <Leader>tc <Cmd>tabclose<CR>
+noremap <Leader>to <Cmd>tabonly<CR>
 noremap <Leader>th <Cmd>tabmove -<CR>
 noremap <Leader>tl <Cmd>tabmove +<CR>
+
+" terminal
+tnoremap <M-q> <C-\><C-n>
 
 " search and substitute
 noremap / /\v
@@ -236,6 +255,9 @@ function! PreserveViewRun(command)
   execute a:command
   call winrestview(l:winview)
 endfunction
+
+" Make Y consistent with C and D. See :help Y
+nnoremap Y y$
 
 " copy to / paste from system clipboard
 noremap <Leader>y "*y
