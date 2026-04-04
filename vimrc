@@ -52,7 +52,6 @@ set viewoptions-=options
 set history=5000    " cmdline history
 set tabpagemax=50
 
-set nobackup
 set nowritebackup
 set noswapfile
 set autoread
@@ -61,7 +60,6 @@ set hidden    " allow buffer switching without saving
 
 " Section: editing behavior and text display
 
-set backspace=indent,eol,start
 set complete-=i
 set nrformats-=octal
 set virtualedit=block
@@ -84,7 +82,7 @@ set autoindent       " automatically indent to match adjacent line
 set foldmethod=marker
 set display=truncate
 set smoothscroll
-set scrolloff=1
+set scrolloff=5
 set sidescroll=1
 set sidescrolloff=7
 
@@ -99,7 +97,6 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set relativenumber
 set signcolumn=number
 
-set wildmenu                   " enable ctrl-n and ctrl-p to scroll thru matches
 set wildmode=list:longest      " make cmdline tab completion similar to bash
 set wildignore=*.o,*.obj,*~    " stuff to ignore when tab completing
 set wildignore+=*/.git/*,*/.svn/*,*/node_modules/*
@@ -146,6 +143,15 @@ function! LastSearchCount() abort
   return printf('[%d/%d]', result.current, result.total)
 endfunction
 " }}}
+
+
+" Section: search and substitute
+
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set nowrapscan
 
 
 " Section: key mappings and commands
@@ -200,7 +206,6 @@ noremap <silent> <Right> <Cmd>bnext<CR>
 noremap <silent> <Leader>d <Cmd>bp<Bar>bd#<CR>
 
 " windows
-set splitright
 noremap <Leader>w <C-W>
 noremap <Leader>v <C-W>v
 noremap <C-J> <C-W>j
@@ -215,10 +220,6 @@ noremap <Leader>th <Cmd>tabmove -<CR>
 noremap <Leader>tl <Cmd>tabmove +<CR>
 
 " search and substitute
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
 noremap / /\v
 nnoremap <Leader>s :%s///g<Left><Left>
 vnoremap <Leader>s :s///g<Left><Left>
