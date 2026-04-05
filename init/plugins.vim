@@ -82,7 +82,7 @@ let g:Lf_RgConfig = [
       \ ]
 
 let g:Lf_ShortcutF = '<Leader>ff'
-"let g:Lf_ShortcutB = '<Leader>b'
+nnoremap <Leader>b <Cmd>LeaderfBuffer<CR>
 nnoremap <Leader>fm :Leaderf mru<CR>
 nnoremap <Leader>ft :Leaderf bufTag<CR>
 nnoremap <Leader>fc :Leaderf function<CR>

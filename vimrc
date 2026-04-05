@@ -215,9 +215,9 @@ noremap  <C-s> <Cmd>update<CR>
 inoremap <C-s> <C-o><Cmd>update<CR>
 
 " buffers
-noremap <silent> <Left> <Cmd>bprev<CR>
-noremap <silent> <Right> <Cmd>bnext<CR>
-"noremap <Leader>b :<C-u>ls<CR>:e #
+nnoremap <Left> <Cmd>bprev<CR>
+nnoremap <Right> <Cmd>bnext<CR>
+nnoremap <Leader>b :<C-u>ls<CR>:b<Space>
 " delete a buffer without closing the window
 noremap <silent> <Leader>d <Cmd>bp<Bar>bd#<CR>
 
