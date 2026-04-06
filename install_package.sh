@@ -11,9 +11,10 @@ set_dir()
 
 package_install()
 {
-    directory="${1##*/}"
-    repo_url="https://github.com/$1.git"
+    url="https://github.com/$1.git"
+    repo="${1#*/}"
     branch="${2:-master}"
+    directory="${3:-$repo}"
     buffer=$( {
         if [ -d "$directory" ]; then
             cd "$directory" || exit
@@ -23,7 +24,7 @@ package_install()
                 sleep 1;
             done
         else
-            until git clone --depth 1 --branch "$branch" --single-branch "$repo_url"; do
+            until git clone --depth 1 --branch "$branch" --single-branch "$url" "$directory"; do
                 sleep 1; [ -d "$directory" ] && rm -rf "$directory"
             done
         fi
@@ -31,7 +32,7 @@ package_install()
     printf "%s\n\n" "$buffer"
 
     # post-installation hook
-    [ "$3" ] && ($3)
+    [ "$4" ] && (cd "$directory" && $4)
 }
 export -f package_install
 
