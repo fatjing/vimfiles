@@ -1,9 +1,9 @@
-filetype plugin indent on
-syntax enable
-
 augroup mygroup
   autocmd!
 augroup END
+
+filetype plugin indent on
+syntax enable
 
 
 " Section: ui settings
@@ -12,7 +12,6 @@ if has('gui_running')
   set guioptions=
   set winaltkeys=no
 endif
-
 set mouse=nvi    " to select text with the terminal, go to command-line mode first
 
 " Allow color schemes to do bright colors without forcing bold.
@@ -24,7 +23,6 @@ if &term =~ '256color'
   "set t_ut=           " disable Background Color Erase (BCE)
   set termguicolors    " use true colors in the terminal
 endif
-
 set background=dark
 silent! color iceberg
 
@@ -38,32 +36,46 @@ if &term =~ 'xterm\|tmux'
 endif
 
 
-" Section: general settings
+" Section: file settings
 
-if has('path_extra')
-  setglobal tags-=./tags tags-=./tags; tags^=./tags;
-endif
-
+setglobal tags-=./tags tags-=./tags; tags^=./tags;
 if !empty(&viminfo)
   set viminfo^=!
 endif
+set history=4000    " cmdline history
 set sessionoptions-=options
 set viewoptions-=options
-set history=5000    " cmdline history
-set tabpagemax=50
 
 set nowritebackup
 set noswapfile
 set autoread
 set hidden    " allow buffer switching without saving
+set tabpagemax=50
 
 
-" Section: editing behavior and text display
+" Section: editing behavior
 
-set complete-=i
 set nrformats-=octal
 set virtualedit=block
 set diffopt+=algorithm:histogram
+
+" autocompletion; see `ins-autocompletion`, `cmdline-autocompletion`
+"set autocomplete
+set complete-=i
+set completeopt=fuzzy,menuone,noselect,popup
+autocmd mygroup CmdlineChanged [:] call wildtrigger()
+set wildmode=noselect:lastused,full
+set wildoptions=fuzzy,pum
+
+" search and substitute
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set nowrapscan
+
+
+" Section: text formatting and display
 
 set fileformats=unix,dos
 if has('multi_byte')
@@ -87,19 +99,14 @@ set sidescroll=1
 set sidescrolloff=7
 
 
-" Section: message and info display
+" Section: info display
 
 set lazyredraw
-set visualbell
-
+set belloff=all
 set cursorline
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set relativenumber
 set signcolumn=number
-
-set wildmode=list:longest      " make cmdline tab completion similar to bash
-set wildignore=*.o,*.obj,*~    " stuff to ignore when tab completing
-set wildignore+=*/.git/*,*/.svn/*,*/node_modules/*
 
 set laststatus=2    " always display status line
 set statusline=     " clear the statusline for when vimrc is reloaded
@@ -115,7 +122,7 @@ set statusline+=%=                                       " separation point
 set statusline+=%(%{StatuslineGetSyntaxID()}\ %)         " syntax id
 set statusline+=%B\                                      " character hex code
 set statusline+=%{v:hlsearch?LastSearchCount()..'\ ':''} " search count
-set statusline+=[\ %l/%L:%-4(%v\ ]%)\ %2p%%              " line info
+set statusline+=[\ %l/%L:%-4(%v\ ]%)\ %p%%               " line info
 
 " statusline helpers {{{
 " toggle syntax id
@@ -143,15 +150,6 @@ function! LastSearchCount() abort
   return printf('[%d/%d]', result.current, result.total)
 endfunction
 " }}}
-
-
-" Section: search and substitute
-
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
-set nowrapscan
 
 
 " Section: key mappings and commands
@@ -201,6 +199,12 @@ if !has('gui_running') && !has('nvim')
 else
   noremap!      <M-BS> <C-W>
 endif
+
+" autocompletion
+inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+cnoremap <expr> <Up>   wildmenumode() ? "\<C-E>\<Up>"   : "\<Up>"
+cnoremap <expr> <Down> wildmenumode() ? "\<C-E>\<Down>" : "\<Down>"
 
 " navigate by screen lines
 noremap <M-j> gj
@@ -280,8 +284,8 @@ nnoremap <Leader>' g`"
 if &startofline
   augroup StayPut
     autocmd!
-    au BufLeave * set nostartofline | au StayPut CursorMoved,CursorMovedI *
-                  \ set startofline | au! StayPut CursorMoved,CursorMovedI
+    au BufLeave * set nostartofline | au StayPut BufReadPost *
+                  \ set startofline | au! StayPut BufReadPost
   augroup END
 endif
 
@@ -296,7 +300,6 @@ packadd! matchit
 " netrw
 let g:netrw_banner = 0
 let g:netrw_home = expand('~/.cache/netrw')
-let g:netrw_liststyle = 3
 
 " source settings from ./init
 let g:vimrc_path = fnamemodify(resolve(expand('<sfile>:p')), ':h')

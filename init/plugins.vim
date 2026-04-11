@@ -7,7 +7,6 @@ let g:dirvish_mode = ':sort i ,^.*[\/],'
 
 " vim-sneak
 " Type `s` followed by two characters to move; use `z` for operations
-let g:sneak#s_next = 1
 let g:sneak#use_ic_scs = 1
 
 " vim-endwise
