@@ -48,13 +48,13 @@ packageList=(
     kana/vim-textobj-user
     kana/vim-textobj-indent
     kana/vim-textobj-syntax
-    adriaanzon/vim-textobj-matchit
+    rhysd/vim-textobj-anyblock
     sgur/vim-textobj-parameter
     whatyouhide/vim-textobj-xmlattr
 
     itchyny/lightline.vim
-    gcmt/wildfire.vim
     romainl/vim-cool
+    romainl/vim-redir
     justinmk/vim-dirvish
     justinmk/vim-sneak
     Yggdroot/LeaderF
@@ -78,6 +78,7 @@ printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 set_dir "colors/start"
 packageList=(
     skywind3000/vim-color-patch
+    romainl/Apprentice
     cocopon/iceberg.vim
     gkeep/iceberg-dark
     w0ng/vim-hybrid
@@ -87,6 +88,7 @@ packageList=(
     kamwitsta/flatwhite-vim
     NLKNguyen/papercolor-theme
     "yorickpeterse/vim-paper main"
+    "nordtheme/vim main nordtheme-vim"
 )
 printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
