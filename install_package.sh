@@ -58,7 +58,6 @@ packageList=(
     justinmk/vim-dirvish
     justinmk/vim-sneak
     Yggdroot/LeaderF
-    "neoclide/coc.nvim release"
 )
 printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 
@@ -72,6 +71,7 @@ packageList=(
     skywind3000/asyncrun.vim
     skywind3000/asynctasks.vim
     skywind3000/vim-terminal-help
+    "neoclide/coc.nvim release"
 )
 printf "%s\n" "${packageList[@]}" | xargs -P8 -I{} bash -c "package_install {}"
 

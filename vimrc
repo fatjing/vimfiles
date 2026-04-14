@@ -303,9 +303,7 @@ let g:netrw_home = expand('~/.cache/netrw')
 
 " source settings from ./init
 let g:vimrc_path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-command! -nargs=1 SourceScript execute 'source '..g:vimrc_path..'/<args>'
-SourceScript init/plugins.vim
-SourceScript init/coc.vim
+exe 'source '..g:vimrc_path..'/init/plugins.vim'
 
 
 " Section: filetype specific

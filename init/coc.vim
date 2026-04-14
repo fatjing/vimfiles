@@ -4,7 +4,7 @@ set updatetime=300
 "execute 'let &statusline="'..substitute(&statusline, '%=', ' %{coc#status()}%=', '')..'"'
 
 let g:coc_start_at_startup = 0
-let g:coc_config_home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+let g:coc_config_home = g:vimrc_path..'/init'
 "let g:coc_global_extensions = ['coc-explorer', 'coc-pairs', 'coc-snippets', 'coc-tag', 'coc-word']
 
 " Use tab for trigger completion with characters ahead and navigate
@@ -26,7 +26,8 @@ inoremap <silent><expr> <CR> coc#pum#has_item_selected() ? coc#pum#confirm() :
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Use <C-e> to cancel completion or move cursor to end of line
-inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<End>"
+inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() :
+      \ col('.') > strlen(getline('.')) ? "\<C-e>" : "\<End>"
 
 " Use <c-space> to trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()

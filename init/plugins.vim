@@ -59,7 +59,8 @@ noremap <silent><F5> :AsyncTask file-run<CR>
 noremap <silent><F9> :AsyncTask file-build<CR>
 
 " Coc
-autocmd mygroup InsertEnter * ++once packadd vim-snippets | call coc#rpc#start_server()
+autocmd mygroup InsertEnter * ++once packadd vim-snippets |
+      \ exe 'source '..g:vimrc_path..'/init/coc.vim' | packadd coc.nvim | CocStart
 
 " LeaderF {{{
 let g:Lf_HideHelp = 1
