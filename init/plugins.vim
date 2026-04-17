@@ -105,7 +105,7 @@ noremap <leader>cc :<C-U><C-R>=printf("Leaderf! gtags --by-context --auto-jump")
 
 " lightline.vim {{{
 let g:lightline = {
-  \   'colorscheme': 'iceberg',
+  \   'colorscheme': 'nord',
   \   'active': {
   \     'left': [['mode', 'paste'], ['relativepath', 'modified', 'readonly'],
   \              ['fileinfo'], ['gitbranch'], ['cocstatus']],

@@ -14,17 +14,11 @@ if has('gui_running')
 endif
 set mouse=nvi    " to select text with the terminal, go to command-line mode first
 
-" Allow color schemes to do bright colors without forcing bold.
-if &t_Co == 8 && $TERM !~# '^Eterm'
-  set t_Co=16
-endif
-
 if &term =~ '256color'
-  "set t_ut=           " disable Background Color Erase (BCE)
   set termguicolors    " use true colors in the terminal
 endif
-set background=dark
-silent! color iceberg
+"set background=light
+silent! color nord
 
 " set cursor shape, see `:h termcap-cursor-shape`
 if &term =~ 'xterm\|tmux'
