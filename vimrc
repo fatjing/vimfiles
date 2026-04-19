@@ -66,7 +66,6 @@ set ignorecase
 set smartcase
 set hlsearch
 set incsearch
-set nowrapscan
 
 
 " Section: text formatting and display
@@ -215,7 +214,7 @@ inoremap <C-s> <C-o><Cmd>update<CR>
 " buffers
 nnoremap <Left> <Cmd>bprev<CR>
 nnoremap <Right> <Cmd>bnext<CR>
-nnoremap <Leader>b :<C-u>ls<CR>:b<Space>
+nnoremap <Leader>b :<C-u>b<Space>
 " delete a buffer without closing the window
 noremap <silent> <Leader>d <Cmd>bp<Bar>bd#<CR>
 
