@@ -3,7 +3,7 @@
 command! -nargs=? Diff call <SID>Diff(<q-args>)
 
 function! s:Diff(spec)
-  vertical new
+  rightbelow vertical new
   setlocal bufhidden=wipe buftype=nofile nobuflisted noswapfile
   if len(a:spec)
     let cmd = "!git -C #:p:h:S show "..a:spec..":./#:t:S"
