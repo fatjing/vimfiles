@@ -202,6 +202,8 @@ cnoremap <expr> <Down> wildmenumode() ? "\<C-E>\<Down>" : "\<Down>"
 " navigate by screen lines
 noremap <M-j> gj
 noremap <M-k> gk
+noremap <M-h> h
+noremap <M-l> l
 
 " Break undo before deleting
 inoremap <C-U> <C-G>u<C-U>
