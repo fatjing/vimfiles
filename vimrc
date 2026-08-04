@@ -77,12 +77,10 @@ endif
 set formatoptions+=j
 autocmd mygroup FileType * setlocal fo-=r fo-=o  " do not insert comment leader
 
-set smarttab         " tab in front of a line depends on 'shiftwidth'
-set tabstop=4        " number of spaces per tab for display
-set shiftwidth=4     " number of spaces to use for each step of (auto)indent
-set softtabstop=4    " number of spaces per tab in insert mode
-set expandtab        " in insert mode: use spaces to insert a <Tab>
-set autoindent       " automatically indent to match adjacent line
+set shiftwidth=4      " number of columns per tab for indentation
+set softtabstop=-1    " number of columns per tab in insert mode
+set expandtab         " in insert mode: use spaces to insert a <Tab>
+set autoindent        " automatically indent to match adjacent line
 
 set foldmethod=marker
 set display=truncate
